@@ -1,0 +1,1179 @@
+
+C:\Users\SriVaishnaviSrinivas>mongosh
+Current Mongosh Log ID: 6ae9b74dcbb531bc5a0d3490
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.1
+Using MongoDB:          9.0.2
+Using Mongosh:          2.14.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-10-30T13:46:50.611+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin                      40.00 KiB
+college_management        288.00 KiB
+config                     36.00 KiB
+course_management         200.00 KiB
+custom_dashboard_builder  116.00 KiB
+dashboard_builder         456.00 KiB
+ecommerce_db               36.00 KiB
+ecommerce_poc             108.00 KiB
+food_delivery              24.00 KiB
+local                     192.00 KiB
+sample                     76.00 KiB
+sample_collection          40.00 KiB
+test                      148.00 KiB
+test> use sampdb
+switched to db sampdb
+sampdb> db.createCollection("students")
+{ ok: 1 }
+sampdb> db.createCollections("admin")
+TypeError: db.createCollections is not a function
+sampdb> db.createCollection("admin")
+{ ok: 1 }
+sampdb> db.students.insertOne({name:"Vaishu",age:22,dept:"HR"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ae9b836cbb531bc5a0d3491')
+}
+sampdb> db.students.insertOne({name:"Niranj",age:19,dept:"Finanace"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ae9c5d2cbb531bc5a0d3492')
+}
+sampdb> db.students.insertOne({name:"Jo",age:30,dept:"Health"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ae9c618cbb531bc5a0d3493')
+}
+sampdb> show collections
+admin
+students
+sampdb> db.getCollectionNames()
+[ 'admin', 'students' ]
+sampdb> db.students.insertMany([
+|     {
+|         name: "Arun",
+|         age: 23,
+|         department: "IT",
+|         city: "Chennai",
+|         marks: 85
+|     },
+|     {
+|         name: "Priya",
+|         age: 21,
+|         department: "CSE",
+|         city: "Madurai",
+|         marks: 95
+|     },
+|     {
+|         name: "Kumar",
+|         age: 22,
+|         department: "ECE",
+|         city: "Coimbatore",
+|         marks: 75
+|     },
+|     {
+|         name: "Divya",
+|         age: 24,
+|         department: "IT",
+|         city: "Salem",
+|         marks: 88
+|     },
+|     {
+|         name: "Ravi",
+|         age: 22,
+|         department: "CSE",
+|         city: "Chennai",
+|         marks: 60
+|     }
+| ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6ae9c685cbb531bc5a0d3494'),
+    '1': ObjectId('6ae9c685cbb531bc5a0d3495'),
+    '2': ObjectId('6ae9c685cbb531bc5a0d3496'),
+    '3': ObjectId('6ae9c685cbb531bc5a0d3497'),
+    '4': ObjectId('6ae9c685cbb531bc5a0d3498')
+  }
+}
+sampdb> db.admin.insertMany([
+|     {
+|         courseName: "JavaScript",
+|         duration: "3 months",
+|         fees: 5000
+|     },
+|     {
+|         courseName: "MongoDB",
+|         duration: "2 months",
+|         fees: 4000
+|     },
+|     {
+|         courseName: "Node.js",
+|         duration: "3 months",
+|         fees: 6000
+|     }]
+| )
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6ae9c6e4cbb531bc5a0d3499'),
+    '1': ObjectId('6ae9c6e4cbb531bc5a0d349a'),
+    '2': ObjectId('6ae9c6e4cbb531bc5a0d349b')
+  }
+}
+sampdb> db.students.find()
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 22,
+    dept: 'HR'
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3498'),
+    name: 'Ravi',
+    age: 22,
+    department: 'CSE',
+    city: 'Chennai',
+    marks: 60
+  }
+]
+sampdb> db.students.find().pretty()
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 22,
+    dept: 'HR'
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3498'),
+    name: 'Ravi',
+    age: 22,
+    department: 'CSE',
+    city: 'Chennai',
+    marks: 60
+  }
+]
+sampdb> db.students.findOne({
+|     name: "Vaishu"
+| })
+{
+  _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+  name: 'Vaishu',
+  age: 22,
+  dept: 'HR'
+}
+sampdb> db.students.find({
+|     department: "CSE"
+| })
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3498'),
+    name: 'Ravi',
+    age: 22,
+    department: 'CSE',
+    city: 'Chennai',
+    marks: 60
+  }
+]
+sampdb> db.students.find({
+|     department: "CSE",
+|     city: "Chennai"
+| })
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3498'),
+    name: 'Ravi',
+    age: 22,
+    department: 'CSE',
+    city: 'Chennai',
+    marks: 60
+  }
+]
+sampdb> db.students.updateOne(
+|     { name: "Vaishu" },
+|     {
+|         $set: {
+|             age: 23,
+|             city: "Chennai"
+|         }
+|     }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sampdb> db.students.updateOne({name:"Priya"},{$inc:{marks:5}}}
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:53)
+
+> 1 | db.students.updateOne({name:"Priya"},{$inc:{marks:5}}}
+    |                                                      ^
+  2 |
+
+sampdb> db.students.updateOne({name:"Priya"},{$inc:{marks:5}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sampdb> db.students.updateOne({name:"Priya"},{$set:{skills:["HTML","CSS","js"]}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sampdb> db.students.updateOne(
+|     { name: "Vaishu" },
+|     {
+|         $pull: {
+|             skills: "CSS"
+|         }
+|     }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+sampdb> db.students.updateOne(
+|     { name: "Vaishu" },
+|     {
+|         $push: {
+|             skills: "Express.js"
+|         }
+|     }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sampdb> db.students.updateOne(
+|     { name: "Vaishu" },
+|     {
+|         $unset: {
+|             city: ""
+|         }
+|     }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sampdb> db.students.deleteOne({
+|     name: "Ravi"
+| })
+{ acknowledged: true, deletedCount: 1 }
+sampdb> db.students.find({age:{$eq:22}})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  }
+]
+sampdb> db.students.find({age:{$ne:22}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({age:{$gt:22}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({age:{$lt:22}})
+[
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  }
+]
+sampdb> db.students.find({age:{$lte:22}})
+[
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  }
+]
+sampdb> db.students.find({age:{$gte:22}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({city:{$in:["js"]}})
+
+sampdb> db.students.find({skills:{$in:["js"]}})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  }
+]
+sampdb> db.students.find({skills:{$nin:["js"]}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({$and:[{department:"IT"},{age:{$gte:24}}]})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({$or:[{marks:{$gt:80}},{department:"Chennai"}]})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({$nor:[{department:"IT"},{age:{$gte:24}}]})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  }
+]
+sampdb> db.students.find({marks:{$not:{$gt:80}}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  }
+]
+sampdb> db.students.find({skills:{$all:["HTML","js"]}})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  }
+]
+sampdb> db.students.find({skills:{$size:{$gte:2}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:41)
+
+> 1 | db.students.find({skills:{$size:{$gte:2}})
+    |                                          ^
+  2 |
+
+sampdb> db.students.find({skills:{$size:{$gte:2}}})
+MongoServerError[BadValue]: Failed to parse $size. Expected a number in: $size: { $gte: 2 }
+sampdb> db.students.find({skills:{$size:2}})
+
+sampdb> db.students.find({skills:{$size:1}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  }
+]
+sampdb> db.students.find({
+|     scores: {
+|         $elemMatch: {
+|             $gte: 80,
+|             $lt: 95
+|         }
+|     }
+| })
+
+sampdb> db.students.find({
+|     markss: {
+|         $elemMatch: {
+|             $gte: 80,
+|             $lt: 95
+|         }
+|     }
+| })
+
+sampdb> db.students.find({
+|     marks: {
+|         $elemMatch: {
+|             $gte: 80,
+|             $lt: 95
+|         }
+|     }
+| })
+
+sampdb> db.students.find({
+|     marks: {
+|         $elemMatch: {
+|             $gte: 60,
+|             $lt: 95
+|         }
+|     }
+| })
+
+sampdb> db.students.find({marks:{$elemMatch:{$gte:60,$lt:80}}})
+
+sampdb> db.students.find({marks:{$elemMatch:{{$gte:60},{$lt:80}}}})
+Uncaught:
+SyntaxError: Unexpected token (1:37)
+
+> 1 | db.students.find({marks:{$elemMatch:{{$gte:60},{$lt:80}}}})
+    |                                      ^
+  2 |
+
+sampdb> db.students.find({marks:{$elemMatch:{$gte:60}}})
+
+sampdb> db.students.find({},{name:1,age:1})
+[
+  { _id: ObjectId('6ae9b836cbb531bc5a0d3491'), name: 'Vaishu', age: 23 },
+  { _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'), name: 'Niranj', age: 19 },
+  { _id: ObjectId('6ae9c618cbb531bc5a0d3493'), name: 'Jo', age: 30 },
+  { _id: ObjectId('6ae9c685cbb531bc5a0d3494'), name: 'Arun', age: 23 },
+  { _id: ObjectId('6ae9c685cbb531bc5a0d3495'), name: 'Priya', age: 21 },
+  { _id: ObjectId('6ae9c685cbb531bc5a0d3496'), name: 'Kumar', age: 22 },
+  { _id: ObjectId('6ae9c685cbb531bc5a0d3497'), name: 'Divya', age: 24 }
+]
+sampdb> db.students.find({},{name:1,age:1,_id:0})
+[
+  { name: 'Vaishu', age: 23 },
+  { name: 'Niranj', age: 19 },
+  { name: 'Jo', age: 30 },
+  { name: 'Arun', age: 23 },
+  { name: 'Priya', age: 21 },
+  { name: 'Kumar', age: 22 },
+  { name: 'Divya', age: 24 }
+]
+sampdb> db.students.find({city:{$exists:true}})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({city:{$exists:false}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  }
+]
+sampdb> db.students.find({age:{$type:number}})
+ReferenceError: number is not defined
+sampdb> db.students.find({age:{$type:"number"}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find({age:{$type:"array"}})
+
+sampdb> db.students.find({skills:{$type:"array"}})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  }
+]
+sampdb> db.students.find().sort({department:-1,marks:1})
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  }
+]
+sampdb> db.students.find().sort({department:1})
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  },
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find().skip(2)
+[
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3497'),
+    name: 'Divya',
+    age: 24,
+    department: 'IT',
+    city: 'Salem',
+    marks: 88
+  }
+]
+sampdb> db.students.find().limit(2)
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  }
+]
+sampdb> db.students.find().skip(0).limit(2)
+[
+  {
+    _id: ObjectId('6ae9b836cbb531bc5a0d3491'),
+    name: 'Vaishu',
+    age: 23,
+    dept: 'HR',
+    skills: [ 'Express.js' ]
+  },
+  {
+    _id: ObjectId('6ae9c5d2cbb531bc5a0d3492'),
+    name: 'Niranj',
+    age: 19,
+    dept: 'Finanace'
+  }
+]
+sampdb> db.students.find().skip(2).limit(2)
+[
+  {
+    _id: ObjectId('6ae9c618cbb531bc5a0d3493'),
+    name: 'Jo',
+    age: 30,
+    dept: 'Health'
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3494'),
+    name: 'Arun',
+    age: 23,
+    department: 'IT',
+    city: 'Chennai',
+    marks: 85
+  }
+]
+sampdb> db.students.find().skip(4).limit(2)
+[
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3495'),
+    name: 'Priya',
+    age: 21,
+    department: 'CSE',
+    city: 'Madurai',
+    marks: 100,
+    skills: [ 'HTML', 'CSS', 'js' ]
+  },
+  {
+    _id: ObjectId('6ae9c685cbb531bc5a0d3496'),
+    name: 'Kumar',
+    age: 22,
+    department: 'ECE',
+    city: 'Coimbatore',
+    marks: 75
+  }
+]
+sampdb>
