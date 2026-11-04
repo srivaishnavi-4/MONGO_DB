@@ -1,0 +1,246 @@
+# Database and Mongo DB challenge
+
+---
+
+## **Phase 1 — Environment Setup & Testing**
+
+**Objective:** Understand local vs cloud deployment, connectivity, and performance.
+
+**Tasks:**
+
+1. Install MongoDB locally and connect via Mongo Shell.
+2. Install MongoDB Compass and connect to your local database.
+3. Create a MongoDB Atlas cluster and connect it to Node.js.
+4. Switch between local and Atlas using a `.env` file in Node.js.
+5. Write a small script to insert 50 users in both environments and measure insertion time.
+6. Write a query to fetch all users, log query time, and compare local vs Atlas performance.
+7. Simulate a network failure and observe error handling.
+
+**Outcome:** Learn when to use local vs cloud, and understand connectivity/performance issues.
+
+---
+
+## **Phase 2 — Schema Design & Modeling**
+
+**Objective:** Learn trade-offs of embedded vs referenced data and proper schema design.
+
+**Tasks:**
+
+1. Create **User schema** (`name`, `email`, `role`) with a unique index on email.
+2. Create **Lesson schema** (`title`, `content`, `duration`) as both embedded and referenced.
+3. Create **Course schema** (`title`, `description`, `category`, `lessons`, `instructor`, `students`).
+4. Create **Enrollment schema** (`course`, `student`, `progress`, `enrolledAt`).
+5. Add **3 custom validators**:
+    - Email must include `@`
+    - Lesson duration > 0
+    - Progress between 0–100
+6. Add **pre-save hooks** to prevent duplicate enrollment.
+7. Add **post-save hooks** to log newly created courses.
+8. Add **instance methods** to calculate total course duration.
+9. Add **static methods** to fetch courses by category or top-rated courses.
+10. Compare querying embedded lessons vs referenced lessons for the same course.
+
+**Outcome:** Learn *when embedding is beneficial*, *when referencing is better*, and the implications of schema design.
+
+---
+
+## **Phase 3 — CRUD Operations**
+
+**Objective:** Understand practical CRUD and MongoDB operators.
+
+**Tasks:**
+
+1. Implement **User CRUD APIs**: create, read, update, delete.
+2. Implement **Course CRUD APIs**: create, update lessons, delete if no enrollments.
+3. Implement **Enrollment CRUD APIs**: enroll student, update progress, unenroll.
+4. Implement **bulk insert** of 50+ lessons and courses.
+5. Update a specific lesson using positional `$` operator.
+6. Remove a lesson from a course using `$pull`.
+7. Add a new lesson to a course using `$push`.
+8. Conditionally delete a course only if progress < 50%.
+9. Implement a **search API** for courses by `title` or `category`.
+10. Implement API pagination and sorting for course listings.
+
+**Outcome:** Learn *when to use operators*, *conditional updates*, and *bulk operations*.
+
+---
+
+## **Phase 4 — Aggregation Pipelines**
+
+**Objective:** Learn why aggregations are needed instead of multiple queries.
+
+**Tasks:**
+
+1. Aggregate top 5 courses by student count.
+2. Aggregate average student progress per course.
+3. Aggregate total lesson duration per course.
+4. List students who completed all lessons in a course.
+5. Count number of enrollments per instructor.
+6. Use `$match` + `$group` to find inactive students (no progress in last 30 days).
+7. Use `$facet` to get course statistics and top students in a single query.
+8. Use `$bucket` to group courses by total duration ranges.
+9. Combine `$lookup` with `$group` to get student progress per course.
+10. Explain each pipeline stage in code comments and console outputs.
+
+**Outcome:** Learn *when and how to structure aggregation pipelines*, and why they reduce multiple queries.
+
+---
+
+## **Phase 5 — Indexing & Performance**
+
+**Objective:** Understand indexing and query optimization.
+
+**Tasks:**
+
+1. Add **unique index** on `users.email`.
+2. Add **compound index** on `role + email`.
+3. Add **text index** on `course.title + course.description`.
+4. Measure query time before and after indexes.
+5. Use `explain()` on slow queries to check index usage.
+6. Compare performance of embedded lessons vs referenced lessons.
+7. Identify a slow query and optimize using indexes.
+8. Simulate 1000+ users and measure read/write performance.
+9. Drop an index and observe query slowdown.
+10. Document which queries benefited most and why.
+
+**Outcome:** Learn *when indexes help*, *when they don’t*, and practical performance tuning.
+
+---
+
+## **Phase 6 — Relationships**
+
+**Objective:** Learn when to embed, reference, and use population.
+
+**Tasks:**
+
+1. Implement many-to-many relationship between students and courses via Enrollment.
+2. Fetch a course with all enrolled students using `populate()`.
+3. Fetch student progress for all courses with nested `populate()`.
+4. Compare performance of `populate()` vs separate queries.
+5. Implement cascading delete (delete course → remove enrollments).
+6. Implement cascading update (change course instructor → update related data).
+7. Demonstrate difference between shallow and deep population.
+8. Add a virtual field to calculate completion percentage per course.
+9. Experiment with storing some data embedded (like lessons) and some referenced (like enrollments) in same document.
+10. Document trade-offs and reasoning in README.
+
+**Outcome:** Learn *when to reference*, *when to embed*, and how to structure relationships in MongoDB.
+
+---
+
+## **Phase 7 — Scaling & Transactions**
+
+**Objective:** Learn MongoDB limitations, scaling, and multi-document transactions.
+
+**Tasks:**
+
+1. Insert 1000+ fake students and 50+ courses.
+2. Query all courses with students and log performance.
+3. Implement a transaction for: enroll student + update course enrollment atomically.
+4. Simulate a failed transaction and observe rollback.
+5. Compare read/write performance for small vs large datasets.
+6. Experiment with shard key selection (if using Atlas sharding).
+7. Analyze slow queries and propose schema redesign.
+8. Split large collections into multiple collections and measure performance impact.
+9. Test indexing impact under high load.
+10. Write reflections on MongoDB scaling limits and best practices.
+
+**Outcome:** Learn *how MongoDB scales*, *when transactions are necessary*, and *how schema affects large datasets*.
+
+---
+
+## **Phase 8 — Error Handling & Testing**
+
+**Objective:** Learn importance of validation, testing, and robust error handling.
+
+**Tasks:**
+
+1. Implement Express error-handling middleware.
+2. Simulate invalid data insertion and observe Mongoose validation errors.
+3. Write unit tests for User, Course, and Enrollment models.
+4. Write integration tests for APIs using Supertest.
+5. Test bulk insert failure scenarios and handle errors gracefully.
+6. Test conditional delete failure scenarios.
+7. Test aggregation pipelines with missing/invalid data.
+8. Test index uniqueness constraints.
+9. Log meaningful error messages for all failed operations.
+10. Document how errors affect application behavior and what fixes are needed.
+
+**Outcome:** Learn *why validation and error handling are critical* and how to prevent real-world failures.
+
+---
+
+## **Task checklist**
+
+| # | Section | Task | Expected Deliverable | Learning Outcome |
+| --- | --- | --- | --- | --- |
+| 1 | Environment Setup | Install MongoDB locally and connect via Shell | Screenshot of successful connection | Learn local MongoDB setup |
+| 2 | Environment Setup | Install MongoDB Compass and connect to local DB | Screenshot of Compass connected | Visual DB exploration |
+| 3 | Environment Setup | Set up MongoDB Atlas cluster and connect Node.js | Connection code + screenshot | Learn cloud setup and connectivity |
+| 4 | Environment Setup | Switch between local and Atlas using `.env` | Working Node.js code | Learn environment configuration |
+| 5 | Environment Setup | Insert 50 test users in both environments and measure insertion time | Script + console logs | Compare performance of local vs cloud |
+| 6 | Environment Setup | Query all users and measure query time | Query logs + timings | Understand query performance differences |
+| 7 | Environment Setup | Simulate network failure | Console output of error | Learn error handling during connection |
+| 8 | Schema Design | Create User schema with unique email | Mongoose model code | Learn basic schema design |
+| 9 | Schema Design | Create Lesson schema embedded and referenced | Mongoose model code | Learn trade-offs of embedding vs referencing |
+| 10 | Schema Design | Create Course schema with lessons, instructor, students | Mongoose model code | Design real-world schema |
+| 11 | Schema Design | Create Enrollment schema with course, student, progress | Mongoose model code | Implement many-to-many relationship |
+| 12 | Schema Design | Add 3 custom validators (email, duration, progress) | Mongoose model code + sample insert logs | Learn validation importance |
+| 13 | Schema Design | Add pre-save hook to prevent duplicate enrollment | Model code + test logs | Enforce business rules |
+| 14 | Schema Design | Add post-save hook to log course creation | Model code + console output | Understand hooks and side effects |
+| 15 | Schema Design | Add instance method to calculate total course duration | Model code + demo usage | Learn instance methods usage |
+| 16 | Schema Design | Add static method to query top courses | Model code + demo output | Learn static methods usage |
+| 17 | Schema Design | Compare querying embedded vs referenced lessons | Query code + console logs | Learn performance trade-offs |
+| 18 | CRUD | Implement User CRUD APIs | Node.js/Express endpoints + Postman collection | Learn basic CRUD |
+| 19 | CRUD | Implement Course CRUD APIs with lesson updates | Node.js endpoints + test logs | Learn CRUD with nested documents |
+| 20 | CRUD | Implement Enrollment CRUD APIs | Node.js endpoints + Postman tests | Learn CRUD with referenced relationships |
+| 21 | CRUD | Bulk insert 50+ lessons or courses | Script + console logs | Learn bulk operations and performance |
+| 22 | CRUD | Update specific lesson using positional `$` operator | Node.js code + logs | Learn MongoDB update operators |
+| 23 | CRUD | Remove lesson using `$pull` | Node.js code + logs | Learn array update operators |
+| 24 | CRUD | Add lesson using `$push` | Node.js code + logs | Learn array insert operations |
+| 25 | CRUD | Conditionally delete course only if progress < 50% | Node.js code + logs | Learn conditional operations |
+| 26 | CRUD | Implement search API for courses by title/category | Node.js endpoint + Postman tests | Learn querying/filtering |
+| 27 | CRUD | Implement pagination and sorting for course listings | Node.js endpoint + test logs | Learn scalable querying |
+| 28 | Aggregation | Top 5 courses by student count | Aggregation query + console output | Learn grouping and sorting |
+| 29 | Aggregation | Average student progress per course | Aggregation query + output | Learn `$group` and `$avg` |
+| 30 | Aggregation | Total lesson duration per course | Aggregation query + output | Learn `$sum` aggregation |
+| 31 | Aggregation | List students who completed all lessons | Aggregation query + output | Learn `$match` and `$project` usage |
+| 32 | Aggregation | Count enrollments per instructor | Aggregation query + output | Learn multi-collection aggregation |
+| 33 | Aggregation | Identify inactive students | Aggregation query + output | Learn `$match` + `$group` + date filtering |
+| 34 | Aggregation | Use `$facet` for course stats + top students | Aggregation query + output | Learn combining multiple pipelines |
+| 35 | Aggregation | Use `$bucket` to group courses by duration | Aggregation query + output | Learn bucketing and range grouping |
+| 36 | Aggregation | Combine `$lookup` + `$group` to get student progress | Aggregation query + output | Learn multi-collection joins |
+| 37 | Indexing | Add unique index on `users.email` | `db.getIndexes()` + query logs | Learn index creation and uniqueness |
+| 38 | Indexing | Add compound index on `role + email` | `db.getIndexes()` + query logs | Learn compound index benefits |
+| 39 | Indexing | Add text index on `course.title + description` | Index code + query logs | Learn text search |
+| 40 | Indexing | Measure query time before/after indexes | Timings + logs | Learn indexing impact |
+| 41 | Indexing | Use `explain()` to verify index usage | Screenshots + logs | Learn query optimization |
+| 42 | Indexing | Compare performance of embedded vs referenced lessons | Logs + explanation | Learn schema-performance trade-offs |
+| 43 | Indexing | Identify a slow query and optimize | Query code + logs | Learn performance troubleshooting |
+| 44 | Indexing | Simulate 1000+ users and measure performance | Script + logs | Learn MongoDB scaling basics |
+| 45 | Indexing | Drop an index and observe slowdown | Logs + explanation | Learn index dependency |
+| 46 | Relationships | Implement many-to-many via Enrollment | Model code + demo | Learn relationship design |
+| 47 | Relationships | Fetch course with students using `populate()` | Query + output | Learn population usage |
+| 48 | Relationships | Nested population: course → lessons → student progress | Query + output | Learn nested population |
+| 49 | Relationships | Compare performance of `populate()` vs multiple queries | Logs + explanation | Learn when to use populate |
+| 50 | Relationships | Implement cascading delete: course → enrollments | Code + logs | Learn maintaining data consistency |
+| 51 | Relationships | Implement cascading update: change course instructor | Code + logs | Learn impact of updates on related data |
+| 52 | Relationships | Shallow vs deep population demo | Code + output | Learn cost of deep population |
+| 53 | Relationships | Add virtual field for course completion % | Schema code + demo | Learn virtuals and derived data |
+| 54 | Scaling/Transactions | Insert 1000+ fake students and 50+ courses | Script + logs | Learn handling large datasets |
+| 55 | Scaling/Transactions | Query all courses with students and log performance | Query + timings | Learn performance implications of large joins |
+| 56 | Scaling/Transactions | Implement transaction: enroll student + update course atomically | Code + logs | Learn when transactions are needed |
+| 57 | Scaling/Transactions | Simulate failed transaction and observe rollback | Logs + explanation | Learn transaction atomicity |
+| 58 | Scaling/Transactions | Compare read/write for small vs large datasets | Timings + analysis | Learn scalability limits |
+| 59 | Scaling/Transactions | Experiment with shard keys (Atlas) | Shard configuration + logs | Learn sharding basics |
+| 60 | Scaling/Transactions | Identify slow queries and propose schema redesign | Logs + explanation | Learn schema optimization for scale |
+| 61 | Scaling/Transactions | Split large collections and measure performance | Script + timings | Learn practical scaling strategies |
+| 62 | Error Handling/Testing | Implement Express error-handling middleware | Code + demo logs | Learn robust error handling |
+| 63 | Error Handling/Testing | Simulate invalid data insertion and observe Mongoose validation | Logs + explanation | Learn validation enforcement |
+| 64 | Error Handling/Testing | Write unit tests for models | Test files + results | Learn testing basics |
+| 65 | Error Handling/Testing | Write integration tests for APIs | Test files + results | Learn end-to-end testing |
+| 66 | Error Handling/Testing | Test bulk insert failure handling | Logs + code | Learn error management in bulk ops |
+| 67 | Error Handling/Testing | Test conditional delete failure handling | Logs + explanation | Learn conditional operation impact |
+| 68 | Error Handling/Testing | Test aggregation pipelines with invalid/missing data | Logs + explanation | Learn robust aggregation design |
+| 69 | Error Handling/Testing | Test index uniqueness constraints | Logs + explanation | Learn index enforcement |
+| 70 | Error Handling/Testing | Log meaningful errors for all failed operations | Logs + code | Learn best practices for debugging |

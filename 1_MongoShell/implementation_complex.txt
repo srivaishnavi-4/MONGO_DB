@@ -1,0 +1,3547 @@
+
+C:\Users\SriVaishnaviSrinivas>mongosh
+Current Mongosh Log ID: 6aeac6227f37227543eb865a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.1
+Using MongoDB:          9.0.2
+Using Mongosh:          2.14.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-10-30T13:46:50.611+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use testdb
+switched to db testdb
+testdb> show collections
+courses
+students
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  }
+]
+testdb> db.courses.find()
+[
+  {
+    _id: ObjectId('6aeaa34c8ced883a8304da35'),
+    name: 'HTML',
+    duration: 20,
+    modules: 3
+  },
+  {
+    _id: ObjectId('6aeaa35a8ced883a8304da36'),
+    name: 'CSS',
+    duration: 40,
+    modules: 5
+  },
+  {
+    _id: ObjectId('6aeaa36d8ced883a8304da37'),
+    name: 'JS',
+    duration: 30,
+    modules: 8
+  },
+  {
+    _id: ObjectId('6aeaa37e8ced883a8304da38'),
+    name: 'Express',
+    duration: 60,
+    modules: 7
+  },
+  {
+    _id: ObjectId('6aeaa3908ced883a8304da39'),
+    name: 'Node',
+    duration: 50,
+    modules: 9
+  },
+  {
+    _id: ObjectId('6aeaa3aa8ced883a8304da3a'),
+    name: 'Mongodb',
+    duration: 40,
+    modules: 4
+  }
+]
+testdb> db.courses.find()[0]._id.getTimestamp()
+TypeError: Cannot read properties of undefined (reading '_id')
+testdb> db.courses.find()[0]._id
+TypeError: Cannot read properties of undefined (reading '_id')
+testdb> db.courses.findOne()._id
+ObjectId('6aeaa34c8ced883a8304da35')
+testdb> db.courses.find()._id.getTimestamp()
+TypeError: Cannot read properties of undefined (reading 'getTimestamp')
+testdb> db.courses.find({},{_id:1})
+[
+  { _id: ObjectId('6aeaa34c8ced883a8304da35') },
+  { _id: ObjectId('6aeaa35a8ced883a8304da36') },
+  { _id: ObjectId('6aeaa36d8ced883a8304da37') },
+  { _id: ObjectId('6aeaa37e8ced883a8304da38') },
+  { _id: ObjectId('6aeaa3908ced883a8304da39') },
+  { _id: ObjectId('6aeaa3aa8ced883a8304da3a') }
+]
+testdb> db.courses.find({},{_id:1}).getTimestamp()
+TypeError: db.courses.fin ... id:1}).getTimestamp is not a function
+testdb> db.students.insertOne({name:"Sriii",dept:"cse",course_e:[db.courses.find({},{_id:1})]})
+BSONError: Cannot convert circular structure to BSON
+testdb> db.students.insertOne({name:"Sriii",dept:"cse",course_e:db.courses.find({},{_id:1}).limit(2)})
+BSONError: Cannot convert circular structure to BSON
+testdb> db.students.insertOne({name:"Sriii",dept:"cse",course_e:db.courses.find({},{_id:1}).limit(2)})
+BSONError: Cannot convert circular structure to BSON
+testdb> db.students.insertOne({
+|     name: "Sriii",
+|     dept: "cse",
+|     course_e: db.courses.find({}, {_id: 1})
+|         .limit(2)
+|         .toArray()
+|         .map(course => course._id)
+| })
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeae7f77f37227543eb865e')
+}
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ]
+  }
+]
+testdb> db.students.insertOne({name:"Niranjj",dept:"ece",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38
+| ')]})
+Uncaught:
+SyntaxError: Unterminated string constant. (1:105)
+
+> 1 | db.students.insertOne({name:"Niranjj",dept:"ece",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38
+    |                                                                                                          ^
+  2 | ')]})
+  3 |
+
+testdb> db.students.insertOne({name:"Niranjj",dept:"ece",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeafe577f37227543eb865f')
+}
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ]
+  }
+]
+testdb> db.students.aggregate([
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     }
+| ])
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6aeaa35a8ced883a8304da36'),
+        name: 'CSS',
+        duration: 40,
+        modules: 5
+      },
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'HTML',
+        duration: 20,
+        modules: 3
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'HTML',
+        duration: 20,
+        modules: 3
+      },
+      {
+        _id: ObjectId('6aeaa37e8ced883a8304da38'),
+        name: 'Express',
+        duration: 60,
+        modules: 7
+      }
+    ]
+  }
+]
+testdb> const studentSchema = {
+|     name: "String",
+|     dept: "String",
+|     age: "Number",
+|     course_e: ["ObjectId"]
+| };
+
+testdb> const studentSchema = {
+|     name: "String",
+|     dept: "String",
+|     age: "Number",
+|     course_e: ["ObjectId"]
+| };
+
+testdb> const studentSchema = {
+|     name: "String",
+|     dept: "String",
+|     age: "Number",
+|     course_e: ["ObjectId"]
+| }
+
+testdb> var studentSchema = {
+|     name: "String",
+|     dept: "String",
+|     age: "Number",
+|     course_e: ["ObjectId"]
+| };
+
+testdb> printjson(studentSchema);
+{
+  name: 'String',
+  dept: 'String',
+  age: 'Number',
+  course_e: [
+    'ObjectId'
+  ]
+}
+
+testdb> var students = {
+|     name: "String",
+|     dept: "String",
+|     age: "Number",
+|     course_e: ["ObjectId"]
+| };
+
+testdb> printjson(students);
+{
+  name: 'String',
+  dept: 'String',
+  age: 'Number',
+  course_e: [
+    'ObjectId'
+  ]
+}
+
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ]
+  }
+]
+testdb> db.courses.updateOne({name:"HTML"},{$set:{name:"Hyper Text Markup Language"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ]
+  }
+]
+testdb> db.students.aggregate([
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     }
+| ])
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'Hyper Text Markup Language',
+        duration: 20,
+        modules: 3
+      },
+      {
+        _id: ObjectId('6aeaa35a8ced883a8304da36'),
+        name: 'CSS',
+        duration: 40,
+        modules: 5
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ],
+    course_details: [
+      {
+        _id: ObjectId('6aeaa37e8ced883a8304da38'),
+        name: 'Express',
+        duration: 60,
+        modules: 7
+      },
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'Hyper Text Markup Language',
+        duration: 20,
+        modules: 3
+      }
+    ]
+  }
+]
+testdb> db.students.aggregate([{},{course_e:0},
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     }
+| ])
+MongoServerError[Location40323]: A pipeline stage specification object must contain exactly one field.
+testdb> db.students.aggregate([{},{course_e:0},
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     };{
+| ])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (9:5)
+
+   7 |             as: "course_details"
+   8 |         }
+>  9 |     };{
+     |      ^
+  10 | ])
+  11 |
+
+testdb> db.students.aggregate([{},{course_e:0},
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     },{$project:{course_e:0}}
+| ])
+MongoServerError[Location40323]: A pipeline stage specification object must contain exactly one field.
+testdb> db.students.aggregate([
+|     {
+|         $lookup: {
+|             from: "courses",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     },
+|     {
+|         $project: {
+|             course_e: 0
+|         }
+|     }
+| ]);
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS',
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98,
+    course_details: []
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_details: [
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'Hyper Text Markup Language',
+        duration: 20,
+        modules: 3
+      },
+      {
+        _id: ObjectId('6aeaa35a8ced883a8304da36'),
+        name: 'CSS',
+        duration: 40,
+        modules: 5
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_details: [
+      {
+        _id: ObjectId('6aeaa34c8ced883a8304da35'),
+        name: 'Hyper Text Markup Language',
+        duration: 20,
+        modules: 3
+      },
+      {
+        _id: ObjectId('6aeaa37e8ced883a8304da38'),
+        name: 'Express',
+        duration: 60,
+        modules: 7
+      }
+    ]
+  }
+]
+testdb> db.runCommand({
+|     collMod: "students",
+|     validator: {
+|         $jsonSchema: {
+|             bsonType: "object",
+|             required: ["name", "dept", "age"],
+|             properties: {
+|                 name: { bsonType: "string" },
+|                 dept: { bsonType: "string" },
+|                 age: { bsonType: "number" },course_e:{bsonType:["ObjectID"]}
+|             }
+|         }
+|     }
+| });
+MongoServerError[BadValue]: Parsing of collection validator failed :: caused by :: Unknown type name alias: ObjectID
+testdb> db.runCommand({
+|     collMod: "students",
+|     validator: {
+|         $jsonSchema: {
+|             bsonType: "object",
+|             required: ["name", "dept", "age", "course_e"],
+|             properties: {
+|                 name: {
+|                     bsonType: "string"
+|                 },
+|                 dept: {
+|                     bsonType: "string"
+|                 },
+|                 age: {
+|                     bsonType: "number"
+|                 },
+|                 course_e: {
+|                     bsonType: "array",
+|                     items: {
+|                         bsonType: "objectId"
+|                     }
+|                 }
+|             }
+|         }
+|     }
+| });
+{ ok: 1 }
+testdb> db.students.insertOne({name:"Srinivas",dept:"cse",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38
+| '),ObjectId('6aeaa3aa8ced883a8304da3a')]})
+Uncaught:
+SyntaxError: Unterminated string constant. (1:106)
+
+> 1 | db.students.insertOne({name:"Srinivas",dept:"cse",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38
+    |                                                                                                           ^
+  2 | '),ObjectId('6aeaa3aa8ced883a8304da3a')]})
+  3 |
+
+testdb> db.students.insertOne({name:"Srinivas",dept:"cse",course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38'),ObjectId('6aeaa3aa8ced883a8304da3a')]})
+Uncaught:
+MongoServerError: Document failed validation
+Additional information: {
+  failingDocumentId: ObjectId('6aeb18537f37227543eb8660'),
+  details: {
+    operatorName: '$jsonSchema',
+    schemaRulesNotSatisfied: [
+      {
+        operatorName: 'required',
+        specifiedAs: { required: [ 'name', 'dept', 'age', 'course_e' ] },
+        missingProperties: [ 'age' ]
+      }
+    ]
+  }
+}
+testdb> db.students.insertOne({name:"Srinivas",dept:"cse",age:20,course_e:[ObjectId('6aeaa34c8ced883a8304da35'),ObjectId('6aeaa37e8ced883a8304da38'),ObjectId('6aeaa3aa8ced883a8304da3a')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb18877f37227543eb8661')
+}
+testdb> show dbs
+admin                      40.00 KiB
+college_management        288.00 KiB
+config                     36.00 KiB
+course_management         200.00 KiB
+custom_dashboard_builder  116.00 KiB
+dashboard_builder         456.00 KiB
+ecommerce_db               36.00 KiB
+ecommerce_poc             108.00 KiB
+food_delivery              24.00 KiB
+local                     192.00 KiB
+performanceDB              40.00 KiB
+sampdb                    104.00 KiB
+sample                     76.00 KiB
+sample_collection          40.00 KiB
+test                      148.00 KiB
+testdb                    140.00 KiB
+testdb> use stud_manage
+switched to db stud_manage
+stud_manage> db.createCollection("student")
+{ ok: 1 }
+stud_manage> db.createCollection("courses")
+{ ok: 1 }
+stud_manage> db.createCollection("payments")
+{ ok: 1 }
+stud_manage> var student={
+| name:"String",
+| dept:"String",
+| course_e:["ObjectId"]
+| };
+
+stud_manage> printjson(student)
+{
+  name: 'String',
+  dept: 'String',
+  course_e: [
+    'ObjectId'
+  ]
+}
+
+stud_manage> var courses = { c_name: "String", duration: "number", p_code: "ObjectId" };
+
+stud_manage> printjson(courses)
+{
+  c_name: 'String',
+  duration: 'number',
+  p_code: 'ObjectId'
+}
+
+stud_manage> var courses = { price: "number", validity: "number" };
+
+stud_manage> var courses = { c_name: "String", duration: "number", p_code: "ObjectId" };
+
+stud_manage> printjson(courses)
+{
+  c_name: 'String',
+  duration: 'number',
+  p_code: 'ObjectId'
+}
+
+stud_manage> var payments = { price: "number", validity: "number" };
+
+stud_manage> printjson(payments)
+{
+  price: 'number',
+  validity: 'number'
+}
+
+stud_manage> db.courses.insertOne({price:500,validity:60})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb68477f37227543eb8662')
+}
+stud_manage> db.courses.insertOne({price:400,validity:70})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb68577f37227543eb8663')
+}
+stud_manage> db.courses.insertOne({price:200,validity:30})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb68617f37227543eb8664')
+}
+stud_manage> db.courses.insertOne({price:100,validity:10})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb686e7f37227543eb8665')
+}
+stud_manage> db.payments.insertOne({price:500,validity:60})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb688d7f37227543eb8666')
+}
+stud_manage> db.paymentss.insertOne({price:400,validity:70})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb689b7f37227543eb8667')
+}
+stud_manage> db.courses.deleteMany()
+MongoshInvalidInputError: [COMMON-10001] Missing required argument at position 0 (Collection.deleteMany)
+stud_manage> db.courses.delete()
+TypeError: db.courses.delete is not a function
+stud_manage> db.courses.find()
+[
+  { _id: ObjectId('6aeb68477f37227543eb8662'), price: 500, validity: 60 },
+  { _id: ObjectId('6aeb68577f37227543eb8663'), price: 400, validity: 70 },
+  { _id: ObjectId('6aeb68617f37227543eb8664'), price: 200, validity: 30 },
+  { _id: ObjectId('6aeb686e7f37227543eb8665'), price: 100, validity: 10 }
+]
+stud_manage> db.dropDatabase()
+{ ok: 1, dropped: 'stud_manage' }
+stud_manage> use stud_manage
+already on db stud_manage
+stud_manage> sow collections
+Uncaught:
+SyntaxError: Missing semicolon. (1:3)
+
+> 1 | sow collections
+    |    ^
+  2 |
+
+stud_manage> show collections
+
+stud_manage> db.createCollection("students")
+{ ok: 1 }
+stud_manage> db.createCollection("course")
+{ ok: 1 }
+stud_manage> db.createCollection("payd")
+{ ok: 1 }
+stud_manage> show collections
+course
+payd
+students
+stud_manage> var payd = { price: "number", validity: "number" };
+
+stud_manage> printjson(payd)
+{
+  price: 'number',
+  validity: 'number'
+}
+
+stud_manage> var course = { c_name: "String", duration: "number", p_code: "ObjectId" };
+
+stud_manage> printjson(course)
+{
+  c_name: 'String',
+  duration: 'number',
+  p_code: 'ObjectId'
+}
+
+stud_manage> var student = { name: "String", dept: "String", course_e: ["ObjectId"] };
+
+stud_manage> var students = { name: "String", dept: "String", course_e: ["ObjectId"] };
+
+stud_manage> printjson(students)
+{
+  name: 'String',
+  dept: 'String',
+  course_e: [
+    'ObjectId'
+  ]
+}
+
+stud_manage> db.payd.insertOne({price:5000,duration:90})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6a457f37227543eb8668')
+}
+stud_manage> db.payd.insertOne({price:4000,duration:60})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6a557f37227543eb8669')
+}
+stud_manage> db.payd.insertOne({price:3000,duration:60})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6a8e7f37227543eb866a')
+}
+stud_manage> db.payd.find({},{_id:1})
+[
+  { _id: ObjectId('6aeb6a457f37227543eb8668') },
+  { _id: ObjectId('6aeb6a557f37227543eb8669') },
+  { _id: ObjectId('6aeb6a8e7f37227543eb866a') }
+]
+stud_manage> db.course.insertOne({c_name:"HTML",description:"Basic Structurestud_manage> db.course.insertOne({c_name:"HTML",description:"Basic Structure of frontend",p_code:ObjectId('6aeb6a8e7f37227543eb866a')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6b8d7f37227543eb866b')
+}
+stud_manage> db.course.insertOne({c_name:"CSS",description:"Styling purpouses",p_code:ObjectId('6aeb6a557f37227543eb8669')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6bd27f37227543eb866c')
+}
+st
+stud_manage> db.course.insertOne({c_name:"CSS",description:"Styling purpouses",p_code:ObjectId('6aeb6a457f37227543eb8668
+stud_manage> db.course.insertOne({c_name:"JS",description:"Making the webpage static",p_code:ObjectId('6aeb6a457f37227543eb8668')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6c187f37227543eb866d')
+}
+stud_manage> db.course.find({},{_id:1})
+[
+  { _id: ObjectId('6aeb6b8d7f37227543eb866b') },
+  { _id: ObjectId('6aeb6bd27f37227543eb866c') },
+  { _id: ObjectId('6aeb6c187f37227543eb866d') }
+]
+stud_manage> db.students.insertOne({name:"Sriii",dept:"cse",course_e:ObjectIstud_manage> db.students.insertOne({name:"Sriii",dept:"cse",course_e:[ObjectId('6aeb6c187f37227543eb866d'),ObjectId('6aeb6b8d7f37227543eb866b')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6cba7f37227543eb866e')
+}
+stud_manage> db.students.insertOne({name:"Niranj",dept:"cse",course_e:[ObjectId('6aeb6bd27f37227543eb866c'),ObjectId('6aeb6b8d7f37227543eb866b')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6d237f37227543eb866f')
+}
+stud_manage> db.students.insertOne({name:"Srinivas",dept:"ai",course_e:[Objestud_manage> db.students.insertOne({name:"Srinivas",dept:"ai",course_e:[ObjectId('6aeb6bd27f37227543eb866c'),ObjectId('6aeb6b8d7f37227543eb866b'),ObjectId('6aeb6c187f37227543eb866d')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6d527f37227543eb8670')
+}
+stud_manage> db.students.insertOne({name:"jo",dept:"ai",course_e:[ObjectId('6aeb6bd27f37227543eb866c'),ObjectId('6aeb6b8d7f37227543eb866b'),ObjectId('6aeb6c187f37227543eb866d')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6d687f37227543eb8671')
+}
+stud_manage> db.students.insertOne({name:"surya",dept:"ai",course_e:[ObjectId('6aeb6bd27f37227543eb866c')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6d9c7f37227543eb8672')
+}
+stud_manage> db.students.insertOne({name:"preeth",dept:"it",course_e:[ObjectId('6aeb6b8d7f37227543eb866b')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6dd17f37227543eb8673')
+}
+stud_manage> db.students.insertOne({name:"kaavs",dept:"it",course_e:[ObjectId('6aeb6b8d7f37227543eb866b')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb6e007f37227543eb8674')
+}
+stud_manage> db.students.find()
+[
+  {
+    _id: ObjectId('6aeb6cba7f37227543eb866e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeb6c187f37227543eb866d'),
+      ObjectId('6aeb6b8d7f37227543eb866b')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d237f37227543eb866f'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeb6bd27f37227543eb866c'),
+      ObjectId('6aeb6b8d7f37227543eb866b')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d527f37227543eb8670'),
+    name: 'Srinivas',
+    dept: 'ai',
+    course_e: [
+      ObjectId('6aeb6bd27f37227543eb866c'),
+      ObjectId('6aeb6b8d7f37227543eb866b'),
+      ObjectId('6aeb6c187f37227543eb866d')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d687f37227543eb8671'),
+    name: 'jo',
+    dept: 'ai',
+    course_e: [
+      ObjectId('6aeb6bd27f37227543eb866c'),
+      ObjectId('6aeb6b8d7f37227543eb866b'),
+      ObjectId('6aeb6c187f37227543eb866d')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d9c7f37227543eb8672'),
+    name: 'surya',
+    dept: 'ai',
+    course_e: [ ObjectId('6aeb6bd27f37227543eb866c') ]
+  },
+  {
+    _id: ObjectId('6aeb6dd17f37227543eb8673'),
+    name: 'preeth',
+    dept: 'it',
+    course_e: [ ObjectId('6aeb6b8d7f37227543eb866b') ]
+  },
+  {
+    _id: ObjectId('6aeb6e007f37227543eb8674'),
+    name: 'kaavs',
+    dept: 'it',
+    course_e: [ ObjectId('6aeb6b8d7f37227543eb866b') ]
+  }
+]
+stud_manage> db.course.find()
+[
+  {
+    _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+    c_name: 'HTML',
+    description: 'Basic Structure of frontend',
+    p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+  },
+  {
+    _id: ObjectId('6aeb6bd27f37227543eb866c'),
+    c_name: 'CSS',
+    description: 'Styling purpouses',
+    p_code: ObjectId('6aeb6a557f37227543eb8669')
+  },
+  {
+    _id: ObjectId('6aeb6c187f37227543eb866d'),
+    c_name: 'JS',
+    description: 'Making the webpage static',
+    p_code: ObjectId('6aeb6a457f37227543eb8668')
+  }
+]
+stud_manage> db.payd.find()
+[
+  {
+    _id: ObjectId('6aeb6a457f37227543eb8668'),
+    price: 5000,
+    duration: 90
+  },
+  {
+    _id: ObjectId('6aeb6a557f37227543eb8669'),
+    price: 4000,
+    duration: 60
+  },
+  {
+    _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+    price: 3000,
+    duration: 60
+  }
+]
+stud_manage> db.students.aggregate([{$lookup:{from:"course",localField:"_id",foreignField:"course_e",as:"course_details"}},{$lookup:{from:"payd",localField:"payd._id",foreignField:"p_code",as:"payment_details"}},{$project:{course_e:0,course.p_code:0}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:227)
+
+> 1 | db.students.aggregate([{$lookup:{from:"course",localField:"_id",foreignField:"course_e",as:"course_details"}},{$lookup:{from:"payd",localField:"payd._id",foreignField:"p_code",as:"payment_details"}},{$project:{course_e:0,course.p_code:0}}])
+    |                                                                                                                                                                                                                                    ^
+  2 |
+
+stud_manage> db.students.aggregate([{$lookup:{from:"course",localField:"_id",foreignField:"course_e",as:"course_details"}},{$lookup:{from:"payd",localField:"payd._id",foreignField:"p_code",as:"payment_details"}},{$project:{course_e:0,course.p_code:0}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:227)
+
+> 1 | db.students.aggregate([{$lookup:{from:"course",localField:"_id",foreignField:"course_e",as:"course_details"}},{$lookup:{from:"payd",localField:"payd._id",foreignField:"p_code",as:"payment_details"}},{$project:{course_e:0,course.p_code:0}}]);
+    |                                                                                                                                                                                                                                    ^
+  2 |
+
+stud_manage> db.students.aggregate([
+|
+|     // Students -> Course
+|     {
+|         $lookup: {
+|             from: "course",
+|             localField: "_id",
+|             foreignField: "course_e",
+|             as: "course_details"
+|         }
+|     },
+|
+|     // Course -> Payment
+|     {
+|         $lookup: {
+|             from: "payd",
+|             localField: "course_details._id",
+|             foreignField: "p_code",
+|             as: "payment_details"
+|         }
+|     },
+|
+|     // Display required fields
+|     {
+|         $project: {
+|             course_e: 0
+|         }
+|     }
+|
+| ]);
+[
+  {
+    _id: ObjectId('6aeb6cba7f37227543eb866e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d237f37227543eb866f'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d527f37227543eb8670'),
+    name: 'Srinivas',
+    dept: 'ai',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d687f37227543eb8671'),
+    name: 'jo',
+    dept: 'ai',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d9c7f37227543eb8672'),
+    name: 'surya',
+    dept: 'ai',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6dd17f37227543eb8673'),
+    name: 'preeth',
+    dept: 'it',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6e007f37227543eb8674'),
+    name: 'kaavs',
+    dept: 'it',
+    course_details: [],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  }
+]
+stud_manage> db.students.aggregate([
+|
+|     // 1. Join students with courses
+|     {
+|         $lookup: {
+|             from: "course",
+|             localField: "course_e",
+|             foreignField: "_id",
+|             as: "course_details"
+|         }
+|     },
+|
+|     // 2. Join courses with payment details
+|     {
+|         $lookup: {
+|             from: "payd",
+|             localField: "course_details.p_code",
+|             foreignField: "_id",
+|             as: "payment_details"
+|         }
+|     },
+|
+|     // 3. Display required information
+|     {
+|         $project: {
+|             name: 1,
+|             dept: 1,
+|             course_details: 1,
+|             payment_details: 1
+|         }
+|     }
+|
+| ]);
+[
+  {
+    _id: ObjectId('6aeb6cba7f37227543eb866e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6c187f37227543eb866d'),
+        c_name: 'JS',
+        description: 'Making the webpage static',
+        p_code: ObjectId('6aeb6a457f37227543eb8668')
+      },
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d237f37227543eb866f'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6bd27f37227543eb866c'),
+        c_name: 'CSS',
+        description: 'Styling purpouses',
+        p_code: ObjectId('6aeb6a557f37227543eb8669')
+      },
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d527f37227543eb8670'),
+    name: 'Srinivas',
+    dept: 'ai',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      },
+      {
+        _id: ObjectId('6aeb6bd27f37227543eb866c'),
+        c_name: 'CSS',
+        description: 'Styling purpouses',
+        p_code: ObjectId('6aeb6a557f37227543eb8669')
+      },
+      {
+        _id: ObjectId('6aeb6c187f37227543eb866d'),
+        c_name: 'JS',
+        description: 'Making the webpage static',
+        p_code: ObjectId('6aeb6a457f37227543eb8668')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d687f37227543eb8671'),
+    name: 'jo',
+    dept: 'ai',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6bd27f37227543eb866c'),
+        c_name: 'CSS',
+        description: 'Styling purpouses',
+        p_code: ObjectId('6aeb6a557f37227543eb8669')
+      },
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      },
+      {
+        _id: ObjectId('6aeb6c187f37227543eb866d'),
+        c_name: 'JS',
+        description: 'Making the webpage static',
+        p_code: ObjectId('6aeb6a457f37227543eb8668')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb6a457f37227543eb8668'),
+        price: 5000,
+        duration: 90
+      },
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6d9c7f37227543eb8672'),
+    name: 'surya',
+    dept: 'ai',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6bd27f37227543eb866c'),
+        c_name: 'CSS',
+        description: 'Styling purpouses',
+        p_code: ObjectId('6aeb6a557f37227543eb8669')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a557f37227543eb8669'),
+        price: 4000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6dd17f37227543eb8673'),
+    name: 'preeth',
+    dept: 'it',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb6e007f37227543eb8674'),
+    name: 'kaavs',
+    dept: 'it',
+    course_details: [
+      {
+        _id: ObjectId('6aeb6b8d7f37227543eb866b'),
+        c_name: 'HTML',
+        description: 'Basic Structure of frontend',
+        p_code: ObjectId('6aeb6a8e7f37227543eb866a')
+      }
+    ],
+    payment_details: [
+      {
+        _id: ObjectId('6aeb6a8e7f37227543eb866a'),
+        price: 3000,
+        duration: 60
+      }
+    ]
+  }
+]
+stud_manage>
+
+stud_manage>
+
+stud_manage>
+
+stud_manage> use invoice_disp
+switched to db invoice_disp
+invoice_disp> db.createCollection("customers")
+{ ok: 1 }
+invoice_disp> db.createCollection("accounts")
+{ ok: 1 }
+invoice_disp> db.createCollection("invoices")
+{ ok: 1 }
+invoice_disp> var customers={name:"String",email:"String"};
+
+invoice_disp> printjson(customers)
+{
+  name: 'String',
+  email: 'String'
+}
+
+invoice_disp> var accounts={cust_id:"ObjectId",acc_type:"String",status:"String"};
+
+invoice_disp> printjson(accounts)
+{
+  cust_id: 'ObjectId',
+  acc_type: 'String',
+  status: 'String'
+}
+
+invoice_disp> var invoices={acc_id:"ObjectId",amount:"number",status:"String",duedate:"Date"};
+
+invoice_disp> printjson(invoices)
+{
+  acc_id: 'ObjectId',
+  amount: 'number',
+  status: 'String',
+  duedate: 'Date'
+}
+
+invoice_disp> db.customers.insertMany({name:"Srii",email:"sri@mail.com"},{name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@email.com"})
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+invoice_disp> db.customers.insertOne([{name:"Srii",email:"sri@mail.com"},{name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@email.com"}])
+invoice_disp> db.customers.insertOne({name:"Srii",email:"sri@mail.com"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7d377f37227543eb8675')
+}
+invoice_disp> db.customers.insertOne({name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@emain
+invoice_disp> db.customers.insertOne({name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@emainvoice_disp> db.customers.insertOne({name:"Niranjj",email:"niranj@email.com"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7d627f37227543eb8676')
+}
+invoice_disp> db.customers.insertOne({name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@emain
+invoice_disp> db.customers.insertOne({name:"Vaiss",email:"vais@email.com"},{name:"Niranjj",email:"niranj@email.com"},{name:"Josrinivas",email:"josrinivas@emainvoice_disp> db.customers.insertOne({name:"Josrinivas",email:"josrinivas@email.com"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7d7e7f37227543eb8677')
+}
+invoice_disp> db.customers.find({},{_id:1})
+[
+  { _id: ObjectId('6aeb7d377f37227543eb8675') },
+  { _id: ObjectId('6aeb7d627f37227543eb8676') },
+  { _id: ObjectId('6aeb7d7e7f37227543eb8677') }
+]
+invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d377f37227543eb8invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d377f37227543eb8675'),acc_type:"Premium",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7e4a7f37227543eb8678')
+}
+invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d627f37227543eb8invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d627f37227543eb8676'),acc_type:"Basic",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7e977f37227543eb8679')
+}
+invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d7e7f37227543eb8invoice_disp> db.accounts.insertOne({cust_id:ObjectId('6aeb7d7e7f37227543eb8677'),acc_type:"Business",status:"Inactive"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb7f707f37227543eb867a')
+}
+invoice_disp> db.accounts.find({},{_id:1})
+[
+  { _id: ObjectId('6aeb7e4a7f37227543eb8678') },
+  { _id: ObjectId('6aeb7e977f37227543eb8679') },
+  { _id: ObjectId('6aeb7f707f37227543eb867a') }
+]
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb86invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb8678'),amount:9000,status:"Pending",duedate:New Date('2026-10-16')})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:108)
+
+> 1 | db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb8678'),amount:9000,status:"Pending",duedate:New Date('2026-10-16')})
+    |                                                                                                             ^
+  2 |
+
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb8678'),amount:9000,status:"Pending",duedate:NewDate('2026-10-16')})
+ReferenceError: NewDate is not defined
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb8678'),amount:9000,status:"Pending",duedate:newDate('2026-10-16')})
+ReferenceError: newDate is not defined
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e4a7f37227543eb8678'),amount:9000,status:"Pending",duedate:new Date('2026-10-16')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb80587f37227543eb867b')
+}
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e977f37227543eb86invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7e977f37227543eb8679'),amount:18000,status:"Pending",duedate:new Date('2026-10-18')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb80ba7f37227543eb867c')
+}
+invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7f707f37227543eb86invoice_disp> db.invoices.insertOne({acc_id:ObjectId('6aeb7f707f37227543eb867a'),amount:20000,status:"Paid",duedate:new Date('2026-10-20')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb80ef7f37227543eb867d')
+}
+invoice_disp> db.customers.find()
+[
+  {
+    _id: ObjectId('6aeb7d377f37227543eb8675'),
+    name: 'Srii',
+    email: 'sri@mail.com'
+  },
+  {
+    _id: ObjectId('6aeb7d627f37227543eb8676'),
+    name: 'Niranjj',
+    email: 'niranj@email.com'
+  },
+  {
+    _id: ObjectId('6aeb7d7e7f37227543eb8677'),
+    name: 'Josrinivas',
+    email: 'josrinivas@email.com'
+  }
+]
+invoice_disp> db.accounts.find()
+[
+  {
+    _id: ObjectId('6aeb7e4a7f37227543eb8678'),
+    cust_id: ObjectId('6aeb7d377f37227543eb8675'),
+    acc_type: 'Premium',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb7e977f37227543eb8679'),
+    cust_id: ObjectId('6aeb7d627f37227543eb8676'),
+    acc_type: 'Basic',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb7f707f37227543eb867a'),
+    cust_id: ObjectId('6aeb7d7e7f37227543eb8677'),
+    acc_type: 'Business',
+    status: 'Inactive'
+  }
+]
+invoice_disp> db.invoices.find()
+[
+  {
+    _id: ObjectId('6aeb80587f37227543eb867b'),
+    acc_id: ObjectId('6aeb7e4a7f37227543eb8678'),
+    amount: 9000,
+    status: 'Pending',
+    duedate: ISODate('2026-10-16T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('6aeb80ba7f37227543eb867c'),
+    acc_id: ObjectId('6aeb7e977f37227543eb8679'),
+    amount: 18000,
+    status: 'Pending',
+    duedate: ISODate('2026-10-18T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('6aeb80ef7f37227543eb867d'),
+    acc_id: ObjectId('6aeb7f707f37227543eb867a'),
+    amount: 20000,
+    status: 'Paid',
+    duedate: ISODate('2026-10-20T00:00:00.000Z')
+  }
+]
+invoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$match:{acc_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:229)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$match:{acc_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])
+    |                                                                                                                                                                                                                                      ^
+  2 |
+
+invoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$match:{acc_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:229)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$match:{acc_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}]);
+    |                                                                                                                                                                                                                                      ^
+  2 |
+
+invoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:287)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}]);
+    |                                                                                                                                                                                                                                                                                                ^
+  2 |
+
+invoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:287)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])
+    |                                                                                                                                                                                                                                                                                                ^
+  2 |
+
+invoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foinvoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$uinvoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foinvoice_disp> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"cust_id",as:"acc_details"}},{$unwind:"$acc_details"},{$lookup:{from:"invoices",localField:"acc_details._id",foreignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])reignField:"acc_id",as:"invoice_details"}},{$unwind:"$invoice_details"},{$match:{invoice_details.status:"Pending",invoice_details.amount:{$gt:10000}}},{$project:{name:1,email:1,acc_details:1,invoice_details:1}}])
+invoice_disp>
+
+invoice_disp>
+
+invoice_disp>
+
+invoice_disp>
+
+invoice_disp>
+
+invoice_disp>
+
+invoice_disp> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "acc_details"
+|     }
+|   },
+|   {
+|     $unwind: "$acc_details"
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "acc_details._id",
+|       foreignField: "acc_id",
+|       as: "invoice_details"
+|     }
+|   },
+|   {
+|     $unwind: "$invoice_details"
+|   },
+|   {
+|     $match: {
+|       "invoice_details.status": "Pending",
+|       "invoice_details.amount": { $gt: 10000 }
+|     }
+|   },
+|   {
+|     $project: {
+|       _id: 0,
+|       name: 1,
+|       email: 1,
+|       account_type: "$acc_details.acc_type",
+|       amount: "$invoice_details.amount",
+|       status: "$invoice_details.status",
+|       due_date: "$invoice_details.duedate"
+|     }
+|   }
+| ]);
+[
+  {
+    name: 'Niranjj',
+    email: 'niranj@email.com',
+    account_type: 'Basic',
+    amount: 18000,
+    status: 'Pending',
+    due_date: ISODate('2026-10-18T00:00:00.000Z')
+  }
+]
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+|       from: "accounts",
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+|     $lookup: {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+|   {
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+invoice_disp> db.customers.aggregate([
+|   // 1. Join customers with accounts
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+invoice_disp> db.customers.aggregate([
+|     {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "acc_details"
+|     }
+|   },
+|
+|    {
+|     $unwind: "$acc_details"
+|   },
+|
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "acc_details._id",
+|       foreignField: "acc_id",
+|       as: "invoice_details"
+|     }
+|   },
+|
+|
+|   {
+|     $unwind: "$invoice_details"
+|   },
+|
+|   {
+|     $group: {
+|       _id: "$_id",
+|       customer_name: { $first: "$name" },
+|       email: { $first: "$email" },
+|       total_invoice_amount: { $sum: "$invoice_details.amount" },
+|       invoice_count: { $sum: 1 }
+|     }
+|   },
+|
+|   {
+|     $project: {
+|       _id: 0,
+|       customer_name: 1,
+|       email: 1,
+|       total_invoice_amount: 1,
+|       invoice_count: 1
+|     }
+|   }
+| ]);
+[
+  {
+    customer_name: 'Josrinivas',
+    email: 'josrinivas@email.com',
+    total_invoice_amount: 20000,
+    invoice_count: 1
+  },
+  {
+    customer_name: 'Srii',
+    email: 'sri@mail.com',
+    total_invoice_amount: 9000,
+    invoice_count: 1
+  },
+  {
+    customer_name: 'Niranjj',
+    email: 'niranj@email.com',
+    total_invoice_amount: 18000,
+    invoice_count: 1
+  }
+]
+invoice_disp> use mark_st
+switched to db mark_st
+mark_st> show dbs
+admin                      40.00 KiB
+college_management        288.00 KiB
+config                    100.00 KiB
+course_management         200.00 KiB
+custom_dashboard_builder  116.00 KiB
+dashboard_builder         456.00 KiB
+ecommerce_db               36.00 KiB
+ecommerce_poc             108.00 KiB
+food_delivery              24.00 KiB
+invoice_disp              200.00 KiB
+local                     192.00 KiB
+performanceDB              40.00 KiB
+sampdb                    104.00 KiB
+sample                     76.00 KiB
+sample_collection          40.00 KiB
+stud_manage               208.00 KiB
+test                      148.00 KiB
+testdb                    140.00 KiB
+mark_st> use test db
+switched to db test
+test> db.students.find()
+
+test> use testdb
+switched to db testdb
+testdb> db.students.find()
+[
+  {
+    _id: ObjectId('6aeaa27b8ced883a8304da2f'),
+    name: 'Vaish',
+    city: 'svks',
+    dept: 'cse',
+    marks: 80,
+    course_name: 'HTML'
+  },
+  {
+    _id: ObjectId('6aeaa2a18ced883a8304da30'),
+    name: 'John',
+    city: 'cbe',
+    dept: 'it',
+    marks: 90,
+    course_name: 'CSS'
+  },
+  {
+    _id: ObjectId('6aeaa2b78ced883a8304da31'),
+    name: 'Oliviya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 70
+  },
+  {
+    _id: ObjectId('6aeaa2c98ced883a8304da32'),
+    name: 'Priya',
+    city: 'erode',
+    dept: 'ece',
+    marks: 100
+  },
+  {
+    _id: ObjectId('6aeaa2e68ced883a8304da33'),
+    name: 'Swetha',
+    city: 'mdu',
+    dept: 'it',
+    marks: 95
+  },
+  {
+    _id: ObjectId('6aeaa2ff8ced883a8304da34'),
+    name: 'Surya',
+    city: 'mdu',
+    dept: 'ai',
+    marks: 98
+  },
+  {
+    _id: ObjectId('6aeae7f77f37227543eb865e'),
+    name: 'Sriii',
+    dept: 'cse',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa35a8ced883a8304da36')
+    ]
+  },
+  {
+    _id: ObjectId('6aeafe577f37227543eb865f'),
+    name: 'Niranjj',
+    dept: 'ece',
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb18877f37227543eb8661'),
+    name: 'Srinivas',
+    dept: 'cse',
+    age: 20,
+    course_e: [
+      ObjectId('6aeaa34c8ced883a8304da35'),
+      ObjectId('6aeaa37e8ced883a8304da38'),
+      ObjectId('6aeaa3aa8ced883a8304da3a')
+    ]
+  }
+]
+testdb> use test_db
+switched to db test_db
+test_db> db.createCollection("student")
+{ ok: 1 }
+test_db> db.createCollection("course")
+{ ok: 1 }
+test_db> db.student.insertOne({c_name:"HTML",des:"Basic",duration:40})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8b9e7f37227543eb867e')
+}
+test_db> db.student.insertOne({c_name:"CSS",des:"Style",duration:50})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8bb27f37227543eb867f')
+}
+test_db> db.student.insertOne({c_name:"JS",des:"Dynaic prog",duration:60})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8bc87f37227543eb8680')
+}
+test_db> db.student.insertOne({c_name:"Express",des:"Backend",duration:70})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8be67f37227543eb8681')
+}
+test_db> db.student.find({},{_id:1})
+[
+  { _id: ObjectId('6aeb8b9e7f37227543eb867e') },
+  { _id: ObjectId('6aeb8bb27f37227543eb867f') },
+  { _id: ObjectId('6aeb8bc87f37227543eb8680') },
+  { _id: ObjectId('6aeb8be67f37227543eb8681') }
+]
+test_db> db.createCollection("stud_d")
+{ ok: 1 }
+test_db> db.stud_d.insertOne({name:"Srii",dept:"cse",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bc87f37227543eb8680')})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:123)
+
+> 1 | db.stud_d.insertOne({name:"Srii",dept:"cse",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bc87f37227543eb8680')})
+    |                                                                                                                            ^
+  2 |
+
+test_db> db.stud_d.insertOne({name:"Srii",dept:"cse",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bc87f37227543eb8680')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8cd47f37227543eb8682')
+}
+test_db> db.stud_d.insertOne({name:"Niranj",dept:"cse",c_en:[ObjectId('6aeb8test_db> db.stud_d.insertOne({name:"Niranj",dept:"cse",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bc87f37227543eb8680'),ObjectId('6aeb8bb27f37227543eb867f')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8d037f37227543eb8683')
+}
+test_db> db.stud_d.insertOne({name:"jo",dept:"it",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bc87f37227543eb8680'),ObjectId('6aeb8bb27f37227543eb867f'),ObjectId('6aeb8b9e7f37227543eb867e')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8d2b7f37227543eb8684')
+}
+test_db> db.stud_d.insertOne({name:"srinivas",dept:"it",c_en:[ObjectId('6aeb8bb27f37227543eb867f'),ObjectId('6aeb8b9e7f37227543eb867e')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8d4c7f37227543eb8685')
+}
+test_db> db.stud_d.insertOne({name:"preeth",dept:"ai",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bb27f37227543eb867f'),ObjectId('6aeb8b9e7f37227543eb867e')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8d6f7f37227543eb8686')
+}
+test_db> db.stud_d.insertOne({name:"surii",dept:"ai",c_en:[ObjectId('6aeb8be67f37227543eb8681'),ObjectId('6aeb8bb27f37227543eb867f')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb8d847f37227543eb8687')
+}
+test_db> db.stud_d.find()
+[
+  {
+    _id: ObjectId('6aeb8cd47f37227543eb8682'),
+    name: 'Srii',
+    dept: 'cse',
+    c_en: [
+      ObjectId('6aeb8be67f37227543eb8681'),
+      ObjectId('6aeb8bc87f37227543eb8680')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d037f37227543eb8683'),
+    name: 'Niranj',
+    dept: 'cse',
+    c_en: [
+      ObjectId('6aeb8be67f37227543eb8681'),
+      ObjectId('6aeb8bc87f37227543eb8680'),
+      ObjectId('6aeb8bb27f37227543eb867f')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d2b7f37227543eb8684'),
+    name: 'jo',
+    dept: 'it',
+    c_en: [
+      ObjectId('6aeb8be67f37227543eb8681'),
+      ObjectId('6aeb8bc87f37227543eb8680'),
+      ObjectId('6aeb8bb27f37227543eb867f'),
+      ObjectId('6aeb8b9e7f37227543eb867e')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d4c7f37227543eb8685'),
+    name: 'srinivas',
+    dept: 'it',
+    c_en: [
+      ObjectId('6aeb8bb27f37227543eb867f'),
+      ObjectId('6aeb8b9e7f37227543eb867e')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d6f7f37227543eb8686'),
+    name: 'preeth',
+    dept: 'ai',
+    c_en: [
+      ObjectId('6aeb8be67f37227543eb8681'),
+      ObjectId('6aeb8bb27f37227543eb867f'),
+      ObjectId('6aeb8b9e7f37227543eb867e')
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d847f37227543eb8687'),
+    name: 'surii',
+    dept: 'ai',
+    c_en: [
+      ObjectId('6aeb8be67f37227543eb8681'),
+      ObjectId('6aeb8bb27f37227543eb867f')
+    ]
+  }
+]
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+[
+  {
+    _id: ObjectId('6aeb8cd47f37227543eb8682'),
+    name: 'Srii',
+    dept: 'cse',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8be67f37227543eb8681'),
+        c_name: 'Express',
+        des: 'Backend',
+        duration: 70
+      },
+      {
+        _id: ObjectId('6aeb8bc87f37227543eb8680'),
+        c_name: 'JS',
+        des: 'Dynaic prog',
+        duration: 60
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d037f37227543eb8683'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8bc87f37227543eb8680'),
+        c_name: 'JS',
+        des: 'Dynaic prog',
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb8bb27f37227543eb867f'),
+        c_name: 'CSS',
+        des: 'Style',
+        duration: 50
+      },
+      {
+        _id: ObjectId('6aeb8be67f37227543eb8681'),
+        c_name: 'Express',
+        des: 'Backend',
+        duration: 70
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d2b7f37227543eb8684'),
+    name: 'jo',
+    dept: 'it',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8bc87f37227543eb8680'),
+        c_name: 'JS',
+        des: 'Dynaic prog',
+        duration: 60
+      },
+      {
+        _id: ObjectId('6aeb8b9e7f37227543eb867e'),
+        c_name: 'HTML',
+        des: 'Basic',
+        duration: 40
+      },
+      {
+        _id: ObjectId('6aeb8bb27f37227543eb867f'),
+        c_name: 'CSS',
+        des: 'Style',
+        duration: 50
+      },
+      {
+        _id: ObjectId('6aeb8be67f37227543eb8681'),
+        c_name: 'Express',
+        des: 'Backend',
+        duration: 70
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d4c7f37227543eb8685'),
+    name: 'srinivas',
+    dept: 'it',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8b9e7f37227543eb867e'),
+        c_name: 'HTML',
+        des: 'Basic',
+        duration: 40
+      },
+      {
+        _id: ObjectId('6aeb8bb27f37227543eb867f'),
+        c_name: 'CSS',
+        des: 'Style',
+        duration: 50
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d6f7f37227543eb8686'),
+    name: 'preeth',
+    dept: 'ai',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8be67f37227543eb8681'),
+        c_name: 'Express',
+        des: 'Backend',
+        duration: 70
+      },
+      {
+        _id: ObjectId('6aeb8bb27f37227543eb867f'),
+        c_name: 'CSS',
+        des: 'Style',
+        duration: 50
+      },
+      {
+        _id: ObjectId('6aeb8b9e7f37227543eb867e'),
+        c_name: 'HTML',
+        des: 'Basic',
+        duration: 40
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb8d847f37227543eb8687'),
+    name: 'surii',
+    dept: 'ai',
+    course_details: [
+      {
+        _id: ObjectId('6aeb8bb27f37227543eb867f'),
+        c_name: 'CSS',
+        des: 'Style',
+        duration: 50
+      },
+      {
+        _id: ObjectId('6aeb8be67f37227543eb8681'),
+        c_name: 'Express',
+        des: 'Backend',
+        duration: 70
+      }
+    ]
+  }
+]
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:128)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+    |                                                                                                                                 ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:156)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+    |                                                                                                                                                             ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:'$course_details'},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:156)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:'$course_details'},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+    |                                                                                                                                                             ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:'$course_details'},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:156)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:'$course_details'},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}]);
+    |                                                                                                                                                             ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:156)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}]);
+    |                                                                                                                                                             ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:156)
+
+> 1 | db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{course_details.duration:{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+    |                                                                                                                                                             ^
+  2 |
+
+test_db> db.stud_d.aggregate([{$lookup:{from:"student",localField:"c_en",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$match:{"course_details.duration":{$gt:40}}},{$project:{_id:1,name:1,dept:1,course_details:1}}])
+[
+  {
+    _id: ObjectId('6aeb8cd47f37227543eb8682'),
+    name: 'Srii',
+    dept: 'cse',
+    course_details: {
+      _id: ObjectId('6aeb8bc87f37227543eb8680'),
+      c_name: 'JS',
+      des: 'Dynaic prog',
+      duration: 60
+    }
+  },
+  {
+    _id: ObjectId('6aeb8cd47f37227543eb8682'),
+    name: 'Srii',
+    dept: 'cse',
+    course_details: {
+      _id: ObjectId('6aeb8be67f37227543eb8681'),
+      c_name: 'Express',
+      des: 'Backend',
+      duration: 70
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d037f37227543eb8683'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: {
+      _id: ObjectId('6aeb8bb27f37227543eb867f'),
+      c_name: 'CSS',
+      des: 'Style',
+      duration: 50
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d037f37227543eb8683'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: {
+      _id: ObjectId('6aeb8bc87f37227543eb8680'),
+      c_name: 'JS',
+      des: 'Dynaic prog',
+      duration: 60
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d037f37227543eb8683'),
+    name: 'Niranj',
+    dept: 'cse',
+    course_details: {
+      _id: ObjectId('6aeb8be67f37227543eb8681'),
+      c_name: 'Express',
+      des: 'Backend',
+      duration: 70
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d2b7f37227543eb8684'),
+    name: 'jo',
+    dept: 'it',
+    course_details: {
+      _id: ObjectId('6aeb8bb27f37227543eb867f'),
+      c_name: 'CSS',
+      des: 'Style',
+      duration: 50
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d2b7f37227543eb8684'),
+    name: 'jo',
+    dept: 'it',
+    course_details: {
+      _id: ObjectId('6aeb8bc87f37227543eb8680'),
+      c_name: 'JS',
+      des: 'Dynaic prog',
+      duration: 60
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d2b7f37227543eb8684'),
+    name: 'jo',
+    dept: 'it',
+    course_details: {
+      _id: ObjectId('6aeb8be67f37227543eb8681'),
+      c_name: 'Express',
+      des: 'Backend',
+      duration: 70
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d4c7f37227543eb8685'),
+    name: 'srinivas',
+    dept: 'it',
+    course_details: {
+      _id: ObjectId('6aeb8bb27f37227543eb867f'),
+      c_name: 'CSS',
+      des: 'Style',
+      duration: 50
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d6f7f37227543eb8686'),
+    name: 'preeth',
+    dept: 'ai',
+    course_details: {
+      _id: ObjectId('6aeb8bb27f37227543eb867f'),
+      c_name: 'CSS',
+      des: 'Style',
+      duration: 50
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d6f7f37227543eb8686'),
+    name: 'preeth',
+    dept: 'ai',
+    course_details: {
+      _id: ObjectId('6aeb8be67f37227543eb8681'),
+      c_name: 'Express',
+      des: 'Backend',
+      duration: 70
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d847f37227543eb8687'),
+    name: 'surii',
+    dept: 'ai',
+    course_details: {
+      _id: ObjectId('6aeb8bb27f37227543eb867f'),
+      c_name: 'CSS',
+      des: 'Style',
+      duration: 50
+    }
+  },
+  {
+    _id: ObjectId('6aeb8d847f37227543eb8687'),
+    name: 'surii',
+    dept: 'ai',
+    course_details: {
+      _id: ObjectId('6aeb8be67f37227543eb8681'),
+      c_name: 'Express',
+      des: 'Backend',
+      duration: 70
+    }
+  }
+]
+test_db> use customer360
+|
+| db.createCollection("customers")
+| db.createCollection("accounts")
+| db.createCollection("sites")
+| db.createCollection("services")
+| db.createCollection("invoices")
+| db.createCollection("payments")
+| db.createCollection("tickets")
+| db.createCollection("leads")
+switched to db customer360
+customer360> show collections
+
+customer360>
+| db.createCollection("customers")
+| db.createCollection("accounts")
+| db.createCollection("sites")
+| db.createCollection("services")
+| db.createCollection("invoices")
+| db.createCollection("payments")
+| db.createCollection("tickets")
+| db.createCollection("leads")
+{ ok: 1 }
+customer360> show collections
+accounts
+customers
+invoices
+leads
+payments
+services
+sites
+tickets
+customer360> db.customers.insertOne({name:"abc",email:"abc@email.com",phone:1234567890,city:"cbe"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb94d17f37227543eb8688')
+}
+customer360> db.customers.insertOne({name:"def",email:"def@email.com",phone:6789012345,city:"mdu"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb94f87f37227543eb8689')
+}
+customer360> db.customers.insertOne({name:"ghi",email:"ghi@email.com",phone:6783452345,city:"svks"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb95297f37227543eb868a')
+}
+customer360> db.accounts.insertOne({c_id:ObjectId('6aeb94f87f37227543eb8689'customer360> db.accounts.insertOne({c_id:ObjectId('6aeb94f87f37227543eb8689'),acc_name:"ABC Basic",acc_type:"Business",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb95d77f37227543eb868b')
+}
+customer360> db.accounts.insertOne({c_id:ObjectId('6aeb94d17f37227543eb8688'),acc_name:"ABC Business",acc_type:"Basic",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb96457f37227543eb868c')
+}
+customer360> db.accounts.insertOne({c_id:ObjectId('6aeb95297f37227543eb868a'),acc_name:"ABC Premium",acc_type:"Premium",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb96c17f37227543eb868d')
+}
+customer360> db.sites.insertOne({acc_id:ObjectId('6aeb95d77f37227543eb868b'),site_name:"ABC Main Branch",loc:"Cbe",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb97527f37227543eb868e')
+}
+customer360> db.sites.insertOne({acc_id:ObjectId('6aeb96457f37227543eb868c'),site_name:"ABC North Branch",loc:"Chen",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb97847f37227543eb868f')
+}
+customer360> db.sites.insertOne({acc_id:ObjectId('6aeb96c17f37227543eb868d'),site_name:"ABC Business Branch",loc:"Bang",status:"Active"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb97cc7f37227543eb8690')
+}
+customer360> db.services.insert({site_id:ObjectId('6aeb97527f37227543eb868e'),service_name:"Cloud",plan:"1TB",price:1500})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6aeb98a67f37227543eb8691') }
+}
+customer360> db.services.insertOne({site_id:ObjectId('6aeb97527f37227543eb86customer360> db.services.insertOne({site_id:ObjectId('6aeb97847f37227543eb86customer360> db.services.insertOne({site_id:ObjectId('6aeb97847f37227543eb868f'),service_name:"Internet",plan:"100Mbps",price:1000})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb99127f37227543eb8692')
+}
+customer360> db.services.insertOne({site_id:ObjectId('6aeb97cc7f37227543eb86customer360> db.services.insertOne({site_id:ObjectId('6aeb97cc7f37227543eb8690'),service_name:"Cloud",plan:"500Mb",price:500})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6aeb99617f37227543eb8693')
+}
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "ABC"
+|     }
+|   },
+|
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "customer_id",
+|       as: "accounts"
+|     }
+|   },
+|
+|   {
+|     $project: {
+|       _id: 0,
+|       name: 1,
+|       email: 1,
+|       accounts: {
+|         account_name: 1,
+|         account_type: 1,
+|         status: 1
+|       }
+|     }
+|   }
+| ]);
+
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "ABC"
+|     }
+|   },
+|
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "customer_id",
+|       as: "accounts"
+|     }
+|   },
+|
+|   {
+|     $project: {
+|       _id: 0,
+|       name: 1,
+|       email: 1,
+|       accounts: {
+|         account_name: 1,
+|         account_type: 1,
+|         status: 1
+|       }
+|     }
+|   }
+| ]);
+
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "abc"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+|     $project: {
+|       _id: 0,
+|       name: 1,
+|       email: 1,
+|       accounts: {
+|         $map: {
+|           input: "$accounts",
+|           as: "acc",
+|           in: {
+|             acc_name: "$$acc.acc_name",
+|             acc_type: "$$acc.acc_type",
+|             status: "$$acc.status"
+|           }
+|         }
+|       }
+|     }
+|   }
+| ]);
+[
+  {
+    name: 'abc',
+    email: 'abc@email.com',
+    accounts: [ { acc_name: 'ABC Business', acc_type: 'Basic', status: 'Active' } ]
+  }
+]
+customer360>
