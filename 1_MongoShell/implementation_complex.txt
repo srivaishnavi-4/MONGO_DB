@@ -1980,738 +1980,6 @@ invoice_disp> db.customers.aggregate([
 |     $lookup: {
 |       from: "accounts",
 invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-|       from: "accounts",
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-|     $lookup: {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-|   {
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-invoice_disp> db.customers.aggregate([
-|   // 1. Join customers with accounts
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
-invoice_disp> db.customers.aggregate([
 |     {
 |     $lookup: {
 |       from: "accounts",
@@ -3542,6 +2810,1923 @@ customer360> db.customers.aggregate([
     name: 'abc',
     email: 'abc@email.com',
     accounts: [ { acc_name: 'ABC Business', acc_type: 'Basic', status: 'Active' } ]
+  }
+]
+customer360>
+
+Microsoft Windows [Version 10.0.26200.9711]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SriVaishnaviSrinivas>mongosh
+Current Mongosh Log ID: 6aec40e64a090a326aa701ff
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.1
+Using MongoDB:          9.0.2
+Using Mongosh:          2.14.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-10-30T13:46:50.611+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use customer360
+switched to db customer360
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "abc"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       let: { customerId: "$_id" },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $eq: ["$c_id", "$$customerId"]
+|             }
+|           }
+|         },
+|         {
+|           $lookup: {
+|             from: "sites",
+|             localField: "_id",
+|             foreignField: "acc_id",
+|             pipeline: [
+|               {
+|                 $lookup: {
+|                   from: "services",
+|                   localField: "_id",
+|                   foreignField: "site_id",
+|                   as: "services"
+|                 }
+|               }
+|             ],
+|             as: "sites"
+|           }
+|         }
+|       ],
+|       as: "accounts"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       let: { customerId: "$_id" },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $eq: ["$cust_id", "$$customerId"]
+|             }
+|           }
+|         },
+|         {
+|           $lookup: {
+|             from: "payments",
+|             localField: "_id",
+|             foreignField: "inv_id",
+|             as: "payments"
+|           }
+|         }
+|       ],
+|       as: "invoices"
+|     }
+|   },
+|   {
+|     $addFields: {
+|       outstanding_invoices: {
+|         $filter: {
+|           input: "$invoices",
+|           as: "invoice",
+|           cond: {
+|             $eq: ["$$invoice.status", "Outstanding"]
+|           }
+|         }
+|       }
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "tickes",
+|       let: { customerId: "$_id" },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $and: [
+|                 { $eq: ["$cust_id", "$$customerId"] },
+|                 { $ne: ["$status", "Resolved"] }
+|               ]
+|             }
+|           }
+|         }
+|       ],
+|       as: "unresolved_tickets"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "leads",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "leads"
+|     }
+|   },
+|   {
+|     $project: {
+|       _id: 0,
+|       customer_name: "$name",
+|       email: 1,
+|       phone: 1,
+|       city: 1,
+|       accounts: 1,
+|       invoices: 1,
+|       outstanding_invoices: 1,
+|       unresolved_tickets: 1,
+|       leads: 1
+|     }
+|   }
+| ]);
+[
+  {
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        sites: [
+          {
+            _id: ObjectId('6aeb97847f37227543eb868f'),
+            acc_id: ObjectId('6aeb96457f37227543eb868c'),
+            site_name: 'ABC North Branch',
+            loc: 'Chen',
+            status: 'Active',
+            services: [
+              {
+                _id: ObjectId('6aeb99127f37227543eb8692'),
+                site_id: ObjectId('6aeb97847f37227543eb868f'),
+                service_name: 'Internet',
+                plan: '100Mbps',
+                price: 1000
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z'),
+        payments: [
+          {
+            _id: ObjectId('6aec333bdf647031aa2c8318'),
+            inv_id: ObjectId('6aec312edf647031aa2c8315'),
+            amount: 8000,
+            pay_method: 'UPI',
+            pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+            status: 'Success'
+          }
+        ]
+      }
+    ],
+    outstanding_invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z'),
+        payments: [
+          {
+            _id: ObjectId('6aec333bdf647031aa2c8318'),
+            inv_id: ObjectId('6aec312edf647031aa2c8315'),
+            amount: 8000,
+            pay_method: 'UPI',
+            pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+            status: 'Success'
+          }
+        ]
+      }
+    ],
+    unresolved_tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c32df647031aa2c831f'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        lead_source: 'Website',
+        int_service: 'Cloud service',
+        status: 'Converted'
+      }
+    ],
+    customer_name: 'abc'
+  }
+]
+customer360> db.accounts.find()
+[
+  {
+    _id: ObjectId('6aeb95d77f37227543eb868b'),
+    c_id: ObjectId('6aeb94f87f37227543eb8689'),
+    acc_name: 'ABC Basic',
+    acc_type: 'Business',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb96457f37227543eb868c'),
+    c_id: ObjectId('6aeb94d17f37227543eb8688'),
+    acc_name: 'ABC Business',
+    acc_type: 'Basic',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb96c17f37227543eb868d'),
+    c_id: ObjectId('6aeb95297f37227543eb868a'),
+    acc_name: 'ABC Premium',
+    acc_type: 'Premium',
+    status: 'Active'
+  }
+]
+customer360> db.sites.find()
+[
+  {
+    _id: ObjectId('6aeb97527f37227543eb868e'),
+    acc_id: ObjectId('6aeb95d77f37227543eb868b'),
+    site_name: 'ABC Main Branch',
+    loc: 'Cbe',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb97847f37227543eb868f'),
+    acc_id: ObjectId('6aeb96457f37227543eb868c'),
+    site_name: 'ABC North Branch',
+    loc: 'Chen',
+    status: 'Active'
+  },
+  {
+    _id: ObjectId('6aeb97cc7f37227543eb8690'),
+    acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+    site_name: 'ABC Business Branch',
+    loc: 'Bang',
+    status: 'Active'
+  }
+]
+customer360> db.srvices.find()
+
+customer360> db.services.find()
+[
+  {
+    _id: ObjectId('6aeb98a67f37227543eb8691'),
+    site_id: ObjectId('6aeb97527f37227543eb868e'),
+    service_name: 'Cloud',
+    plan: '1TB',
+    price: 1500
+  },
+  {
+    _id: ObjectId('6aeb99127f37227543eb8692'),
+    site_id: ObjectId('6aeb97847f37227543eb868f'),
+    service_name: 'Internet',
+    plan: '100Mbps',
+    price: 1000
+  },
+  {
+    _id: ObjectId('6aeb99617f37227543eb8693'),
+    site_id: ObjectId('6aeb97cc7f37227543eb8690'),
+    service_name: 'Cloud',
+    plan: '500Mb',
+    price: 500
+  }
+]
+customer360> db.customers.find()
+[
+  {
+    _id: ObjectId('6aeb94d17f37227543eb8688'),
+    name: 'abc',
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe'
+  },
+  {
+    _id: ObjectId('6aeb94f87f37227543eb8689'),
+    name: 'def',
+    email: 'def@email.com',
+    phone: 6789012345,
+    city: 'mdu'
+  },
+  {
+    _id: ObjectId('6aeb95297f37227543eb868a'),
+    name: 'ghi',
+    email: 'ghi@email.com',
+    phone: 6783452345,
+    city: 'svks'
+  }
+]
+customer360> db.invoices.find()
+[
+  {
+    _id: ObjectId('6aec312edf647031aa2c8315'),
+    cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+    invoice_num: 'INV001',
+    amount: 1500,
+    status: 'Outstanding',
+    due_date: ISODate('2026-10-15T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('6aec31a9df647031aa2c8316'),
+    cust_id: ObjectId('6aeb95297f37227543eb868a'),
+    invoice_num: 'INV002',
+    amount: 8000,
+    status: 'Paid',
+    due_date: ISODate('2026-10-10T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('6aec3256df647031aa2c8317'),
+    cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+    invoice_num: 'INV003',
+    amount: 12000,
+    status: 'Outstanding',
+    due_date: ISODate('2026-11-15T00:00:00.000Z')
+  }
+]
+customer360> db.payments.find()
+[
+  {
+    _id: ObjectId('6aec333bdf647031aa2c8318'),
+    inv_id: ObjectId('6aec312edf647031aa2c8315'),
+    amount: 8000,
+    pay_method: 'UPI',
+    pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+    status: 'Success'
+  },
+  {
+    _id: ObjectId('6aec33a1df647031aa2c8319'),
+    inv_id: ObjectId('6aec31a9df647031aa2c8316'),
+    amount: 5000,
+    pay_method: 'BankTransfer',
+    pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+    status: 'Success'
+  },
+  {
+    _id: ObjectId('6aec33fbdf647031aa2c831a'),
+    inv_id: ObjectId('6aec3256df647031aa2c8317'),
+    amount: 5000,
+    pay_method: 'Card',
+    pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+    status: 'Success'
+  }
+]
+customer360> db.tickes.find()
+[
+  {
+    _id: ObjectId('6aec36e1df647031aa2c831b'),
+    cust_id: ObjectId('6aeb95297f37227543eb868a'),
+    ticket_num: 'TKT002',
+    subject: 'Cloud storage issue',
+    priority: 'Medium',
+    status: 'Resolved'
+  },
+  {
+    _id: ObjectId('6aec3791df647031aa2c831c'),
+    cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+    ticket_num: 'TKT001',
+    subject: 'Internet not working',
+    priority: 'High',
+    status: 'Open'
+  },
+  {
+    _id: ObjectId('6aec387bdf647031aa2c831d'),
+    cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+    ticket_num: 'TKT003',
+    subject: 'Billing Clarification',
+    priority: 'Low',
+    status: 'In Progress'
+  },
+  {
+    _id: ObjectId('6aec3987df647031aa2c831e'),
+    cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+    ticket_num: 'TKT004',
+    subject: 'Payment Issue',
+    priority: 'High',
+    status: 'Open'
+  }
+]
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "abc"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "sites",
+|       let: {
+|         accountIds: "$accounts._id"
+|       },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $in: ["$acc_id", "$$accountIds"]
+|             }
+|           }
+|         },
+|         {
+|           $lookup: {
+|             from: "services",
+|             localField: "_id",
+|             foreignField: "site_id",
+|             as: "services"
+|           }
+|         }
+|       ],
+|       as: "sites"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "invoices"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "payments",
+|       let: {
+|         invoiceIds: "$invoices._id"
+|       },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $in: ["$inv_id", "$$invoiceIds"]
+|             }
+|           }
+|         }
+|       ],
+|       as: "payment_history"
+|     }
+|   },
+|   {
+|     $addFields: {
+|       outstanding_invoices: {
+|         $filter: {
+|           input: "$invoices",
+|           as: "invoice",
+|           cond: {
+|             $eq: ["$$invoice.status", "Outstanding"]
+|           }
+|         }
+|       }
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "tickes",
+|       let: {
+|         customerId: "$_id"
+|       },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $and: [
+|                 {
+|                   $eq: ["$cust_id", "$$customerId"]
+|                 },
+|                 {
+|                   $ne: ["$status", "Resolved"]
+|                 }
+|               ]
+|             }
+|           }
+|         }
+|       ],
+|       as: "unresolved_tickets"
+|     }
+|   },
+|   {
+|     $project: {
+|       _id: 0,
+|       customer_name: "$name",
+|       email: 1,
+|       phone: 1,
+|       city: 1,
+|       accounts: 1,
+|       sites: 1,
+|       invoices: 1,
+|       outstanding_invoices: 1,
+|       payment_history: 1,
+|       unresolved_tickets: 1
+|     }
+|   }
+| ]);
+[
+  {
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97847f37227543eb868f'),
+        acc_id: ObjectId('6aeb96457f37227543eb868c'),
+        site_name: 'ABC North Branch',
+        loc: 'Chen',
+        status: 'Active',
+        services: [
+          {
+            _id: ObjectId('6aeb99127f37227543eb8692'),
+            site_id: ObjectId('6aeb97847f37227543eb868f'),
+            service_name: 'Internet',
+            plan: '100Mbps',
+            price: 1000
+          }
+        ]
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    payment_history: [
+      {
+        _id: ObjectId('6aec333bdf647031aa2c8318'),
+        inv_id: ObjectId('6aec312edf647031aa2c8315'),
+        amount: 8000,
+        pay_method: 'UPI',
+        pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    outstanding_invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    unresolved_tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    customer_name: 'abc'
+  }
+]
+customer360> db.customers.aggregate([
+|   {
+|     $match: {
+|       name: "abc"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "sites",
+|       let: {
+|         accountIds: "$accounts._id"
+|       },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $in: ["$acc_id", "$$accountIds"]
+|             }
+|           }
+|         },
+|         {
+|           $lookup: {
+|             from: "services",
+|             localField: "_id",
+|             foreignField: "site_id",
+|             as: "services"
+|           }
+|         }
+|       ],
+|       as: "sites"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "invoices"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "payments",
+|       let: {
+|         invoiceIds: "$invoices._id"
+|       },
+|       pipeline: [
+|         {
+|           $match: {
+|             $expr: {
+|               $in: ["$inv_id", "$$invoiceIds"]
+|             }
+|           }
+|         }
+|       ],
+|       as: "payment_history"
+|     }
+|   },
+|   {
+|     $addFields: {
+|       outstanding_invoices: {
+|         $filter: {
+|           input: "$invoices",
+|           as: "invoice",
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "sites",
+|       localField: "accounts._id",
+|       foreignField: "acc_id",
+|       as: "sites"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "services",
+|       localField: "sites._id",
+|       foreignField: "site_id",
+|       as: "services"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "invoices"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "payments",
+|       localField: "invoices._id",
+|       foreignField: "inv_id",
+|       as: "payments"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "tickes",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "tickets"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "leads",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "leads"
+|     }
+|   }
+| ]);
+[
+  {
+    _id: ObjectId('6aeb94d17f37227543eb8688'),
+    name: 'abc',
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97847f37227543eb868f'),
+        acc_id: ObjectId('6aeb96457f37227543eb868c'),
+        site_name: 'ABC North Branch',
+        loc: 'Chen',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb99127f37227543eb8692'),
+        site_id: ObjectId('6aeb97847f37227543eb868f'),
+        service_name: 'Internet',
+        plan: '100Mbps',
+        price: 1000
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec333bdf647031aa2c8318'),
+        inv_id: ObjectId('6aec312edf647031aa2c8315'),
+        amount: 8000,
+        pay_method: 'UPI',
+        pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c32df647031aa2c831f'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        lead_source: 'Website',
+        int_service: 'Cloud service',
+        status: 'Converted'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb94f87f37227543eb8689'),
+    name: 'def',
+    email: 'def@email.com',
+    phone: 6789012345,
+    city: 'mdu',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97527f37227543eb868e'),
+        acc_id: ObjectId('6aeb95d77f37227543eb868b'),
+        site_name: 'ABC Main Branch',
+        loc: 'Cbe',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb98a67f37227543eb8691'),
+        site_id: ObjectId('6aeb97527f37227543eb868e'),
+        service_name: 'Cloud',
+        plan: '1TB',
+        price: 1500
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec3256df647031aa2c8317'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        invoice_num: 'INV003',
+        amount: 12000,
+        status: 'Outstanding',
+        due_date: ISODate('2026-11-15T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec33fbdf647031aa2c831a'),
+        inv_id: ObjectId('6aec3256df647031aa2c8317'),
+        amount: 5000,
+        pay_method: 'Card',
+        pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec3987df647031aa2c831e'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        ticket_num: 'TKT004',
+        subject: 'Payment Issue',
+        priority: 'High',
+        status: 'Open'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c8adf647031aa2c8320'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        lead_source: 'Referral',
+        int_service: 'Internet service',
+        status: 'New'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb95297f37227543eb868a'),
+    name: 'ghi',
+    email: 'ghi@email.com',
+    phone: 6783452345,
+    city: 'svks',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97cc7f37227543eb8690'),
+        acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+        site_name: 'ABC Business Branch',
+        loc: 'Bang',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb99617f37227543eb8693'),
+        site_id: ObjectId('6aeb97cc7f37227543eb8690'),
+        service_name: 'Cloud',
+        plan: '500Mb',
+        price: 500
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec31a9df647031aa2c8316'),
+        cust_id: ObjectId('6aeb95297f37227543eb868a'),
+        invoice_num: 'INV002',
+        amount: 8000,
+        status: 'Paid',
+        due_date: ISODate('2026-10-10T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec33a1df647031aa2c8319'),
+        inv_id: ObjectId('6aec31a9df647031aa2c8316'),
+        amount: 5000,
+        pay_method: 'BankTransfer',
+        pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec36e1df647031aa2c831b'),
+        cust_id: ObjectId('6aeb95297f37227543eb868a'),
+        ticket_num: 'TKT002',
+        subject: 'Cloud storage issue',
+        priority: 'Medium',
+        status: 'Resolved'
+      }
+    ],
+    leads: []
+  }
+]
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> show db
+MongoshInvalidInputError: [COMMON-10001] 'db' is not a valid argument for "show".
+customer360> show dbs
+admin                      40.00 KiB
+college_management        288.00 KiB
+config                     36.00 KiB
+course_management         200.00 KiB
+custom_dashboard_builder  116.00 KiB
+customer360               544.00 KiB
+dashboard_builder         456.00 KiB
+ecommerce_db               36.00 KiB
+ecommerce_poc             108.00 KiB
+food_delivery              24.00 KiB
+invoice_disp              200.00 KiB
+local                     192.00 KiB
+performanceDB              40.00 KiB
+sampdb                    104.00 KiB
+sample                     76.00 KiB
+sample_collection          40.00 KiB
+stud_manage               208.00 KiB
+test                      148.00 KiB
+test_db                   144.00 KiB
+testdb                    140.00 KiB
+customer360> use stud_manage
+switched to db stud_manage
+stud_manage> show collections
+course
+payd
+students
+stud_manage> db.students.aggregate({$lookup:{from:"course",localField:"course_e",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$lookup:{from:"payd",localField:"course_details.p_code",foreignField:"_id",as:"pay_details"}},{$unwind:"$pay_details"},{$match:{dept:"cse"}},{$group:{_id:"$dept",total_price:{$sum:"$pay_details.price"}}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:341)
+
+> 1 | db.students.aggregate({$lookup:{from:"course",localField:"course_e",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$lookup:{from:"payd",localField:"course_details.p_code",foreignField:"_id",as:"pay_details"}},{$unwind:"$pay_details"},{$match:{dept:"cse"}},{$group:{_id:"$dept",total_price:{$sum:"$pay_details.price"}}}])
+    |                                                                                                                                                                                                                                                                                                                                                      ^
+  2 |
+
+stud_manage> db.students.aggregate({$lookup:{from:"course",localField:"course_e",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$lookup:{from:"payd",localField:"course_details.p_code",foreignField:"_id",as:"pay_details"}},{$unwind:"$pay_details"},{$match:{dept:"cse"}},{$group:{_id:"$dept",total_price:{$sum:"$pay_details.price"}}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:341)
+
+> 1 | db.students.aggregate({$lookup:{from:"course",localField:"course_e",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$lookup:{from:"payd",localField:"course_details.p_code",foreignField:"_id",as:"pay_details"}},{$unwind:"$pay_details"},{$match:{dept:"cse"}},{$group:{_id:"$dept",total_price:{$sum:"$pay_details.price"}}}]);
+    |                                                                                                                                                                                                                                                                                                                                                      ^
+  2 |
+
+stud_manage> db.students.aggregate([{$lookup:{from:"course",localField:"course_e",foreignField:"_id",as:"course_details"}},{$unwind:"$course_details"},{$lookup:{from:"payd",localField:"course_details.p_code",foreignField:"_id",as:"pay_details"}},{$unwind:"$pay_details"},{$match:{dept:"cse"}},{$group:{_id:"$dept",total_price:{$sum:"$pay_details.price"}}}]);
+[ { _id: 'cse', total_price: 15000 } ]
+stud_manage> use customer360
+switched to db customer360
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"accounts"}},{$lookup:{from:"sites",localField:"accounts._id",foreignField:"acc_id",as:"sites"}},{$lookup:{from: "services",
+|       localField: "sites._id",
+|       foreignField: "site_id",
+|       as: "services"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "invoices",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "invoices"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "payments",
+|       localField: "invoices._id",
+|       foreignField: "inv_id",
+|       as: "payments"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "tickes",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "tickets"
+|     }
+|   },
+|   {
+|     $lookup: {
+|       from: "leads",
+|       localField: "_id",
+|       foreignField: "cust_id",
+|       as: "leads"
+|     }
+|   }
+| ]);node:internal/readline/emitKeypressEvents:74
+            throw err;
+            ^
+
+TypeError: Cannot read properties of undefined (reading 'length')
+    at [_multilineMove] (node:internal/readline/interface:1120:36)
+    at [_moveUpOrHistoryPrev] (node:internal/readline/interface:1177:27)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1526:37)
+    at REPLServer.self._ttyWrite (node:repl:1001:9)
+    at LineByLineInput.onkeypress (node:internal/readline/interface:289:20)
+    at LineByLineInput.emit (node:events:526:24)
+    at LineByLineInput.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at LineByLineInput.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at LineByLineInput.emit (node:events:514:28)
+    at LineByLineInput.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:569:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:520:3)
+    at LineByLineInput.push (node:internal/streams/readable:400:5)
+    at LineByLineInput.push (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946914)
+    at LineByLineInput._flush (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946653)
+    at LineByLineInput._forwardAndBlockOnNewline (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946216)
+    at LineByLineInput._onData (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:944945)
+    at ReadStream.eval (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:945560)
+    at ReadStream.emit (node:events:514:28)
+    at ReadStream.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:569:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:520:3)
+    at ReadStream.push (node:internal/streams/readable:400:5)
+    at TTY.onStreamRead (node:internal/stream_base_commons:194:23)
+    at TTY.callbackTrampoline (node:internal/async_hooks:131:17)
+
+Node.js v24.22.1
+
+C:\Users\SriVaishnaviSrinivas>db.customers.aggregate([
+'db.customers.aggregate' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "accounts",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "_id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "c_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "accounts"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "sites",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "accounts._id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "acc_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "sites"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "services",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "sites._id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "site_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "services"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "invoices",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "_id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "cust_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "invoices"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "payments",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "invoices._id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "inv_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "payments"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "tickes",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "_id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "cust_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "tickets"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  },
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  {
+'{' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    $lookup: {
+'$lookup:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      from: "leads",
+'from:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      localField: "_id",
+'localField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      foreignField: "cust_id",
+'foreignField:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>      as: "leads"
+'as:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>    }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>  }
+'}' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\SriVaishnaviSrinivas>mongosh
+Current Mongosh Log ID: 6aecb5d7120a01f8bb01dec3
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.1
+Using MongoDB:          9.0.2
+Using Mongosh:          2.14.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-10-30T13:46:50.611+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use customer360
+switched to db customer360
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+|   {
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+customer360> db.customers.aggregate([undefined
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+customer360> db.customers.aggregate([undefined
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+|   },
+customer360> db.customers.aggregate([
+|   {
+|     $lookup: {
+|       from: "accounts",
+|       localField: "_id",
+|       foreignField: "c_id",
+|       as: "accounts"
+|     }
+
+customer360> db.customers.aggregate([
+| {$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"accounts"}},
+| {$lookup:{from:"sites",localField:"accounts._id",foreignField:"acc_id",as:"sites"}},
+| {$lookup:{from:"services",localField:"sites._id",foreignField:"site_id",as:"services"}},
+| {$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoices"}},
+| {$lookup:{from:"payments",localField:"invoices._id",foreignField:"inv_id",as:"payments"}},
+| {$lookup:{from:"tickes",localField:"_id",foreignField:"cust_id",as:"tickets"}},
+| {$lookup:{from:"leads",localField:"_id",foreignField:"cust_id",as:"leads"}}
+| ]);
+[
+  {
+    _id: ObjectId('6aeb94d17f37227543eb8688'),
+    name: 'abc',
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97847f37227543eb868f'),
+        acc_id: ObjectId('6aeb96457f37227543eb868c'),
+        site_name: 'ABC North Branch',
+        loc: 'Chen',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb99127f37227543eb8692'),
+        site_id: ObjectId('6aeb97847f37227543eb868f'),
+        service_name: 'Internet',
+        plan: '100Mbps',
+        price: 1000
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec333bdf647031aa2c8318'),
+        inv_id: ObjectId('6aec312edf647031aa2c8315'),
+        amount: 8000,
+        pay_method: 'UPI',
+        pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c32df647031aa2c831f'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        lead_source: 'Website',
+        int_service: 'Cloud service',
+        status: 'Converted'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb94f87f37227543eb8689'),
+    name: 'def',
+    email: 'def@email.com',
+    phone: 6789012345,
+    city: 'mdu',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97527f37227543eb868e'),
+        acc_id: ObjectId('6aeb95d77f37227543eb868b'),
+        site_name: 'ABC Main Branch',
+        loc: 'Cbe',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb98a67f37227543eb8691'),
+        site_id: ObjectId('6aeb97527f37227543eb868e'),
+        service_name: 'Cloud',
+        plan: '1TB',
+        price: 1500
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec3256df647031aa2c8317'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        invoice_num: 'INV003',
+        amount: 12000,
+        status: 'Outstanding',
+        due_date: ISODate('2026-11-15T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec33fbdf647031aa2c831a'),
+        inv_id: ObjectId('6aec3256df647031aa2c8317'),
+        amount: 5000,
+        pay_method: 'Card',
+        pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec3987df647031aa2c831e'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        ticket_num: 'TKT004',
+        subject: 'Payment Issue',
+        priority: 'High',
+        status: 'Open'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c8adf647031aa2c8320'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        lead_source: 'Referral',
+        int_service: 'Internet service',
+        status: 'New'
+      }
+    ]
+  },
+  {
+    _id: ObjectId('6aeb95297f37227543eb868a'),
+    name: 'ghi',
+    email: 'ghi@email.com',
+    phone: 6783452345,
+    city: 'svks',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97cc7f37227543eb8690'),
+        acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+        site_name: 'ABC Business Branch',
+        loc: 'Bang',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb99617f37227543eb8693'),
+        site_id: ObjectId('6aeb97cc7f37227543eb8690'),
+        service_name: 'Cloud',
+        plan: '500Mb',
+        price: 500
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec31a9df647031aa2c8316'),
+        cust_id: ObjectId('6aeb95297f37227543eb868a'),
+        invoice_num: 'INV002',
+        amount: 8000,
+        status: 'Paid',
+        due_date: ISODate('2026-10-10T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec33a1df647031aa2c8319'),
+        inv_id: ObjectId('6aec31a9df647031aa2c8316'),
+        amount: 5000,
+        pay_method: 'BankTransfer',
+        pay_date: ISODate('2026-10-25T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec36e1df647031aa2c831b'),
+        cust_id: ObjectId('6aeb95297f37227543eb868a'),
+        ticket_num: 'TKT002',
+        subject: 'Cloud storage issue',
+        priority: 'Medium',
+        status: 'Resolved'
+      }
+    ],
+    leads: []
+  }
+]
+customer360> db.customers.aggregate([
+| {$match:{name:"abc"}},
+| {$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"accounts"}},
+| {$lookup:{from:"sites",localField:"accounts._id",foreignField:"acc_id",as:"sites"}},
+| {$lookup:{from:"services",localField:"sites._id",foreignField:"site_id",as:"services"}},
+| {$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoices"}},
+| {$lookup:{from:"payments",localField:"invoices._id",foreignField:"inv_id",as:"payments"}},
+| {$lookup:{from:"tickes",localField:"_id",foreignField:"cust_id",as:"tickets"}},
+| {$lookup:{from:"leads",localField:"_id",foreignField:"cust_id",as:"leads"}}
+| ]);
+[
+  {
+    _id: ObjectId('6aeb94d17f37227543eb8688'),
+    name: 'abc',
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97847f37227543eb868f'),
+        acc_id: ObjectId('6aeb96457f37227543eb868c'),
+        site_name: 'ABC North Branch',
+        loc: 'Chen',
+        status: 'Active'
+      }
+    ],
+    services: [
+      {
+        _id: ObjectId('6aeb99127f37227543eb8692'),
+        site_id: ObjectId('6aeb97847f37227543eb868f'),
+        service_name: 'Internet',
+        plan: '100Mbps',
+        price: 1000
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    payments: [
+      {
+        _id: ObjectId('6aec333bdf647031aa2c8318'),
+        inv_id: ObjectId('6aec312edf647031aa2c8315'),
+        amount: 8000,
+        pay_method: 'UPI',
+        pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    leads: [
+      {
+        _id: ObjectId('6aec3c32df647031aa2c831f'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        lead_source: 'Website',
+        int_service: 'Cloud service',
+        status: 'Converted'
+      }
+    ]
+  }
+]
+customer360> db.customers.aggregate([
+| {$match:{name:"abc"}},
+| {$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"accounts"}},
+| {$lookup:{from:"sites",let:{accountIds:"$accounts._id"},pipeline:[{$match:{$expr:{$in:["$acc_id","$$accountIds"]}}},{$lookup:{from:"services",localField:"_id",foreignField:"site_id",as:"services"}}],as:"sites"}},
+| {$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoices"}},
+| {$lookup:{from:"payments",let:{invoiceIds:"$invoices._id"},pipeline:[{$mat$match:{$expr:{$in:["$inv_id","$$invoiceIds"]}}}],as:"payment_history"}},
+| {$addFields:{outstanding_invoices:{$filter:{input:"$invoices",as:"invoice",cond:{$eq:["$$invoice.status","Outstanding"]}}}}},
+| {$lookup:{from:"tickes",let:{customerId:"$_id"},pipeline:[{$match:{$expr:{$and:[{$eq:["$cust_id","$$customerId"]},{$ne:["$status","Resolved"]}]}}}],as:"unresolved_tickets"}},
+| {$project:{_id:0,customer_name:"$name",email:1,phone:1,city:1,accounts:1,ssites:1,invoices:1,outstanding_invoices:1,payment_history:1,unresolved_tickeunresolved_tickets:1}}
+| ]);
+[
+  {
+    email: 'abc@email.com',
+    phone: 1234567890,
+    city: 'cbe',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active'
+      }
+    ],
+    sites: [
+      {
+        _id: ObjectId('6aeb97847f37227543eb868f'),
+        acc_id: ObjectId('6aeb96457f37227543eb868c'),
+        site_name: 'ABC North Branch',
+        loc: 'Chen',
+        status: 'Active',
+        services: [
+          {
+            _id: ObjectId('6aeb99127f37227543eb8692'),
+            site_id: ObjectId('6aeb97847f37227543eb868f'),
+            service_name: 'Internet',
+            plan: '100Mbps',
+            price: 1000
+          }
+        ]
+      }
+    ],
+    invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    payment_history: [
+      {
+        _id: ObjectId('6aec333bdf647031aa2c8318'),
+        inv_id: ObjectId('6aec312edf647031aa2c8315'),
+        amount: 8000,
+        pay_method: 'UPI',
+        pay_date: ISODate('2026-10-10T00:00:00.000Z'),
+        status: 'Success'
+      }
+    ],
+    outstanding_invoices: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ],
+    unresolved_tickets: [
+      {
+        _id: ObjectId('6aec3791df647031aa2c831c'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT001',
+        subject: 'Internet not working',
+        priority: 'High',
+        status: 'Open'
+      },
+      {
+        _id: ObjectId('6aec387bdf647031aa2c831d'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        ticket_num: 'TKT003',
+        subject: 'Billing Clarification',
+        priority: 'Low',
+        status: 'In Progress'
+      }
+    ],
+    customer_name: 'abc'
   }
 ]
 customer360>
