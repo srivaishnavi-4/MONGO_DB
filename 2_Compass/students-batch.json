@@ -1,0 +1,45 @@
+
+[
+  {
+    "name": "Ramesh",
+    "email": "ramesh@gmail.com",
+    "age": 21,
+    "department": "Computer Science",
+    "year": 3,
+    "skills": ["JavaScript", "MongoDB"],
+    "address": {
+      "city": "Coimbatore",
+      "state": "Tamil Nadu"
+    },
+    "isActive": true,
+    "marks": 86.5
+  },
+  {
+    "name": "Keerthi",
+    "email": "keerthi@gmail.com",
+    "age": 22,
+    "department": "Information Technology",
+    "year": 4,
+    "skills": ["Python", "SQL"],
+    "address": {
+      "city": "Chennai",
+      "state": "Tamil Nadu"
+    },
+    "isActive": false,
+    "marks": 93
+  },
+  {
+    "name": "Surya",
+    "email": "surya@gmail.com",
+    "age": 20,
+    "department": "Mechanical",
+    "year": 2,
+    "skills": ["AutoCAD", "C++"],
+    "address": {
+      "city": "Madurai",
+      "state": "Tamil Nadu"
+    },
+    "isActive": true,
+    "marks": 71.5
+  }
+]
