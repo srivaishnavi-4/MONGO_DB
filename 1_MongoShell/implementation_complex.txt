@@ -6905,3 +6905,1552 @@ For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
 test> use customer360
 switched to db customer360
 customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$a$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{$reduce:{input:"$invoicustomer360>                                                                                                                                                                                                                                                                                                                               
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"account_d"}},
+{$lookup:{from:"sites",localField:"account_d._id",foreignField:"acc_id",as:"sites_d"}},
+{$addFields:{total_acc:{$size:"$account_d"},active_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.status","Active"]}}}}
+,inactive_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.status","Inactive"]}}}},
+basic_acc:{$size:{$filter:{input:"$account_d",as:"acct",cond:{$eq:["$$acct.acc_type","Basic"]}}}},
+premium_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.acc_type","Premium"]}}}},
+site_count:{$size:"$sites_d"}}},{$project:{_id:0,name:1,total_acc:1,active_acc:1,inactive_acc:1,basic_acc:1,premium_acc:1,site_count:1}}])
+[
+  {
+    name: 'abc',
+    total_acc: 3,
+    active_acc: 2,
+    inactive_acc: 1,
+    basic_acc: 2,
+    premium_acc: 1,
+    site_count: 7
+  },
+  {
+    name: 'def',
+    total_acc: 4,
+    active_acc: 3,
+    inactive_acc: 1,
+    basic_acc: 1,
+    premium_acc: 2,
+    site_count: 8
+  },
+  {
+    name: 'ghi',
+    total_acc: 3,
+    active_acc: 2,
+    inactive_acc: 1,
+    basic_acc: 1,
+    premium_acc: 2,
+    site_count: 6
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",localField:"_id",foreignField:"c_id",as:"account_d"}},{$lookup:{from:"sites",localField:"account_d._id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{total_acc:{$size:"$account_d"},active_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.status","Active"]}}}},inactive_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.status","Inactive"]}}}},basic_acc:{$$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.acc_type","Basic"]}}}},premium_acc:{$size:{$filter:{input:"$account_d",as:"acc",cond:{$eq:["$$acc.acc_type","Premium"]}}}},site_count:{$size:"$sites_d"}}},{$project:{_id:0,name:1,total_acc:1,active_acc:1,inactive_acc:1,basic_acc:1premium_acc:1,site_count:1}}])
+[
+  {
+    name: 'abc',
+    total_acc: 3,
+    active_acc: 2,
+    inactive_acc: 1,
+    basic_acc: 2,
+    premium_acc: 1,
+    site_count: 7
+  },
+  {
+    name: 'def',
+    total_acc: 4,
+    active_acc: 3,
+    inactive_acc: 1,
+    basic_acc: 1,
+    premium_acc: 2,
+    site_count: 8
+  },
+  {
+    name: 'ghi',
+    total_acc: 3,
+    active_acc: 2,
+    inactive_acc: 1,
+    basic_acc: 1,
+    premium_acc: 2,
+    site_count: 6
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_cosite_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$pr$project:{_id:0,name:1,accounts:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}}{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$project:{_id:0,name:1,accounts:1,invoice_d:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:279)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}}{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$project:{_id:0,name:1,accounts:1,invoice_d:1}}])
+    |                                                                                                                                                                                                                                                                                        ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$project:{_id:0,name:1,accounts:1,invoice_d:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_d: [
+      {
+        _id: ObjectId('6aec312edf647031aa2c8315'),
+        cust_id: ObjectId('6aeb94d17f37227543eb8688'),
+        invoice_num: 'INV001',
+        amount: 1500,
+        status: 'Outstanding',
+        due_date: ISODate('2026-10-15T00:00:00.000Z')
+      }
+    ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_d: [
+      {
+        _id: ObjectId('6aec3256df647031aa2c8317'),
+        cust_id: ObjectId('6aeb94f87f37227543eb8689'),
+        invoice_num: 'INV003',
+        amount: 12000,
+        status: 'Outstanding',
+        due_date: ISODate('2026-11-15T00:00:00.000Z')
+      }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_d: [
+      {
+        _id: ObjectId('6aec31a9df647031aa2c8316'),
+        cust_id: ObjectId('6aeb95297f37227543eb868a'),
+        invoice_num: 'INV002',
+        amount: 8000,
+        status: 'Paid',
+        due_date: ISODate('2026-10-10T00:00:00.000Z')
+      }
+    ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$addFields:{invoice_amt:"invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: 'invoice_d.amount'
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: 'invoice_d.amount'
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_amt: 'invoice_d.amount'
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 1500 ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 12000 ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 8000 ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"pay_d.amount"}},as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:496)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"pay_d.amount"}},as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"pay_d.amount"}},as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:496)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"pay_d.amount"}},as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$a$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{$reduce:{input:"$invoice_d.payment_d",initialValue:[],in:{$concatArrays:["$$value","$$this"]}}}}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+|
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 1500 ],
+    payment_d: [ 8000 ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 12000 ],
+    payment_d: [ 5000 ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 8000 ],
+    payment_d: [ 5000 ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{$reduce:{input:"$invoice_d.payment_d"}}}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+|
+MongoServerError[Location40078]: Invalid $addFields :: caused by :: $reduce requires 'initialValue' to be specified
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{input:"$invoice_d.payment_d"}}}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+|
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:622)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{input:"$invoice_d.payment_d"}}}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{input:"$invoice_d.payment_d"}}}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1,payment_d:1}}])
+| node:internal/readline/emitKeypressEvents:74
+            throw err;
+            ^
+
+TypeError: Cannot read properties of undefined (reading 'length')
+    at [_multilineMove] (node:internal/readline/interface:1120:36)
+    at [_moveUpOrHistoryPrev] (node:internal/readline/interface:1177:27)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1526:37)
+    at REPLServer.self._ttyWrite (node:repl:1001:9)
+    at LineByLineInput.onkeypress (node:internal/readline/interface:289:20)
+    at LineByLineInput.emit (node:events:526:24)
+    at LineByLineInput.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at LineByLineInput.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at LineByLineInput.emit (node:events:514:28)
+    at LineByLineInput.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:569:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:520:3)
+    at LineByLineInput.push (node:internal/streams/readable:400:5)
+    at LineByLineInput.push (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946914)
+    at LineByLineInput._flush (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946653)
+    at LineByLineInput._forwardAndBlockOnNewline (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:946216)
+    at LineByLineInput._onData (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:944945)
+    at ReadStream.eval (eval at <anonymous> (node:lib-boxednode/mongosh:103:20), <anonymous>:140:945560)
+    at ReadStream.emit (node:events:514:28)
+    at ReadStream.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:569:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:520:3)
+    at ReadStream.push (node:internal/streams/readable:400:5)
+    at TTY.onStreamRead (node:internal/stream_base_commons:194:23)
+    at TTY.callbackTrampoline (node:internal/async_hooks:131:17)
+
+Node.js v24.22.1
+PS C:\Users\SriVaishnaviSrinivas> mongosh
+Current Mongosh Log ID: 6af28e97a388d40d988c23a3
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.1
+Using MongoDB:          9.0.2
+Using Mongosh:          2.14.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-10-30T13:46:50.611+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use customer360
+switched to db customer360
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"pay_d"}},{$a$addFields:{payment_d:"$pay_d.amount"}},{$project:{pay_d:0}}],as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount",payment_d:{$reduce:{input:"$invoicustomer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 1500 ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 12000 ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 8000 ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 1500 ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 12000 ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoice_amt: [ 8000 ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",localField:"_id",foreignField:"cust_id",as:"invoice_d"}},{$addFields:{invoice_amt:"$invoice_d.amount"}},{$project:{_id:0,name:1,accounts:1,invoice_amt:1customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments.amount:1,payments.status:1}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:505)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments.amount:1,payments.status:1}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments:{amount:1,status:1}}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 1500, payments: [ { amount: 8000, status: 'Success' } ] } ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoices: [
+      { amount: 12000, payments: [ { amount: 5000, status: 'Success' } ] }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 8000, payments: [ { amount: 5000, status: 'Success' } ] } ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments.amount:1,payments.status:1}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:505)
+
+> 1 | db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments.amount:1,payments.status:1}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+  2 |
+
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",localField:"_id",foreignField:"acc_id",as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,invoice_no:1,amount:1,payments:{amount:1,status:1}}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 1500, payments: [ { amount: 8000, status: 'Success' } ] } ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 1
+      }
+    ],
+    invoices: [
+      { amount: 12000, payments: [ { amount: 5000, status: 'Success' } ] }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 8000, payments: [ { amount: 5000, status: 'Success' } ] } ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",let:{aid:"_id"},pipeline:[{$match:{$expr:{$eq:["$acc_id","$$aid"]}}},{$lookup:{from:"services",localField:"_id",foreignField:"site_id",as:"service_d"}}],as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}},{$project:{sites_d:0}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},{$project:{_id:0,amount:1,payments:{amount:1,status:1}}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1,servide_d:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 0
+      }
+    ],
+    invoices: [ { amount: 1500, payments: [ { amount: 8000, status: 'Success' } ] } ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 0
+      }
+    ],
+    invoices: [
+      { amount: 12000, payments: [ { amount: 5000, status: 'Success' } ] }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        site_count: 0
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        site_count: 0
+      }
+    ],
+    invoices: [ { amount: 8000, payments: [ { amount: 5000, status: 'Success' } ] } ]
+  }
+]
+customer360> db.customers.aggregate([{$lookup:{from:"accounts",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$c_id","$$cid"]}}},{$lookup:{from:"sites",let:{aid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$acc_id","$$aid"]}}},{$lookup:{from:"services",localField:"_id",foreignField:"site_id",as:"service_d"}},{$addFi$addFields:{service_count:{$size:"$service_d"}}}],as:"sites_d"}},{$addFields:{site_count:{$size:"$sites_d"}}}],as:"accounts"}},{$lookup:{from:"invoices",let:{cid:"$_id"},pipeline:[{$match:{$expr:{$eq:["$cust_id","$$cid"]}}},{$lookup:{from:"payments",localField:"_id",foreignField:"inv_id",as:"payments"}},$project:{_id:0,amount:1,payments:{amount:1,status:1}}}],as:"invoices"}},{$project:{_id:0,name:1,accounts:1,invoices:1}}])
+[
+  {
+    name: 'abc',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96457f37227543eb868c'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Business',
+        acc_type: 'Basic',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aeb97847f37227543eb868f'),
+            acc_id: ObjectId('6aeb96457f37227543eb868c'),
+            site_name: 'ABC North Branch',
+            loc: 'Chen',
+            status: 'Active',
+            service_d: [
+              {
+                _id: ObjectId('6aeb99127f37227543eb8692'),
+                site_id: ObjectId('6aeb97847f37227543eb868f'),
+                service_name: 'Internet',
+                plan: '100Mbps',
+                price: 1000
+              }
+            ],
+            service_count: 1
+          },
+          {
+            _id: ObjectId('6aed5010005452452fee3491'),
+            acc_id: ObjectId('6aeb96457f37227543eb868c'),
+            site_name: 'ACD North Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed9a45005452452fee349a'),
+            acc_id: ObjectId('6aeb96457f37227543eb868c'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4de5005452452fee3485'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Basic_a',
+        acc_type: 'Basic',
+        status: 'Inactive',
+        sites_d: [
+          {
+            _id: ObjectId('6aed4f3d005452452fee348b'),
+            acc_id: ObjectId('6aed4de5005452452fee3485'),
+            site_name: 'ACD East Branch',
+            loc: 'vnr',
+            status: 'Inactive',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed4fd9005452452fee348f'),
+            acc_id: ObjectId('6aed4de5005452452fee3485'),
+            site_name: 'ACD Main Street',
+            loc: 'cbe',
+            status: 'Inactive',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed99f5005452452fee3496'),
+            acc_id: ObjectId('6aed4de5005452452fee3485'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4dfb005452452fee3486'),
+        c_id: ObjectId('6aeb94d17f37227543eb8688'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aed99de005452452fee3495'),
+            acc_id: ObjectId('6aed4dfb005452452fee3486'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 1500, payments: [ { amount: 8000, status: 'Success' } ] } ]
+  },
+  {
+    name: 'def',
+    accounts: [
+      {
+        _id: ObjectId('6aeb95d77f37227543eb868b'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Basic',
+        acc_type: 'Business',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aeb97527f37227543eb868e'),
+            acc_id: ObjectId('6aeb95d77f37227543eb868b'),
+            site_name: 'ABC Main Branch',
+            loc: 'Cbe',
+            status: 'Active',
+            service_d: [
+              {
+                _id: ObjectId('6aeb98a67f37227543eb8691'),
+                site_id: ObjectId('6aeb97527f37227543eb868e'),
+                service_name: 'Cloud',
+                plan: '1TB',
+                price: 1500
+              }
+            ],
+            service_count: 1
+          },
+          {
+            _id: ObjectId('6aed9a5e005452452fee349b'),
+            acc_id: ObjectId('6aeb95d77f37227543eb868b'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e1d005452452fee3487'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aed4f0d005452452fee348a'),
+            acc_id: ObjectId('6aed4e1d005452452fee3487'),
+            site_name: 'ACD South Branch',
+            loc: 'vnr',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed4fc0005452452fee348e'),
+            acc_id: ObjectId('6aed4e1d005452452fee3487'),
+            site_name: 'ACD Main Street',
+            loc: 'cbe',
+            status: 'Inactive',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed99c6005452452fee3494'),
+            acc_id: ObjectId('6aed4e1d005452452fee3487'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4e31005452452fee3488'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        sites_d: [
+          {
+            _id: ObjectId('6aed4f75005452452fee348c'),
+            acc_id: ObjectId('6aed4e31005452452fee3488'),
+            site_name: 'ACD North Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed99b0005452452fee3493'),
+            acc_id: ObjectId('6aed4e31005452452fee3488'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4e47005452452fee3489'),
+        c_id: ObjectId('6aeb94f87f37227543eb8689'),
+        acc_name: 'ACD Basic_a',
+        acc_type: 'Basic',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aed9970005452452fee3492'),
+            acc_id: ObjectId('6aed4e47005452452fee3489'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 1
+      }
+    ],
+    invoices: [
+      { amount: 12000, payments: [ { amount: 5000, status: 'Success' } ] }
+    ]
+  },
+  {
+    name: 'ghi',
+    accounts: [
+      {
+        _id: ObjectId('6aeb96c17f37227543eb868d'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ABC Premium',
+        acc_type: 'Premium',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aeb97cc7f37227543eb8690'),
+            acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+            site_name: 'ABC Business Branch',
+            loc: 'Bang',
+            status: 'Active',
+            service_d: [
+              {
+                _id: ObjectId('6aeb99617f37227543eb8693'),
+                site_id: ObjectId('6aeb97cc7f37227543eb8690'),
+                service_name: 'Cloud',
+                plan: '500Mb',
+                price: 500
+              }
+            ],
+            service_count: 1
+          },
+          {
+            _id: ObjectId('6aed4fa9005452452fee348d'),
+            acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+            site_name: 'ACD Main Street',
+            loc: 'cbe',
+            status: 'Inactive',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed9a31005452452fee3499'),
+            acc_id: ObjectId('6aeb96c17f37227543eb868d'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 3
+      },
+      {
+        _id: ObjectId('6aed4d82005452452fee3483'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Basic',
+        acc_type: 'Basic',
+        status: 'Active',
+        sites_d: [
+          {
+            _id: ObjectId('6aed4ff1005452452fee3490'),
+            acc_id: ObjectId('6aed4d82005452452fee3483'),
+            site_name: 'ACD North Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          },
+          {
+            _id: ObjectId('6aed9a1d005452452fee3498'),
+            acc_id: ObjectId('6aed4d82005452452fee3483'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 2
+      },
+      {
+        _id: ObjectId('6aed4d9e005452452fee3484'),
+        c_id: ObjectId('6aeb95297f37227543eb868a'),
+        acc_name: 'ACD Premium',
+        acc_type: 'Premium',
+        status: 'Inactive',
+        sites_d: [
+          {
+            _id: ObjectId('6aed9a0a005452452fee3497'),
+            acc_id: ObjectId('6aed4d9e005452452fee3484'),
+            site_name: 'ACD South Branch',
+            loc: 'cbe',
+            status: 'Active',
+            service_d: [],
+            service_count: 0
+          }
+        ],
+        site_count: 1
+      }
+    ],
+    invoices: [ { amount: 8000, payments: [ { amount: 5000, status: 'Success' } ] } ]
+  }
+]

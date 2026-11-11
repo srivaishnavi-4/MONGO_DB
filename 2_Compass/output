@@ -1177,3 +1177,6 @@ sampdb> db.students.find().skip(4).limit(2)
   }
 ]
 sampdb>
+
+
+

@@ -1,0 +1,407 @@
+[{
+  "_id": {
+    "$oid": "6af3127484fdc0094ce0b708"
+  },
+  "name": "Vaishu",
+  "email": "vaishu@gmail.com",
+  "age": 22,
+  "gender": "Female",
+  "department": "Computer Science",
+  "year": 4,
+  "skills": [
+    "JavaScript",
+    "MongoDB",
+    "Node.js"
+  ],
+  "address": {
+    "city": "Coimbatore",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 87.5,
+  "createdAt": {
+    "$date": "2026-11-10T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af312e984fdc0094ce0b70a"
+  },
+  "name": "Arun",
+  "email": "arun@gmail.com",
+  "age": 21,
+  "gender": "Male",
+  "department": "Computer Science",
+  "year": 3,
+  "skills": [
+    "JavaScript",
+    "React",
+    "Node.js"
+  ],
+  "address": {
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 91.5,
+  "createdAt": {
+    "$date": "2026-10-01T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af312f984fdc0094ce0b70c"
+  },
+  "name": "Priya",
+  "email": "priya@gmail.com",
+  "age": 22,
+  "gender": "Female",
+  "department": "Information Technology",
+  "year": 4,
+  "skills": [
+    "Python",
+    "MongoDB",
+    "Java"
+  ],
+  "address": {
+    "city": "Coimbatore",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 88.5,
+  "createdAt": {
+    "$date": "2026-10-02T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3130b84fdc0094ce0b70e"
+  },
+  "name": "Karthik",
+  "email": "karthik@gmail.com",
+  "age": 23,
+  "gender": "Male",
+  "department": "Electronics",
+  "year": 4,
+  "skills": [
+    "C",
+    "Embedded Systems",
+    "Python"
+  ],
+  "address": {
+    "city": "Madurai",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": false,
+  "marks": 76.5,
+  "createdAt": {
+    "$date": "2026-10-03T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3131984fdc0094ce0b710"
+  },
+  "name": "Divya",
+  "email": "divya@gmail.com",
+  "age": 20,
+  "gender": "Female",
+  "department": "Computer Science",
+  "year": 2,
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "address": {
+    "city": "Salem",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 82,
+  "createdAt": {
+    "$date": "2026-10-04T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3132984fdc0094ce0b712"
+  },
+  "name": "Rahul",
+  "email": "rahul@gmail.com",
+  "age": 24,
+  "gender": "Male",
+  "department": "Mechanical",
+  "year": 4,
+  "skills": [
+    "AutoCAD",
+    "SolidWorks",
+    "Python"
+  ],
+  "address": {
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 69.5,
+  "createdAt": {
+    "$date": "2026-10-05T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3133984fdc0094ce0b714"
+  },
+  "name": "Sneha",
+  "email": "sneha@gmail.com",
+  "age": 21,
+  "gender": "Female",
+  "department": "Information Technology",
+  "year": 3,
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "MySQL"
+  ],
+  "address": {
+    "city": "Erode",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": false,
+  "marks": 95,
+  "createdAt": {
+    "$date": "2026-10-06T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3135084fdc0094ce0b716"
+  },
+  "name": "Vijay",
+  "email": "vijay@gmail.com",
+  "age": 22,
+  "gender": "Male",
+  "department": "Civil",
+  "year": 4,
+  "skills": [
+    "MongoDB",
+    "Express.js",
+    "React",
+    "Node.js"
+  ],
+  "address": {
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 89,
+  "createdAt": {
+    "$date": "2026-10-07T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3136484fdc0094ce0b718"
+  },
+  "name": "Ananya",
+  "email": "ananya@gmail.com",
+  "age": 19,
+  "gender": "Female",
+  "department": "Civil",
+  "year": 1,
+  "skills": [
+    "AutoCAD",
+    "Mathematics",
+    "Drawing"
+  ],
+  "address": {
+    "city": "Trichy",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 73.5,
+  "createdAt": {
+    "$date": "2026-10-08T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3137884fdc0094ce0b71a"
+  },
+  "name": "Sanjay",
+  "email": "sanjay@gmail.com",
+  "age": 23,
+  "gender": "Male",
+  "department": "Information Technology",
+  "year": 4,
+  "skills": [
+    "Python",
+    "Machine Learning",
+    "TensorFlow"
+  ],
+  "address": {
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India"
+  },
+  "isActive": false,
+  "marks": 85.5,
+  "createdAt": {
+    "$date": "2026-10-09T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3138b84fdc0094ce0b71c"
+  },
+  "name": "Meena",
+  "email": "meena@gmail.com",
+  "age": 22,
+  "gender": "Female",
+  "department": "Electronics",
+  "year": 3,
+  "skills": [
+    "C++",
+    "IoT",
+    "Arduino"
+  ],
+  "address": {
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  "isActive": true,
+  "marks": 92,
+  "createdAt": {
+    "$date": "2026-10-10T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af3152184fdc0094ce0b71e"
+  },
+  "name": "Ramesh",
+  "email": "ramesh@gmail.com",
+  "age": 21,
+  "department": "Computer Science",
+  "year": 3,
+  "skills": [
+    "JavaScript",
+    "MongoDB"
+  ],
+  "address": {
+    "city": "Coimbatore",
+    "state": "Tamil Nadu"
+  },
+  "isActive": true,
+  "marks": 86.5
+},
+{
+  "_id": {
+    "$oid": "6af3152184fdc0094ce0b71f"
+  },
+  "name": "Keerthi",
+  "email": "keerthi@gmail.com",
+  "age": 22,
+  "department": "Information Technology",
+  "year": 4,
+  "skills": [
+    "Python",
+    "SQL"
+  ],
+  "address": {
+    "city": "Chennai",
+    "state": "Tamil Nadu"
+  },
+  "isActive": false,
+  "marks": 93
+},
+{
+  "_id": {
+    "$oid": "6af3152184fdc0094ce0b720"
+  },
+  "name": "Surya",
+  "email": "surya@gmail.com",
+  "age": 20,
+  "department": "Mechanical",
+  "year": 2,
+  "skills": [
+    "AutoCAD",
+    "C++"
+  ],
+  "address": {
+    "city": "Madurai",
+    "state": "Tamil Nadu"
+  },
+  "isActive": true,
+  "marks": 71.5
+},
+{
+  "_id": {
+    "$oid": "6af315ca84fdc0094ce0b721"
+  },
+  "name": "Ramesh",
+  "email": "ramesh@gmail.com",
+  "age": 21,
+  "department": "Computer Science",
+  "year": 3,
+  "skills": [
+    "JavaScript",
+    "MongoDB"
+  ],
+  "address": {
+    "city": "Coimbatore",
+    "state": "Tamil Nadu"
+  },
+  "isActive": true,
+  "marks": 86.5
+},
+{
+  "_id": {
+    "$oid": "6af315ca84fdc0094ce0b722"
+  },
+  "name": "Keerthi",
+  "email": "keerthi@gmail.com",
+  "age": 22,
+  "department": "Information Technology",
+  "year": 4,
+  "skills": [
+    "Python",
+    "SQL"
+  ],
+  "address": {
+    "city": "Chennai",
+    "state": "Tamil Nadu"
+  },
+  "isActive": false,
+  "marks": 93
+},
+{
+  "_id": {
+    "$oid": "6af315ca84fdc0094ce0b723"
+  },
+  "name": "Surya",
+  "email": "surya@gmail.com",
+  "age": 20,
+  "department": "Mechanical",
+  "year": 2,
+  "skills": [
+    "AutoCAD",
+    "C++"
+  ],
+  "address": {
+    "city": "Madurai",
+    "state": "Tamil Nadu"
+  },
+  "isActive": true,
+  "marks": 71.5
+}]
