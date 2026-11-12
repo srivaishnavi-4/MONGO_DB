@@ -1942,3 +1942,736 @@ The output should contain the inserted student document.
 | Suitable for visual database management | Suitable for scripting and command-based operations |
 | Supports visual filtering and querying | Supports advanced query execution |
 
+
+
+# 5_MongoDB Performance Testing – Insert 50 Users into Local MongoDB and Atlas
+
+## 2. What is Database Insertion?
+
+Database insertion is the process of adding new documents into a MongoDB collection.
+
+MongoDB provides different insertion methods:
+
+- `insertOne()` – Inserts a single document.
+- `insertMany()` – Inserts multiple documents.
+
+In this task, `insertMany()` is used to insert 50 user documents in one operation.
+
+## 3. Why Insert Multiple Documents?
+
+In real-world applications, multiple records may need to be stored together.
+
+Examples:
+
+- Importing customer records.
+- Registering multiple users.
+- Uploading product information.
+- Migrating data from one database to another.
+- Loading initial application data.
+
+Instead of executing 50 separate insertion operations, `insertMany()` allows multiple documents to be submitted in a single operation.
+
+## 4. Concepts Used
+
+### 4.1 generateUsers()
+
+**What is it?**
+
+`generateUsers()` is a custom JavaScript function that generates 50 user documents dynamically.
+
+**Why is it used?**
+
+Performance testing requires a dataset to perform insertion operations.
+
+Generating the documents programmatically avoids manually creating 50 user records.
+
+The function uses:
+
+```javascript
+Array.from({ length: TOTAL_USERS }, (_, index) => {
+    // Generate each user document
+});
+```
+
+This creates an array containing 50 user objects.
+
+Each document contains:
+
+- Name
+- Email
+- Age
+- City
+- Created date
+
+### 4.2 Why Generate Users Only Once?
+
+The generated user array is passed to both local MongoDB and Atlas.
+
+```javascript
+const users = generateUsers();
+```
+
+The same array is reused for both insertion operations.
+
+**Purpose:**
+
+It ensures both environments receive the same dataset, making the comparison more consistent.
+
+The unique timestamp in the email address also helps avoid duplicate email values when the test is executed again.
+
+### 4.3 insertMany()
+
+**What is it?**
+
+`insertMany()` is a MongoDB collection method used to insert multiple documents in a single operation.
+
+**Why is it used?**
+
+It reduces the need to execute separate insertion requests for every document.
+
+Example:
+
+```javascript
+const result = await collection.insertMany(users);
+```
+
+Here:
+
+- `collection` identifies the target collection.
+- `users` contains the 50 documents.
+- `result` contains information about the insertion operation.
+
+### 4.4 insertedCount
+
+**What is it?**
+
+`insertedCount` indicates how many documents were successfully inserted by the operation.
+
+Example:
+
+```javascript
+console.log("Users inserted:", result.insertedCount);
+```
+
+Expected value:
+
+```text
+Users inserted: 50
+```
+
+It helps verify whether the insertion operation completed successfully.
+
+### 4.5 performance.now()
+
+**What is it?**
+
+`performance.now()` measures the duration of the insertion operation using a high-resolution timer.
+
+**Why is it used?**
+
+It allows us to compare how long local MongoDB and Atlas take to insert the same set of documents.
+
+Example:
+
+```javascript
+const startTime = performance.now();
+
+const result = await collection.insertMany(users);
+
+const endTime = performance.now();
+
+const insertionTime = endTime - startTime;
+```
+
+The difference between the timestamps gives the measured insertion duration in milliseconds.
+
+### 4.6 Separate Database Connections
+
+The application creates separate MongoDB clients for local MongoDB and Atlas.
+
+```javascript
+const client = new MongoClient(connectionString);
+```
+
+**Why is this required?**
+
+Each database environment has its own connection string and server.
+
+The application connects to one environment, performs the insertion, closes its connection, and then performs the operation in the other environment.
+
+### 4.7 Error Handling
+
+The application uses `try...catch...finally` to manage insertion failures.
+
+**try:**
+
+- Connect to the database.
+- Select the database and collection.
+- Insert the 50 documents.
+- Calculate insertion time.
+
+**catch:**
+
+Handles problems such as:
+
+- Connection failures.
+- Authentication failures.
+- Duplicate key errors.
+- Database insertion errors.
+
+**finally:**
+
+Closes the MongoDB client regardless of whether insertion succeeds or fails.
+
+## 5. Performance Comparison
+
+After inserting the documents into both environments, their insertion times are compared.
+
+Example output:
+
+```text
+MongoDB Performance Testing
+Total users: 50
+
+Connected to Local MongoDB
+
+Local Insertion Results
+Users inserted: 50
+Insertion time: 12.45 ms
+
+Connected to Atlas MongoDB
+
+Atlas Insertion Results
+Users inserted: 50
+Insertion time: 85.32 ms
+
+========== PERFORMANCE COMPARISON ==========
+
+Local MongoDB: 12.45 ms
+MongoDB Atlas: 85.32 ms
+
+Local MongoDB was faster.
+```
+
+### Possible outcomes
+
+**Case 1: Local MongoDB is faster**
+
+Local MongoDB may complete insertion faster because it does not require communication with a remote cloud server.
+
+**Case 2: MongoDB Atlas is faster**
+
+Atlas may complete insertion faster due to differences in server hardware, network conditions, storage performance and load.
+
+**Case 3: Similar execution times**
+
+Both environments may take approximately the same time.
+
+**Important:** The results of one run are not sufficient to conclude that one database is always faster. Repeat the test under consistent conditions.
+## 7. Real-World Importance
+
+Bulk insertion is useful in applications that need to store many records efficiently.
+
+Examples:
+
+- Importing customer data from external systems.
+- Initializing application databases.
+- Migrating records between databases.
+- Bulk uploading products or services.
+- Processing large datasets.
+Performance testing helps developers evaluate the time required to insert data and choose suitable database configurations.
+
+**Important measurement limitation:** Your timer measures the duration of the `insertMany()` operation as observed by the Node.js application. It includes network communication for Atlas, server processing and acknowledgement. It is not a measurement of MongoDB's internal storage-engine time alone.
+
+
+# 6_MongoDB Performance Testing – Fetch Users from Local MongoDB and Atlas
+## 2. What is Database Fetching?
+
+Database fetching is the process of retrieving existing documents from a MongoDB collection.
+
+MongoDB provides different methods to retrieve documents:
+
+- `find()` – Retrieves documents matching a condition.
+- `findOne()` – Retrieves a single matching document.
+- `find().toArray()` – Retrieves matching documents and converts the cursor into an array.
+
+In this task, `find({})` is used to retrieve all documents from the users collection.
+
+## 3. Why Compare Local MongoDB and MongoDB Atlas?
+
+MongoDB can be hosted in different environments.
+
+**Local MongoDB:**
+
+- Runs on the developer's computer.
+- Database communication happens through the local machine.
+- Does not require an internet connection for database access.
+- Usually has lower network communication overhead.
+
+**MongoDB Atlas:**
+
+- Runs on cloud infrastructure.
+- Database communication happens over a network.
+- Requires internet connectivity.
+- Performance can be affected by network latency and cloud infrastructure.
+
+Comparing both environments helps us understand the difference between local and cloud database access.
+
+## 4. Concepts Used
+
+### 4.1 MongoClient
+
+**What is it?**
+
+`MongoClient` is a class provided by the MongoDB Node.js Driver to establish communication between a Node.js application and MongoDB.
+
+**Why is it used?**
+
+A Node.js application needs a database connection before performing database operations.
+
+**How does it work?**
+
+The connection string specifies the database server and authentication details. `MongoClient` uses that information to establish a connection.
+
+### 4.2 Environment Variables
+
+**What are they?**
+
+Environment variables store configuration values outside the application source code.
+
+**Why are they used?**
+
+Local MongoDB and Atlas require different connection strings. Instead of hardcoding them in JavaScript, they are stored in `.env`.
+
+Example:
+
+```env
+LOCAL_MONGO_URI=mongodb://127.0.0.1:27017
+ATLAS_MONGO_URI=your_atlas_connection_string
+```
+
+The application reads the appropriate connection string depending on the environment.
+
+### 4.3 MongoDB Database and Collection
+
+```javascript
+const database = client.db(DATABASE_NAME);
+const collection = database.collection(COLLECTION_NAME);
+```
+
+- `client.db()` selects the database.
+- `database.collection()` selects the collection.
+
+In this task:
+
+- Database: `performanceDB`
+- Collection: `users`
+
+### 4.4 find()
+
+**What is it?**
+
+`find()` is a MongoDB method used to retrieve documents from a collection.
+
+**Why is it used?**
+
+It allows an application to retrieve multiple documents based on specified conditions.
+
+Example:
+
+```javascript
+collection.find({})
+```
+
+The empty filter `{}` means all documents should be retrieved.
+
+### 4.5 toArray()
+
+**What is it?**
+
+`find()` returns a cursor rather than an ordinary JavaScript array.
+
+`toArray()` consumes the cursor and converts the retrieved documents into an array.
+
+Example:
+
+```javascript
+const users = await collection.find({}).toArray();
+```
+
+After execution, `users` contains the retrieved documents.
+
+### 4.6 performance.now()
+
+**What is it?**
+
+`performance.now()` is a high-resolution timer provided by Node.js through the `perf_hooks` module.
+
+**Why is it used?**
+
+It measures the time taken by an operation more precisely than using ordinary date timestamps.
+
+Example:
+
+```javascript
+const startTime = performance.now();
+
+const users = await collection.find({}).toArray();
+
+const endTime = performance.now();
+
+const queryTime = endTime - startTime;
+```
+
+The difference between the start and end time represents the measured fetch duration.
+
+### 4.7 count and Query Execution Time
+
+Two important values are measured:
+
+- Total users fetched: Number of documents retrieved.
+- Query execution time: Time taken by the measured retrieval operation, in milliseconds.
+
+These values help compare the two database environments.
+
+### 4.8 Error Handling
+
+The `try...catch...finally` structure is used to handle connection and retrieval errors.
+
+- `try`: Connects to MongoDB and retrieves documents.
+- `catch`: Handles connection or query errors.
+- `finally`: Closes the MongoDB client.
+
+This prevents database failures from being silently ignored and ensures resource cleanup.
+
+## 5. Performance Comparison
+After retrieving documents from both environments, the application compares their execution times.
+
+Possible outcomes:
+**Case 1: Local MongoDB is faster**
+Local database access took less measured time than Atlas access.
+A possible reason is lower network communication overhead.
+**Case 2: MongoDB Atlas is faster**
+Atlas completed the measured retrieval faster in that particular test.
+Possible reasons include differences in hardware, caching, network conditions and server load.
+**Case 3: Similar execution times**
+Both environments completed the operation in approximately the same time.
+
+**Important:** A single execution does not establish that one environment is always faster. Repeated tests with the same dataset and conditions provide a more reliable comparison.
+
+## 7. Real-World Importance
+
+Database performance testing helps developers understand how efficiently an application retrieves data.
+
+It is useful when:
+
+- Comparing local and cloud database environments.
+- Evaluating database response time.
+- Identifying network-related performance overhead.
+- Testing application behaviour with larger datasets.
+- Making infrastructure and deployment decisions.
+**Important measurement limitation:** Your timer starts immediately before `find().toArray()` and stops immediately afterward. It measures the complete cursor retrieval operation, including the time needed to receive and materialize the results. It does not measure only the MongoDB server's internal query execution time.
+
+# 7_Network Failure and Error Handling
+## 1. What is Network Failure?
+
+Network failure occurs when a Node.js application cannot communicate with the MongoDB database server.
+
+In a real-world application, Node.js needs a network connection to MongoDB Atlas to perform database operations such as:
+
+- Inserting documents
+- Retrieving documents
+- Updating documents
+- Deleting documents
+
+If the connection fails, database operations cannot be completed.
+
+Network failure simulation helps us understand how an application behaves when MongoDB is unavailable and how to handle errors without unexpectedly terminating the application.
+
+## 2. Types of Errors
+
+### 2.1 DNS Resolution Failure – ENOTFOUND
+
+**What is it?**
+
+DNS (Domain Name System) is responsible for converting a domain name into an IP address.
+
+When Node.js connects to MongoDB Atlas, it needs to resolve the Atlas hostname to locate the database server.
+
+`ENOTFOUND` occurs when DNS cannot find or resolve the requested hostname.
+
+**Why does it happen?**
+
+1. The MongoDB Atlas hostname is incorrect.
+2. The hostname does not exist.
+3. DNS resolution is unavailable.
+4. There is a DNS configuration or connectivity problem.
+
+**Real-time scenario:**
+
+Suppose an application uses this MongoDB connection string:
+
+```javascript
+mongodb+srv://user:password@invalidcluster.mongodb.net/
+```
+
+If `invalidcluster.mongodb.net` cannot be resolved, Node.js cannot locate the MongoDB server.
+
+**How to handle it?**
+
+- Verify the MongoDB Atlas connection string.
+- Check whether the cluster hostname is correct.
+- Check internet connectivity.
+- Check DNS resolution.
+- Catch the connection error and display a meaningful message.
+
+**Example error handling:**
+
+```javascript
+if (error.code === "ENOTFOUND") {
+    console.log("DNS resolution failed.");
+    console.log("Check the MongoDB hostname.");
+}
+```
+
+**Purpose of handling:**
+
+Instead of terminating the application unexpectedly, the application informs the developer that the database hostname could not be resolved.
+
+---
+
+### 2.2 Connection Refused – ECONNREFUSED
+
+**What is it?**
+
+`ECONNREFUSED` occurs when an application attempts to establish a connection with a server, but the destination refuses the connection.
+
+The destination may be reachable, but it is not accepting connections on the requested port.
+
+**Why does it happen?**
+
+1. MongoDB server is not running.
+2. The application connects to an incorrect port.
+3. The destination service is not listening.
+4. A firewall or network configuration actively rejects the connection.
+
+**Real-time scenario:**
+
+Suppose MongoDB is expected to run locally on port `27017`, but the MongoDB service is stopped.
+
+Node.js attempts to connect:
+
+```javascript
+mongodb://127.0.0.1:27017/
+```
+
+Since no MongoDB server is listening on that port, the connection can be refused.
+
+**How to handle it?**
+
+- Check whether the MongoDB service is running.
+- Verify the hostname and port.
+- Check firewall and network configurations.
+- Retry the connection after the database service becomes available.
+- Catch the connection error and display an appropriate message.
+
+**Example error handling:**
+
+```javascript
+if (error.code === "ECONNREFUSED") {
+    console.log("MongoDB connection was refused.");
+    console.log("Check whether the database server is running.");
+}
+```
+
+**Purpose of handling:**
+
+It helps identify whether the destination database service is accepting connections and prevents connection failures from being treated as successful operations.
+
+---
+
+### 2.3 Authentication Failure – MongoDB Error Code 18
+
+**What is it?**
+
+Authentication is the process of verifying the identity of a user before allowing access to MongoDB.
+
+MongoDB Atlas requires valid database credentials when authentication is enabled.
+
+Error code `18` represents an authentication failure.
+
+**Why does it happen?**
+
+1. Incorrect MongoDB database username.
+2. Incorrect password.
+3. Database user does not exist.
+4. Authentication configuration is incorrect.
+
+**Real-time scenario:**
+
+Suppose an application uses the following credentials:
+
+```text
+Username: wrong_user
+Password: wrong_password
+```
+
+MongoDB Atlas receives the connection request but rejects the credentials.
+
+Therefore, the application cannot authenticate and access the database.
+
+**How to handle it?**
+
+- Verify the database username.
+- Verify the password.
+- Check Database Access in MongoDB Atlas.
+- Verify the authentication configuration.
+- Avoid displaying database passwords in application logs.
+
+**Example error handling:**
+
+```javascript
+if (error.code === 18) {
+    console.log("MongoDB authentication failed.");
+    console.log("Check database username and password.");
+}
+```
+
+**Purpose of handling:**
+
+It helps distinguish authentication problems from network connectivity problems and prevents unauthorized database access.
+
+---
+
+## 3. MongoServerSelectionError
+
+**What is it?**
+
+`MongoServerSelectionError` occurs when the MongoDB driver cannot find a suitable MongoDB server within the configured server selection timeout.
+
+The driver attempts to identify an available server before executing database operations.
+
+**Why does it happen?**
+
+- MongoDB Atlas is unavailable.
+- The IP address is not included in Atlas Network Access.
+- Network connectivity is blocked.
+- DNS resolution fails.
+- The database server is unreachable.
+- The server selection timeout expires.
+
+**How to handle it?**
+
+1. Verify the MongoDB connection string.
+2. Check Atlas Network Access.
+3. Verify internet connectivity.
+4. Check the underlying error and its cause.
+5. Configure a suitable server selection timeout.
+
+**Example:**
+
+```javascript
+const client = new MongoClient(connectionString, {
+    serverSelectionTimeoutMS: 5000
+});
+```
+
+The timeout is configured to 5 seconds. If the driver cannot select a suitable server within that time, the connection attempt fails.
+
+**Important distinction:**
+
+`MongoServerSelectionError` is a higher-level driver error. The underlying cause may be `ENOTFOUND`, `ECONNREFUSED`, a timeout, or another connectivity problem. They are related, but they are not interchangeable.
+
+---
+
+## 4. Unexpected Database Errors
+
+**What is it?**
+
+An unexpected database error is an error that does not match the specific conditions handled by the application.
+
+**Why does it happen?**
+
+- Database command failures.
+- Insufficient database permissions.
+- Invalid database operations.
+- Unexpected MongoDB server errors.
+
+**How to handle it?**
+
+Use a general `else` condition or default error handler to catch errors that are not explicitly classified.
+
+```javascript
+else {
+    console.log("An unexpected database error occurred.");
+}
+```
+
+This ensures that unclassified errors are not silently ignored.
+
+---
+
+## 5. Why do we use try, catch and finally?
+
+These three blocks help manage database operations and failures.
+
+### try
+
+Contains the operations that may produce errors.
+
+Example:
+
+```javascript
+await client.connect();
+await database.command({ ping: 1 });
+```
+
+### catch
+
+Executes when an error occurs in the corresponding `try` block.
+
+It is used to:
+
+- Identify the error.
+- Display meaningful error messages.
+- Handle known errors separately.
+- Prevent unhandled promise rejections.
+
+### finally
+
+Executes whether the operation succeeds or fails.
+
+Example:
+
+```javascript
+finally {
+    await client.close();
+}
+```
+
+Its purpose is to release database client resources and clean up the connection.
+
+## 6. Error Comparison
+
+| Error | Main purpose of identification | Common cause |
+|---|---|---|
+| ENOTFOUND | Identify DNS resolution problems | Invalid hostname |
+| ECONNREFUSED | Identify refused connections | Service not listening |
+| Error code 18 | Identify authentication problems | Incorrect credentials |
+| MongoServerSelectionError | Identify server selection failures | Server unavailable or unreachable |
+| Unexpected error | Handle unclassified failures | Other database errors |
+
+
+## 8. Real-World Importance
+
+In production applications, MongoDB connections may fail because of network interruptions, server maintenance, incorrect credentials or infrastructure problems.
+
+Proper error handling helps developers:
+
+- Identify the actual reason for database failures.
+- Avoid exposing sensitive credentials.
+- Display meaningful error messages.
+- Log errors for debugging.
+- Retry temporary failures when appropriate.
+- Clean up database resources.
+- Improve application reliability.
