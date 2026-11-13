@@ -1,0 +1,3531 @@
+[{
+  "_id": {
+    "$oid": "6af4958755a35767a9b4cb95"
+  },
+  "title": "Advanced MongoDB Masterclass",
+  "description": "Learn MongoDB aggregation and advanced queries",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "MongoDB Introduction",
+      "content": "Introduction to MongoDB",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af4958855a35767a9b4cb96"
+      }
+    },
+    {
+      "title": "MongoDB CRUD",
+      "content": "Learn CRUD operations",
+      "duration": 45,
+      "_id": {
+        "$oid": "6af4958855a35767a9b4cb97"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af4954355a35767a9b4cb93"
+    },
+    {
+      "$oid": "6af4955455a35767a9b4cb94"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [
+    {
+      "$oid": "6af49a8155a35767a9b4cb98"
+    }
+  ],
+  "rating": 4.5,
+  "createdAt": {
+    "$date": "2026-11-11T16:19:20.011Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T09:45:02.377Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6af5825955ac57825c1de1f0"
+  },
+  "title": "HTML Masterclass",
+  "description": "Learn HTML from basics to advanced",
+  "category": "Frontend",
+  "lessons": [
+    {
+      "title": "HTML Basic tags",
+      "content": "Learn basic tags in HTML",
+      "duration": 80,
+      "_id": {
+        "$oid": "6af5825955ac57825c1de1f1"
+      }
+    },
+    {
+      "title": "HTML Semantic tags",
+      "content": "Learn semantic tags in HTML",
+      "duration": 120,
+      "_id": {
+        "$oid": "6af5825955ac57825c1de1f2"
+      }
+    },
+    {
+      "title": "HTML iamge/video tags",
+      "content": "Learn image/video tags in HTML",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5825955ac57825c1de1f3"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af57d7255ac57825c1de1ed"
+    },
+    {
+      "$oid": "6af57ea255ac57825c1de1ee"
+    },
+    {
+      "$oid": "6af57f2155ac57825c1de1ef"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af5327fc07b431cb0bb339d"
+  },
+  "students": [
+    {
+      "$oid": "6af49aba55a35767a9b4cb99"
+    }
+  ],
+  "rating": 5,
+  "createdAt": {
+    "$date": "2026-11-12T09:09:45.809Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T10:20:39.432Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84c7"
+  },
+  "title": "MongoDB Foundations",
+  "description": "Practical course covering MongoDB fundamentals with hands-on exercises.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "MongoDB Introduction",
+      "content": "Understand MongoDB and its features",
+      "duration": 60,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84c8"
+      }
+    },
+    {
+      "title": "NoSQL Database Concepts",
+      "content": "Learn the fundamentals of NoSQL databases",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84c9"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8495"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8496"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.116Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T13:10:34.906Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84ca"
+  },
+  "title": "NoSQL Essentials",
+  "description": "Learn NoSQL database concepts and practical database development.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "SQL vs NoSQL",
+      "content": "Compare relational and non relational databases",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84cb"
+      }
+    },
+    {
+      "title": "MongoDB Installation",
+      "content": "Install MongoDB on a local machine",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84cc"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8497"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8498"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.118Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.118Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84cd"
+  },
+  "title": "Database Design Fundamentals",
+  "description": "Understand database structure, documents and data modeling.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "MongoDB Compass Setup",
+      "content": "Connect to MongoDB using Compass",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ce"
+      }
+    },
+    {
+      "title": "MongoDB Shell Basics",
+      "content": "Execute commands using mongosh",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84cf"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8499"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849a"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84d0"
+  },
+  "title": "MongoDB Developer Basics",
+  "description": "Build a strong foundation in MongoDB development.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Database Creation",
+      "content": "Create and switch between databases",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d1"
+      }
+    },
+    {
+      "title": "Collection Management",
+      "content": "Create and manage MongoDB collections",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d2"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849b"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849c"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84d3"
+  },
+  "title": "MongoDB Data Modeling",
+  "description": "Learn BSON documents, data types and document modeling.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Document Structure",
+      "content": "Understand BSON documents and fields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d4"
+      }
+    },
+    {
+      "title": "BSON Data Types",
+      "content": "Explore strings numbers dates arrays and objects",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d5"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849d"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849e"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84d6"
+  },
+  "title": "MongoDB Query Mastery",
+  "description": "Practise inserting, finding and retrieving MongoDB documents.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Insert One Document",
+      "content": "Insert a single document using insertOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d7"
+      }
+    },
+    {
+      "title": "Insert Multiple Documents",
+      "content": "Insert multiple documents using insertMany",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84d8"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849f"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84d9"
+  },
+  "title": "MongoDB CRUD Workshop",
+  "description": "Master document retrieval and practical CRUD operations.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Find Documents",
+      "content": "Retrieve documents using the find method",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84da"
+      }
+    },
+    {
+      "title": "Find One Document",
+      "content": "Retrieve one matching document using findOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84db"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84dc"
+  },
+  "title": "MongoDB Aggregation Essentials",
+  "description": "Explore query operators and advanced document filtering.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Query Comparison Operators",
+      "content": "Use gt gte lt lte and ne operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84dd"
+      }
+    },
+    {
+      "title": "Logical Query Operators",
+      "content": "Use and or nor and not operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84de"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.119Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84df"
+  },
+  "title": "MongoDB Indexing and Performance",
+  "description": "Learn array queries and nested document operations.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Array Query Operations",
+      "content": "Query array fields using MongoDB operators",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84e0"
+      }
+    },
+    {
+      "title": "Nested Document Queries",
+      "content": "Query fields inside embedded documents",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84e1"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84e2"
+  },
+  "title": "MongoDB Administration Basics",
+  "description": "Practise field selection, sorting and query result management.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Projection Basics",
+      "content": "Select specific fields from query results",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84e3"
+      }
+    },
+    {
+      "title": "Sorting Documents",
+      "content": "Sort query results in ascending and descending order",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84e4"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84e8"
+  },
+  "title": "Node.js Database Integration",
+  "description": "Practise updating and replacing MongoDB documents.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Update One Document",
+      "content": "Modify a document using updateOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84e9"
+      }
+    },
+    {
+      "title": "Update Multiple Documents",
+      "content": "Modify multiple matching documents",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ea"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ab"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ac"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84eb"
+  },
+  "title": "Mongoose Fundamentals",
+  "description": "Understand document replacement and deletion operations.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Replace Document",
+      "content": "Replace an existing document using replaceOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ec"
+      }
+    },
+    {
+      "title": "Delete One Document",
+      "content": "Delete a matching document using deleteOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ed"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ad"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ae"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84ee"
+  },
+  "title": "Mongoose Schema Design",
+  "description": "Learn how to manage multiple records and update fields.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Delete Multiple Documents",
+      "content": "Delete multiple matching documents",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ef"
+      }
+    },
+    {
+      "title": "Set Update Operator",
+      "content": "Update selected fields using set",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f0"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84af"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84f1"
+  },
+  "title": "Mongoose Relationships",
+  "description": "Practise numeric updates and array modification operators.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Increment Update Operator",
+      "content": "Increase numeric fields using inc",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f2"
+      }
+    },
+    {
+      "title": "Push Array Operator",
+      "content": "Append values to array fields using push",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f3"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84f4"
+  },
+  "title": "Course Management Backend",
+  "description": "Build practical skills in removing and uniquely adding array elements.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Pull Array Operator",
+      "content": "Remove matching array values using pull",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f5"
+      }
+    },
+    {
+      "title": "AddToSet Operator",
+      "content": "Add unique values to an array using addToSet",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f6"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84f7"
+  },
+  "title": "Student Management Database",
+  "description": "Learn positional updates for embedded array documents.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Positional Dollar Operator",
+      "content": "Update a matching embedded array element",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f8"
+      }
+    },
+    {
+      "title": "Aggregation Pipeline Basics",
+      "content": "Understand aggregation stages and pipeline flow",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84f9"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84fa"
+  },
+  "title": "E-Learning Data Platform",
+  "description": "Learn filtering and shaping documents in aggregation pipelines.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Match Aggregation Stage",
+      "content": "Filter aggregation documents using match",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84fb"
+      }
+    },
+    {
+      "title": "Project Aggregation Stage",
+      "content": "Shape aggregation output using project",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84fc"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f84fd"
+  },
+  "title": "Online Academy Database",
+  "description": "Understand grouping documents and calculating summary values.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Group Aggregation Stage",
+      "content": "Group documents and calculate summary values",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84fe"
+      }
+    },
+    {
+      "title": "Unwind Aggregation Stage",
+      "content": "Deconstruct array fields using unwind",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f84ff"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b9"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ba"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8500"
+  },
+  "title": "Training Portal Backend",
+  "description": "Practise joining related collections using aggregation.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Lookup Aggregation Stage",
+      "content": "Join collections using lookup",
+      "duration": 45,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8501"
+      }
+    },
+    {
+      "title": "Count Aggregation Stage",
+      "content": "Count documents using the count stage",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8502"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bb"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bc"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8503"
+  },
+  "title": "MongoDB for Web Developers",
+  "description": "Learn aggregation calculations using sum and average.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Sum Aggregation Operator",
+      "content": "Calculate totals using the sum accumulator",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8504"
+      }
+    },
+    {
+      "title": "Average Aggregation Operator",
+      "content": "Calculate averages using avg",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8505"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bd"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84be"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.120Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8506"
+  },
+  "title": "Practical MongoDB Projects",
+  "description": "Build conditional aggregation expressions and array filters.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Conditional Aggregation",
+      "content": "Build conditional expressions using cond",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8507"
+      }
+    },
+    {
+      "title": "Filter Aggregation Operator",
+      "content": "Filter array elements using filter",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8508"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bf"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8509"
+  },
+  "title": "Advanced Document Queries",
+  "description": "Explore computed fields and combining collection results.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "AddFields Aggregation Stage",
+      "content": "Create computed fields using addFields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f850a"
+      }
+    },
+    {
+      "title": "Unions Between Collections",
+      "content": "Combine collection results using unionWith",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f850b"
+      }
+    },
+    {
+      "title": "Logical Query Operators",
+      "content": "Use and or nor and not operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af684231c0ee624a2626774"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-13T03:30:22.589Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f850c"
+  },
+  "title": "MongoDB Aggregation Workshop",
+  "description": "Understand indexes and enforce unique document values.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Index Fundamentals",
+      "content": "Understand how indexes improve query performance",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f850d"
+      }
+    },
+    {
+      "title": "Create Unique Index",
+      "content": "Enforce uniqueness using a unique index",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f850e"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [
+    {
+      "$oid": "6af5f01084fdc0094ce0b771"
+    }
+  ],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-13T03:20:51.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f850f"
+  },
+  "title": "MongoDB Reporting System",
+  "description": "Learn compound indexes and query execution analysis.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Compound Index",
+      "content": "Create indexes across multiple document fields",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8510"
+      }
+    },
+    {
+      "title": "Query Performance Analysis",
+      "content": "Analyze query execution using explain",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8511"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8512"
+  },
+  "title": "Database Optimization Lab",
+  "description": "Practise database fundamentals with hands-on MongoDB tasks.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "MongoDB Introduction",
+      "content": "Understand MongoDB and its features",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8513"
+      }
+    },
+    {
+      "title": "NoSQL Database Concepts",
+      "content": "Learn the fundamentals of NoSQL databases",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8514"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8495"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8496"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8515"
+  },
+  "title": "MongoDB Search Techniques",
+  "description": "Practise NoSQL concepts and local database installation.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "SQL vs NoSQL",
+      "content": "Compare relational and non relational databases",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8516"
+      }
+    },
+    {
+      "title": "MongoDB Installation",
+      "content": "Install MongoDB on a local machine",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8517"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8497"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8498"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8518"
+  },
+  "title": "MongoDB Data Validation",
+  "description": "Practise Compass setup and MongoDB shell commands.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "MongoDB Compass Setup",
+      "content": "Connect to MongoDB using Compass",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8519"
+      }
+    },
+    {
+      "title": "MongoDB Shell Basics",
+      "content": "Execute commands using mongosh",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f851a"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8499"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849a"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f851b"
+  },
+  "title": "MongoDB Transactions",
+  "description": "Learn database and collection management using mongosh.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Database Creation",
+      "content": "Create and switch between databases",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f851c"
+      }
+    },
+    {
+      "title": "Collection Management",
+      "content": "Create and manage MongoDB collections",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f851d"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849b"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849c"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f851e"
+  },
+  "title": "MongoDB Backup and Recovery",
+  "description": "Understand document structures and BSON data types.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Document Structure",
+      "content": "Understand BSON documents and fields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f851f"
+      }
+    },
+    {
+      "title": "BSON Data Types",
+      "content": "Explore strings numbers dates arrays and objects",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8520"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849d"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849e"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8521"
+  },
+  "title": "Scalable Database Architecture",
+  "description": "Learn single and bulk document insertion techniques.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Insert One Document",
+      "content": "Insert a single document using insertOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8522"
+      }
+    },
+    {
+      "title": "Insert Multiple Documents",
+      "content": "Insert multiple documents using insertMany",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8523"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849f"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8524"
+  },
+  "title": "MongoDB Application Patterns",
+  "description": "Practise finding documents and retrieving individual records.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Find Documents",
+      "content": "Retrieve documents using the find method",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8525"
+      }
+    },
+    {
+      "title": "Find One Document",
+      "content": "Retrieve one matching document using findOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8526"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8527"
+  },
+  "title": "Building Data-Driven Apps",
+  "description": "Explore comparison and logical query operators.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Query Comparison Operators",
+      "content": "Use gt gte lt lte and ne operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8528"
+      }
+    },
+    {
+      "title": "Logical Query Operators",
+      "content": "Use and or nor and not operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8529"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f852a"
+  },
+  "title": "MongoDB Analytics Toolkit",
+  "description": "Practise array queries and nested document filtering.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Array Query Operations",
+      "content": "Query array fields using MongoDB operators",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f852b"
+      }
+    },
+    {
+      "title": "Nested Document Queries",
+      "content": "Query fields inside embedded documents",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f852c"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f852d"
+  },
+  "title": "MongoDB Integration Practice",
+  "description": "Practise projections and sorting for application queries.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Projection Basics",
+      "content": "Select specific fields from query results",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f852e"
+      }
+    },
+    {
+      "title": "Sorting Documents",
+      "content": "Sort query results in ascending and descending order",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f852f"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8530"
+  },
+  "title": "Modern Database Development",
+  "description": "Understand skip and limit for paginated database results.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Limit Query Results",
+      "content": "Restrict the number of returned documents",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8531"
+      }
+    },
+    {
+      "title": "Skip Query Results",
+      "content": "Skip documents in query results",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8532"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a9"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84aa"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8533"
+  },
+  "title": "MongoDB Query Optimization",
+  "description": "Learn to update one and multiple matching documents.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Update One Document",
+      "content": "Modify a document using updateOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8534"
+      }
+    },
+    {
+      "title": "Update Multiple Documents",
+      "content": "Modify multiple matching documents",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8535"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ab"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ac"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.121Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8536"
+  },
+  "title": "MongoDB Schema Patterns",
+  "description": "Practise document replacement and deletion.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Replace Document",
+      "content": "Replace an existing document using replaceOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8537"
+      }
+    },
+    {
+      "title": "Delete One Document",
+      "content": "Delete a matching document using deleteOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8538"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ad"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ae"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8539"
+  },
+  "title": "MongoDB Real-World Exercises",
+  "description": "Practise bulk deletion and field update operations.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Delete Multiple Documents",
+      "content": "Delete multiple matching documents",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f853a"
+      }
+    },
+    {
+      "title": "Set Update Operator",
+      "content": "Update selected fields using set",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f853b"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84af"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f853c"
+  },
+  "title": "MongoDB Developer Toolkit",
+  "description": "Learn numeric updates and array insertion operations.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Increment Update Operator",
+      "content": "Increase numeric fields using inc",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f853d"
+      }
+    },
+    {
+      "title": "Push Array Operator",
+      "content": "Append values to array fields using push",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f853e"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f853f"
+  },
+  "title": "Full Stack Database Basics",
+  "description": "Understand removing and uniquely adding array elements.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Pull Array Operator",
+      "content": "Remove matching array values using pull",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8540"
+      }
+    },
+    {
+      "title": "AddToSet Operator",
+      "content": "Add unique values to an array using addToSet",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8541"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8542"
+  },
+  "title": "Backend Data Management",
+  "description": "Learn embedded document updates and aggregation pipeline flow.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Positional Dollar Operator",
+      "content": "Update a matching embedded array element",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8543"
+      }
+    },
+    {
+      "title": "Aggregation Pipeline Basics",
+      "content": "Understand aggregation stages and pipeline flow",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8544"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8545"
+  },
+  "title": "MongoDB API Development",
+  "description": "Practise filtering and projecting aggregation results.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Match Aggregation Stage",
+      "content": "Filter aggregation documents using match",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8546"
+      }
+    },
+    {
+      "title": "Project Aggregation Stage",
+      "content": "Shape aggregation output using project",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8547"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8548"
+  },
+  "title": "MongoDB Data Operations",
+  "description": "Learn grouping and unwinding aggregation arrays.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Group Aggregation Stage",
+      "content": "Group documents and calculate summary values",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8549"
+      }
+    },
+    {
+      "title": "Unwind Aggregation Stage",
+      "content": "Deconstruct array fields using unwind",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f854a"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b9"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ba"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f854b"
+  },
+  "title": "MongoDB Performance Lab",
+  "description": "Practise joining collections and counting documents.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Lookup Aggregation Stage",
+      "content": "Join collections using lookup",
+      "duration": 45,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f854c"
+      }
+    },
+    {
+      "title": "Count Aggregation Stage",
+      "content": "Count documents using the count stage",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f854d"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bb"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bc"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f854e"
+  },
+  "title": "Document Database Workshop",
+  "description": "Learn aggregation totals and averages.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Sum Aggregation Operator",
+      "content": "Calculate totals using the sum accumulator",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f854f"
+      }
+    },
+    {
+      "title": "Average Aggregation Operator",
+      "content": "Calculate averages using avg",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8550"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bd"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84be"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8551"
+  },
+  "title": "MongoDB Professional Track",
+  "description": "Practise conditional expressions and filtering array elements.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Conditional Aggregation",
+      "content": "Build conditional expressions using cond",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8552"
+      }
+    },
+    {
+      "title": "Filter Aggregation Operator",
+      "content": "Filter array elements using filter",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8553"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bf"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8554"
+  },
+  "title": "Database Engineering Essentials",
+  "description": "Understand computed aggregation fields and union operations.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "AddFields Aggregation Stage",
+      "content": "Create computed fields using addFields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8555"
+      }
+    },
+    {
+      "title": "Unions Between Collections",
+      "content": "Combine collection results using unionWith",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8556"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8557"
+  },
+  "title": "Advanced MongoDB Applications",
+  "description": "Practise indexes, unique constraints and query performance analysis.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Index Fundamentals",
+      "content": "Understand how indexes improve query performance",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8558"
+      }
+    },
+    {
+      "title": "Create Unique Index",
+      "content": "Enforce uniqueness using a unique index",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8559"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f855a"
+  },
+  "title": "MongoDB Query Engineering",
+  "description": "Build practical compound indexes and analyse query execution.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Compound Index",
+      "content": "Create indexes across multiple document fields",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f855b"
+      }
+    },
+    {
+      "title": "Query Performance Analysis",
+      "content": "Analyze query execution using explain",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f855c"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.122Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f855d"
+  },
+  "title": "MongoDB Learning Path",
+  "description": "Learn MongoDB fundamentals through practical guided lessons.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "MongoDB Introduction",
+      "content": "Understand MongoDB and its features",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f855e"
+      }
+    },
+    {
+      "title": "NoSQL Database Concepts",
+      "content": "Learn the fundamentals of NoSQL databases",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f855f"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8495"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8496"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8560"
+  },
+  "title": "NoSQL Application Development",
+  "description": "Understand NoSQL concepts and MongoDB installation.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "SQL vs NoSQL",
+      "content": "Compare relational and non relational databases",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8561"
+      }
+    },
+    {
+      "title": "MongoDB Installation",
+      "content": "Install MongoDB on a local machine",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8562"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8497"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f8498"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8563"
+  },
+  "title": "MongoDB Database Design",
+  "description": "Explore Compass, mongosh and database management.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "MongoDB Compass Setup",
+      "content": "Connect to MongoDB using Compass",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8564"
+      }
+    },
+    {
+      "title": "MongoDB Shell Basics",
+      "content": "Execute commands using mongosh",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8565"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f8499"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849a"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8566"
+  },
+  "title": "MongoDB Collection Management",
+  "description": "Learn database creation and collection operations.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Database Creation",
+      "content": "Create and switch between databases",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8567"
+      }
+    },
+    {
+      "title": "Collection Management",
+      "content": "Create and manage MongoDB collections",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8568"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849b"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849c"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8569"
+  },
+  "title": "BSON and Document Modeling",
+  "description": "Practise BSON structure and data type fundamentals.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Document Structure",
+      "content": "Understand BSON documents and fields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f856a"
+      }
+    },
+    {
+      "title": "BSON Data Types",
+      "content": "Explore strings numbers dates arrays and objects",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f856b"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849d"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f849e"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f856c"
+  },
+  "title": "MongoDB Data Import Workshop",
+  "description": "Practise inserting individual and multiple documents.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Insert One Document",
+      "content": "Insert a single document using insertOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f856d"
+      }
+    },
+    {
+      "title": "Insert Multiple Documents",
+      "content": "Insert multiple documents using insertMany",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f856e"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f849f"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f856f"
+  },
+  "title": "MongoDB Retrieval Techniques",
+  "description": "Master document retrieval with find and findOne.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Find Documents",
+      "content": "Retrieve documents using the find method",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8570"
+      }
+    },
+    {
+      "title": "Find One Document",
+      "content": "Retrieve one matching document using findOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8571"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8572"
+  },
+  "title": "MongoDB Filtering Techniques",
+  "description": "Practise comparison and logical query operators.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Query Comparison Operators",
+      "content": "Use gt gte lt lte and ne operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8573"
+      }
+    },
+    {
+      "title": "Logical Query Operators",
+      "content": "Use and or nor and not operators",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8574"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8575"
+  },
+  "title": "MongoDB Nested Data Workshop",
+  "description": "Learn to query arrays and nested documents.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Array Query Operations",
+      "content": "Query array fields using MongoDB operators",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8576"
+      }
+    },
+    {
+      "title": "Nested Document Queries",
+      "content": "Query fields inside embedded documents",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8577"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8578"
+  },
+  "title": "MongoDB Query Results",
+  "description": "Learn field projection and result sorting.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Projection Basics",
+      "content": "Select specific fields from query results",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8579"
+      }
+    },
+    {
+      "title": "Sorting Documents",
+      "content": "Sort query results in ascending and descending order",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f857a"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [
+    {
+      "$oid": "6af49a8155a35767a9b4cb98"
+    }
+  ],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T17:27:44.415Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f857b"
+  },
+  "title": "MongoDB Pagination Workshop",
+  "description": "Practise skip and limit for controlling result sets.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Limit Query Results",
+      "content": "Restrict the number of returned documents",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f857c"
+      }
+    },
+    {
+      "title": "Skip Query Results",
+      "content": "Skip documents in query results",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f857d"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84a9"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84aa"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f857e"
+  },
+  "title": "MongoDB Update Operations",
+  "description": "Practise updating single and multiple documents.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Update One Document",
+      "content": "Modify a document using updateOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f857f"
+      }
+    },
+    {
+      "title": "Update Multiple Documents",
+      "content": "Modify multiple matching documents",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8580"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ab"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ac"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.123Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8581"
+  },
+  "title": "MongoDB Document Operations",
+  "description": "Learn document replacement and deletion.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Replace Document",
+      "content": "Replace an existing document using replaceOne",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8582"
+      }
+    },
+    {
+      "title": "Delete One Document",
+      "content": "Delete a matching document using deleteOne",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8583"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ad"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ae"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8584"
+  },
+  "title": "MongoDB Bulk Operations",
+  "description": "Practise bulk deletion and selective field updates.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Delete Multiple Documents",
+      "content": "Delete multiple matching documents",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8585"
+      }
+    },
+    {
+      "title": "Set Update Operator",
+      "content": "Update selected fields using set",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8586"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84af"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8587"
+  },
+  "title": "MongoDB Array Operations",
+  "description": "Understand numeric increments and array push operations.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Increment Update Operator",
+      "content": "Increase numeric fields using inc",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8588"
+      }
+    },
+    {
+      "title": "Push Array Operator",
+      "content": "Append values to array fields using push",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8589"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f858a"
+  },
+  "title": "MongoDB Array Filtering",
+  "description": "Learn how to remove and add unique array elements.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Pull Array Operator",
+      "content": "Remove matching array values using pull",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f858b"
+      }
+    },
+    {
+      "title": "AddToSet Operator",
+      "content": "Add unique values to an array using addToSet",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f858c"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.5,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f858d"
+  },
+  "title": "MongoDB Embedded Documents",
+  "description": "Practise positional updates and aggregation pipelines.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Positional Dollar Operator",
+      "content": "Update a matching embedded array element",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f858e"
+      }
+    },
+    {
+      "title": "Aggregation Pipeline Basics",
+      "content": "Understand aggregation stages and pipeline flow",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f858f"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.6,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8590"
+  },
+  "title": "MongoDB Aggregation Practice",
+  "description": "Practise match and project aggregation stages.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "Match Aggregation Stage",
+      "content": "Filter aggregation documents using match",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8591"
+      }
+    },
+    {
+      "title": "Project Aggregation Stage",
+      "content": "Shape aggregation output using project",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8592"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b7"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b8"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.7,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8593"
+  },
+  "title": "MongoDB Grouping and Unwinding",
+  "description": "Learn grouping and unwinding in aggregation pipelines.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Group Aggregation Stage",
+      "content": "Group documents and calculate summary values",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8594"
+      }
+    },
+    {
+      "title": "Unwind Aggregation Stage",
+      "content": "Deconstruct array fields using unwind",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8595"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84b9"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84ba"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.8,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8596"
+  },
+  "title": "MongoDB Collection Joins",
+  "description": "Learn lookup and count stages for related collections.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Lookup Aggregation Stage",
+      "content": "Join collections using lookup",
+      "duration": 45,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8597"
+      }
+    },
+    {
+      "title": "Count Aggregation Stage",
+      "content": "Count documents using the count stage",
+      "duration": 20,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f8598"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bb"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bc"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.9,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f8599"
+  },
+  "title": "MongoDB Data Analytics",
+  "description": "Practise sum and average calculations in aggregation.",
+  "category": "Database",
+  "lessons": [
+    {
+      "title": "Sum Aggregation Operator",
+      "content": "Calculate totals using the sum accumulator",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f859a"
+      }
+    },
+    {
+      "title": "Average Aggregation Operator",
+      "content": "Calculate averages using avg",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f859b"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bd"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84be"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f859c"
+  },
+  "title": "MongoDB Conditional Queries",
+  "description": "Learn conditional aggregation and filtering arrays.",
+  "category": "Backend Development",
+  "lessons": [
+    {
+      "title": "Conditional Aggregation",
+      "content": "Build conditional expressions using cond",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f859d"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84bf"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c0"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.1,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T13:15:26.802Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f859f"
+  },
+  "title": "MongoDB Computed Fields",
+  "description": "Practise adding computed fields and combining collections.",
+  "category": "Web Development",
+  "lessons": [
+    {
+      "title": "AddFields Aggregation Stage",
+      "content": "Create computed fields using addFields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a0"
+      }
+    },
+    {
+      "title": "Unions Between Collections",
+      "content": "Combine collection results using unionWith",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a1"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c1"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c2"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.2,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f85a2"
+  },
+  "title": "MongoDB Indexing Workshop",
+  "description": "Understand indexing fundamentals and unique indexes.",
+  "category": "Software Engineering",
+  "lessons": [
+    {
+      "title": "Index Fundamentals",
+      "content": "Understand how indexes improve query performance",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a3"
+      }
+    },
+    {
+      "title": "Create Unique Index",
+      "content": "Enforce uniqueness using a unique index",
+      "duration": 25,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a4"
+      }
+    },
+    {
+      "title": "Document Structure",
+      "content": "Understand BSON documents and fields",
+      "duration": 30,
+      "_id": {
+        "$oid": "6af5bf45e0df872cd6b49a6a"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c3"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c4"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af4950955a35767a9b4cb92"
+  },
+  "students": [],
+  "rating": 4.3,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.124Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T13:29:41.267Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6af5b6285ea1eb405c6f85a5"
+  },
+  "title": "MongoDB Compound Indexing",
+  "description": "Learn compound indexes and query performance analysis.",
+  "category": "Data Engineering",
+  "lessons": [
+    {
+      "title": "Compound Index",
+      "content": "Create indexes across multiple document fields",
+      "duration": 35,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a6"
+      }
+    },
+    {
+      "title": "Query Performance Analysis",
+      "content": "Analyze query execution using explain",
+      "duration": 40,
+      "_id": {
+        "$oid": "6af5b6285ea1eb405c6f85a7"
+      }
+    }
+  ],
+  "referencedLessons": [
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c5"
+    },
+    {
+      "$oid": "6af59fef5ea1eb405c6f84c6"
+    }
+  ],
+  "instructor": {
+    "$oid": "6af492f606847ef924ca31ed"
+  },
+  "students": [],
+  "rating": 4.4,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-11-12T12:50:48.125Z"
+  },
+  "updatedAt": {
+    "$date": "2026-11-12T12:50:48.125Z"
+  }
+}]

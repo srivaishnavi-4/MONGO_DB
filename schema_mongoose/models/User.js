@@ -26,14 +26,11 @@ const userSchema = new mongoose.Schema({
         enum: ["student", "instructor", "admin"],
         default: "student"
     },
-
-    // Active or inactive user
+    //Boolean(added)
     isActive: {
         type: Boolean,
         default: true
     },
-
-    // Automatically records the date of user creation (UTC)
     addedDate: {
         type: String,
         default: () => new Date().toISOString().slice(0, 10),

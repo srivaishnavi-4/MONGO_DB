@@ -166,9 +166,9 @@ app.get("/api/courses", async (req, res) => {
         const sortBy = req.query.sortBy || "createdAt";
         const order = req.query.order === "asc" ? 1 : -1;
 
-        // Allow only valid sorting fields
         const allowedSortFields = [
             "title",
+            "description",
             "category",
             "rating",
             "createdAt"
@@ -626,8 +626,380 @@ app.post("/api/enrollments", async (req, res) => {
             }
         });
 
-     
+    //Phase4: Aggregation
+    //Get top 5 courses by student count
+    app.get("/api/analytics/courses/top-by-students",async (req,res)=>{
+        try{
+            const result=await Enrollment.aggregate([
+                {$group:{
+                    _id:"$course",
+                    studentCount:{$sum:1}
+                }},
+                {$lookup:
+                    {
+                        from:"courses",
+                        localField:"_id",
+                        foreignField:"_id",
+                        as:"courseDetails"
+                    }
+                },
+                {
+                    $unwind:"$courseDetails"
+                },
+                {
+                    $sort:{
+                        studentCount:-1,
+                    }
+                },
+                {$limit:5},
+                {$project:{
+                    _id:0,
+                    courseId:"$_id",
+                    title:"$courseDetails.title",
+                    category:"$courseDetails.category",
+                    studentCount:1
+                }}
+            ]);
 
+            console.log("Top 5 Courses by Student Count:");
+            console.log(result);
+            
+            res.status(200).json({
+                totalCourses:result.length,
+                data:result
+            });
+        }catch(error){
+            res.status(500).json({
+                message:error.message
+            });
+        }
+    });
+
+    //Average student progress per course
+    app.get("/api/analytics/courses/average-progress",async(req,res)=>{
+        try{
+            const result=await Enrollment.aggregate([
+                {$group:{
+                    _id:"$course",
+                    averageProgress:{$avg:"$progress"},
+                    totalStudents:{$sum:1}
+                }},
+                {$lookup:{from:"courses",localField:"_id",foreignField:"_id",as:"courseDetails"}},
+                {$unwind:"$courseDetails"},
+                {$project:{
+                    _id:0,courseId:"$_id",title:"$courseDetails.title",averageProgress:{
+                        $round:["$averageProgress",2]
+                    },totalStudents:1
+                }},{
+                    $sort:{
+                        averageProgress:-1
+                    }
+                }
+            ]);
+            console.log("Average student Progress Per Course:");
+            console.log(result);
+            res.status(200).json({
+                totalCourses:result.length,
+                data:result
+            });
+        }catch(error){
+            res.status(500).json({
+                message:error.message
+            });
+        }
+    });
+
+    //Get total lesson duration per course
+    app.get("/api/analytics/courses/total-duration",async(req,res)=>{
+        try{
+            const result=await Course.aggregate([
+                {$unwind:"$lessons"},
+                {$group:{
+                    _id:"$_id",
+                    courseTitle:{$first:"$title"},
+                    totalDuration:{$sum:"$lessons.duration"},
+                    totalLessons:{$sum:1}
+                }},
+                {$project:{
+                    _id:0,
+                    courseId:"$_id",
+                    courseTitle:1,
+                    totalDuration:1,
+                    totalLessons:1
+                }},
+                {$sort:{
+                    totalDuration:-1
+                }}
+            ]);
+            console.log("Total lesson duration per Course:");
+            console.log(result);
+            res.status(200).json({
+                totalCourses:result.length,
+                data:result
+            });
+        }catch(error){
+            res.status(500).json({
+                message:error.message
+            });
+        }
+    });
+
+    //List students who completed all lessons in a course
+    app.get("/api/analytics/courses/completed-students",async (req,res)=>{
+        try{
+            const result=await Enrollment.aggregate([
+                {
+                    $match:{
+                        progress:100
+                    }
+                },
+                {
+                    $lookup:{
+                        from:"users",
+                        localField:"student",
+                        foreignField:"_id",
+                        as:"studentDetails"
+                    }
+                },
+                {
+                    $unwind:"$studentDetails"
+                },
+                {$lookup:{
+                    from:"courses",
+                    localField:"course",
+                    foreignField:"_id",
+                    as:"courseDetails"
+                }},{
+                    $unwind:"$courseDetails"
+                },
+                {
+                    $project:{
+                        _id:0,studentId:"$studentDetails._id",
+                        studentName:"$studentDetails.name",
+                        email:"$studentDetails.email",
+                        courseId:"$courseDetails._id",
+                        courseTitle:"$courseDetails.title",
+                        progress:1
+                    }
+                },{$sort:{
+                    studentName:1
+                }}
+            ]);
+            console.log("Students who completed their course:");
+            console.log(result);
+            res.status(200).json({
+                totalCompletedEnrollments:result.length,
+                data:result
+            });
+        }catch(error){
+            console.error("Completed status error:",error);
+            res.status(500).json({
+                message:"Failed to fetch completed students",
+                error:error.message
+            });
+        }
+    });
+//count number of enrollments per instructor
+app.get("/api/analytics/instructors/enrollments", async (req, res) => {
+  try {
+    const result = await Enrollment.aggregate([
+      {
+        $lookup: {
+          from: "courses",
+          localField: "course",
+          foreignField: "_id",
+          as: "courseDetails"
+        }
+      },
+      {
+        $unwind: "$courseDetails"
+      },
+      {
+        $group: {
+          _id: "$courseDetails.instructor",
+          totalEnrollments: { $sum: 1 },
+          courses: { $addToSet: "$courseDetails._id" }
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "instructorDetails"
+        }
+      },
+      {
+        $unwind: "$instructorDetails"
+      },
+      {
+        $project: {
+          _id: 0,
+          instructorId: "$_id",
+          instructorName: "$instructorDetails.name",
+          totalEnrollments: 1,
+          totalCourses: { $size: "$courses" }
+        }
+      },
+      {
+        $sort: {
+          totalEnrollments: -1
+        }
+      }
+    ]);
+
+    console.log("Enrollment Count Per Instructor:");
+    console.log(result);
+
+    res.status(200).json({
+      totalInstructors: result.length,
+      data: result
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+//inactive in last 30 days
+app.get("/api/analytics/students/inactive", async (req, res) => {
+  try {
+    const thirtyDaysAgo = new Date(
+      Date.now() - 30 * 24 * 60 * 60 * 1000
+    );
+
+    const result = await Enrollment.aggregate([
+      {
+        $match: {
+          lastProgressAt: {
+            $lt: thirtyDaysAgo
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "student",
+          foreignField: "_id",
+          as: "studentDetails"
+        }
+      },
+      {
+        $unwind: "$studentDetails"
+      },
+      {
+        $group: {
+          _id: "$student",
+          studentName: {
+            $first: "$studentDetails.name"
+          },
+          email: {
+            $first: "$studentDetails.email"
+          },
+          inactiveEnrollments: {
+            $sum: 1
+          },
+          lastProgressAt: {
+            $max: "$lastProgressAt"
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          studentId: "$_id",
+          studentName: 1,
+          email: 1,
+          inactiveEnrollments: 1,
+          lastProgressAt: 1
+        }
+      }
+    ]);
+
+    console.log("Inactive Students:");
+    console.log(result);
+
+    res.status(200).json({
+      totalInactiveStudents: result.length,
+      data: result
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+//inactive in 30 days
+app.get("/api/analytics/students/inactive", async (req, res) => {
+  try {
+    const thirtyDaysAgo = new Date(
+      Date.now() - 30 * 24 * 60 * 60 * 1000
+    );
+
+    const result = await Enrollment.aggregate([
+      {
+        $match: {
+          lastProgressAt: {
+            $lt: thirtyDaysAgo
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "student",
+          foreignField: "_id",
+          as: "studentDetails"
+        }
+      },
+      {
+        $unwind: "$studentDetails"
+      },
+      {
+        $group: {
+          _id: "$student",
+          studentName: {
+            $first: "$studentDetails.name"
+          },
+          email: {
+            $first: "$studentDetails.email"
+          },
+          inactiveEnrollments: {
+            $sum: 1
+          },
+          lastProgressAt: {
+            $max: "$lastProgressAt"
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          studentId: "$_id",
+          studentName: 1,
+          email: 1,
+          inactiveEnrollments: 1,
+          lastProgressAt: 1
+        }
+      }
+    ]);
+
+    console.log("Inactive Students:");
+    console.log(result);
+
+    res.status(200).json({
+      totalInactiveStudents: result.length,
+      data: result
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
 // Start server
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server running on port 5000");
