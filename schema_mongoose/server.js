@@ -242,6 +242,38 @@ app.get("/api/courses/search", async (req, res) => {
     }
 });
 
+//Add text index on course.title + course.description.
+app.get("/api/courses/text-search", async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+
+    if (!keyword) {
+      return res.status(400).json({
+        message: "Keyword is required"
+      });
+    }
+
+    const result = await Course.find(
+      { $text: { $search: keyword } },
+      { score: { $meta: "textScore" } }
+    ).sort({ score: { $meta: "textScore" } });
+
+    console.log("Text Search Results:", result);
+
+    res.status(200).json({
+      keyword,
+      totalCourses: result.length,
+      data: result
+    });
+  } catch (error) {
+    console.error("Course Text Search Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
 //Read course by ID 
 app.get("/api/courses/:id",async(req,res)=>{
     try{
@@ -872,9 +904,10 @@ app.get("/api/analytics/students/inactive", async (req, res) => {
     const result = await Enrollment.aggregate([
       {
         $match: {
-          lastProgressAt: {
+          updatedAt: {
             $lt: thirtyDaysAgo
-          }
+          },
+          progress: { $lt: 100 }
         }
       },
       {
@@ -885,24 +918,14 @@ app.get("/api/analytics/students/inactive", async (req, res) => {
           as: "studentDetails"
         }
       },
-      {
-        $unwind: "$studentDetails"
-      },
+      { $unwind: "$studentDetails" },
       {
         $group: {
           _id: "$student",
-          studentName: {
-            $first: "$studentDetails.name"
-          },
-          email: {
-            $first: "$studentDetails.email"
-          },
-          inactiveEnrollments: {
-            $sum: 1
-          },
-          lastProgressAt: {
-            $max: "$lastProgressAt"
-          }
+          studentName: { $first: "$studentDetails.name" },
+          email: { $first: "$studentDetails.email" },
+          inactiveEnrollments: { $sum: 1 },
+          lastUpdatedAt: { $max: "$updatedAt" }
         }
       },
       {
@@ -912,94 +935,351 @@ app.get("/api/analytics/students/inactive", async (req, res) => {
           studentName: 1,
           email: 1,
           inactiveEnrollments: 1,
-          lastProgressAt: 1
+          lastUpdatedAt: 1
         }
       }
     ]);
 
-    console.log("Inactive Students:");
-    console.log(result);
+    console.log("Current Date:", new Date());
+    console.log("30 Days Ago:", thirtyDaysAgo);
+    console.log("Inactive Students:", result);
 
     res.status(200).json({
       totalInactiveStudents: result.length,
+      cutoffDate: thirtyDaysAgo,
       data: result
     });
-
   } catch (error) {
+    console.error("Inactive Students Error:", error);
     res.status(500).json({
       message: error.message
     });
   }
 });
-//inactive in 30 days
-app.get("/api/analytics/students/inactive", async (req, res) => {
-  try {
-    const thirtyDaysAgo = new Date(
-      Date.now() - 30 * 24 * 60 * 60 * 1000
-    );
 
+//$facet and course statics in a single query
+app.get("/api/analytics/dashboard", async (req, res) => {
+  try {
     const result = await Enrollment.aggregate([
       {
-        $match: {
-          lastProgressAt: {
-            $lt: thirtyDaysAgo
-          }
+        $facet: {
+          courseStatistics: [
+            {
+              $group: {
+                _id: null,
+                totalEnrollments: { $sum: 1 },
+                averageProgress: { $avg: "$progress" },
+                highestProgress: { $max: "$progress" },
+                lowestProgress: { $min: "$progress" }
+              }
+            },
+            {
+              $project: {
+                _id: 0,
+                totalEnrollments: 1,
+                averageProgress: { $round: ["$averageProgress", 2] },
+                highestProgress: 1,
+                lowestProgress: 1
+              }
+            }
+          ],
+          topStudents: [
+            { $sort: { progress: -1 } },
+            { $limit: 5 },
+            {
+              $lookup: {
+                from: "users",
+                localField: "student",
+                foreignField: "_id",
+                as: "studentDetails"
+              }
+            },
+            { $unwind: "$studentDetails" },
+            {
+              $lookup: {
+                from: "courses",
+                localField: "course",
+                foreignField: "_id",
+                as: "courseDetails"
+              }
+            },
+            { $unwind: "$courseDetails" },
+            {
+              $project: {
+                _id: 0,
+                studentName: "$studentDetails.name",
+                email: "$studentDetails.email",
+                courseTitle: "$courseDetails.title",
+                progress: 1
+              }
+            }
+          ]
         }
-      },
+      }
+    ]);
+
+    console.log("Dashboard Analytics:");
+    console.log(result);
+
+    res.status(200).json({
+      data: result[0]
+    });
+  } catch (error) {
+    console.error("Dashboard Analytics Error:", error);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+app.get("/api/analytics/courses/duration-buckets", async (req, res) => {
+  try {
+    const result = await Course.aggregate([
       {
-        $lookup: {
-          from: "users",
-          localField: "student",
-          foreignField: "_id",
-          as: "studentDetails"
-        }
-      },
-      {
-        $unwind: "$studentDetails"
+        $unwind: "$lessons"
       },
       {
         $group: {
-          _id: "$student",
-          studentName: {
-            $first: "$studentDetails.name"
-          },
-          email: {
-            $first: "$studentDetails.email"
-          },
-          inactiveEnrollments: {
-            $sum: 1
-          },
-          lastProgressAt: {
-            $max: "$lastProgressAt"
+          _id: "$_id",
+          courseTitle: { $first: "$title" },
+          totalDuration: { $sum: "$lessons.duration" }
+        }
+      },
+      {
+        $bucket: {
+          groupBy: "$totalDuration",
+          boundaries: [0, 30, 60, 90, 120,150,180,210,240],
+          default: "240+",
+          output: {
+            totalCourses: { $sum: 1 },
+            courses: {
+              $push: {
+                title: "$courseTitle",
+                totalDuration: "$totalDuration"
+              }
+            },
+            averageDuration: { $avg: "$totalDuration" }
+          }
+        }
+      }
+    ]);
+
+    console.log("Course Duration Buckets:");
+    console.log(result);
+
+    res.status(200).json({
+      totalBuckets: result.length,
+      data: result
+    });
+  } catch (error) {
+    console.error("Course Duration Bucket Error:", error);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//Combine $lookup with $group to get student progress per course.
+app.get("/api/analytics/courses/student-progress", async (req, res) => {
+  try {
+    const result = await Enrollment.aggregate([
+      {
+        $lookup: {
+          from: "courses",
+          localField: "course",
+          foreignField: "_id",
+          as: "courseDetails"
+        }
+      },
+      {
+        $unwind: "$courseDetails"
+      },
+      {
+        $group: {
+          _id: "$course",
+          courseTitle: { $first: "$courseDetails.title" },
+          totalStudents: { $sum: 1 },
+          averageProgress: { $avg: "$progress" },
+          highestProgress: { $max: "$progress" },
+          lowestProgress: { $min: "$progress" },
+          students: {
+            $push: {
+              studentId: "$student",
+              progress: "$progress"
+            }
           }
         }
       },
       {
         $project: {
           _id: 0,
-          studentId: "$_id",
-          studentName: 1,
-          email: 1,
-          inactiveEnrollments: 1,
-          lastProgressAt: 1
+          courseId: "$_id",
+          courseTitle: 1,
+          totalStudents: 1,
+          averageProgress: { $round: ["$averageProgress", 2] },
+          highestProgress: 1,
+          lowestProgress: 1,
+          students: 1
         }
+      },
+      {
+        $sort: { totalStudents: -1 }
       }
     ]);
 
-    console.log("Inactive Students:");
+    console.log("Student Progress Per Course:");
     console.log(result);
 
     res.status(200).json({
-      totalInactiveStudents: result.length,
+      totalCourses: result.length,
       data: result
     });
+  } catch (error) {
+    console.error("Student Progress Error:", error);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
 
+ //unique index on email
+
+app.post("/api/indexes/users/email", async (req, res) => {
+  try {
+    const result = await User.collection.createIndex(
+      { email: 1 },
+      { unique: true }
+    );
+
+    console.log("Unique Email Index Created:", result);
+
+    const indexes = await User.collection.indexes();
+
+    res.status(200).json({
+      message: "Unique index on users.email created successfully",
+      indexName: result,
+      indexes
+    });
+  } catch (error) {
+    console.error("Email Index Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+//compound index on role and email 
+
+app.post("/api/indexes/users/role-email", async (req, res) => {
+  try {
+    const result = await User.collection.createIndex(
+      { role: 1, email: 1 },
+      { name: "role_email_compound_idx" }
+    );
+
+    const indexes = await User.collection.indexes();
+
+    console.log("Compound Index Created:", result);
+    console.log("Current User Indexes:", indexes);
+
+    res.status(200).json({
+      message: "Compound index on role and email created successfully",
+      indexName: result,
+      indexes
+    });
+  } catch (error) {
+    console.error("Compound Index Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+
+app.post("/api/indexes/courses/text", async (req, res) => {
+  try {
+    const result = await Course.collection.createIndex(
+      { title: "text", description: "text" },
+      { name: "course_text_idx" }
+    );
+
+    const indexes = await Course.collection.indexes();
+
+    console.log("Course Text Index Created:", result);
+
+    res.status(200).json({
+      message: "Text index created successfully",
+      indexName: result,
+      indexes
+    });
+  } catch (error) {
+    console.error("Course Text Index Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+
+const { performance } = require("perf_hooks");
+
+//Measure query time before and after indexes.
+app.get("/api/analytics/index-performance", async (req, res) => {
+  try {
+    const filter = {
+      role: "student",
+      email: "niranj@gmail.com"
+    };
+
+    const beforeStart = performance.now();
+
+    await User.collection.dropIndex("role_email_compound_idx").catch(error => {
+      if (error.codeName !== "IndexNotFound") {
+        throw error;
+      }
+    });
+
+    await User.find(filter).lean();
+
+    const beforeTime = performance.now() - beforeStart;
+
+    const beforeExplain = await User.find(filter)
+      .explain("executionStats");
+
+    await User.collection.createIndex(
+      { role: 1, email: 1 },
+      { name: "role_email_compound_idx" }
+    );
+
+    const afterStart = performance.now();
+
+    await User.find(filter).lean();
+
+    const afterTime = performance.now() - afterStart;
+
+    const afterExplain = await User.find(filter)
+      .explain("executionStats");
+
+    res.status(200).json({
+      beforeIndex: {
+        executionTimeMs: Number(beforeTime.toFixed(3)),
+        executionStats: beforeExplain.executionStats
+      },
+      afterIndex: {
+        executionTimeMs: Number(afterTime.toFixed(3)),
+        executionStats: afterExplain.executionStats
+      }
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message
     });
   }
 });
+
+
 // Start server
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server running on port 5000");
