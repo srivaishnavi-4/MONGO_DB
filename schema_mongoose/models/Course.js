@@ -78,4 +78,26 @@ const courseSchema=new mongoose.Schema({
             console.log("New course created:",doc.title);
         });
 
+        //virtual field
+        courseSchema.virtual("enrollments", {
+  ref: "Enrollment",
+  localField: "_id",
+  foreignField: "course"
+});
+
+courseSchema.virtual("completionPercentage").get(function () {
+  if (!this.enrollments || this.enrollments.length === 0) {
+    return 0;
+  }
+
+  const totalProgress = this.enrollments.reduce(
+    (total, enrollment) => total + enrollment.progress,
+    0
+  );
+
+  return Number(
+    (totalProgress / this.enrollments.length).toFixed(2)
+  );
+});
+
         module.exports=mongoose.model("Course",courseSchema);

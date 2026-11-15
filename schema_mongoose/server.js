@@ -274,6 +274,29 @@ app.get("/api/courses/text-search", async (req, res) => {
   }
 });
 
+//complete status
+app.get("/api/courses/completion-stats", async (req, res) => {
+  try {
+    const courses = await Course.find()
+      .populate("enrollments", "student progress");
+
+    const result = courses.map(course => ({
+      courseId: course._id,
+      title: course.title,
+      totalStudents: course.enrollments.length,
+      completionPercentage: course.completionPercentage
+    }));
+
+    res.status(200).json({
+      totalCourses: result.length,
+      courses: result
+    });
+  } catch (error) {
+    console.error("Completion Stats Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Read course by ID 
 app.get("/api/courses/:id",async(req,res)=>{
     try{
@@ -350,6 +373,47 @@ app.put("/api/courses/:courseId/lessons/:lessonId",async (req,res)=>{
     }
 });
 
+//cascade delete
+app.delete("/api/courses/:courseId/cascade", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+
+    if (!mongoose.isValidObjectId(courseId)) {
+      return res.status(400).json({
+        message: "Invalid course ID"
+      });
+    }
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({
+        message: "Course not found"
+      });
+    }
+
+    const enrollmentResult = await Enrollment.deleteMany({
+      course: courseId
+    });
+
+    const courseResult = await Course.deleteOne({
+      _id: courseId
+    });
+
+    res.status(200).json({
+      message: "Course and related enrollments deleted successfully",
+      deletedCourse: course.title,
+      deletedEnrollments: enrollmentResult.deletedCount,
+      deletedCourses: courseResult.deletedCount
+    });
+  } catch (error) {
+    console.error("Cascade Delete Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
 //delete a course only if the progress below 50%
 app.delete("/api/courses/:id/conditional", async (req, res) => {
     try {
@@ -1278,7 +1342,660 @@ app.get("/api/analytics/index-performance", async (req, res) => {
     });
   }
 });
+//explain() on slow queries
 
+app.get("/api/analytics/query-explain", async (req, res) => {
+  try {
+    const filter = { role: "student" };
+
+    const result = await User.find(filter).explain("executionStats");
+
+    console.log("Query Execution Plan:");
+    console.log(result);
+
+    res.status(200).json({
+      query: filter,
+      executionStats: result.executionStats,
+      winningPlan: result.queryPlanner.winningPlan
+    });
+  } catch (error) {
+    console.error("Explain Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+app.get("/api/analytics/lessons/embedded/:courseId", async (req, res) => {
+  try {
+    const start = performance.now();
+
+    const result = await Course.findById(req.params.courseId).lean();
+
+    const executionTime = performance.now() - start;
+
+    res.status(200).json({
+      type: "Embedded Lessons",
+      executionTimeMs: Number(executionTime.toFixed(3)),
+      data: result
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+//comparing the performance of embedded and referrenced lessons
+app.get("/api/analytics/lessons/referenced/:courseId", async (req, res) => {
+  try {
+    const start = performance.now();
+
+    const result = await Course.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(req.params.courseId)
+        }
+      },
+      {
+        $lookup: {
+          from: "lessons",
+          localField: "referrencedLesson",
+          foreignField: "_id",
+          as: "lessonDetails"
+        }
+      }
+    ]);
+
+    const executionTime = performance.now() - start;
+
+    res.status(200).json({
+      type: "Referenced Lessons",
+      executionTimeMs: Number(executionTime.toFixed(3)),
+      data: result
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+app.get("/api/analytics/optimize-users", async (req, res) => {
+  try {
+    const filter = {
+      role: "student",
+      isActive: true
+    };
+
+    const before = await User.find(filter)
+      .explain("executionStats");
+
+    await User.collection.createIndex(
+      { role: 1, isActive: 1 },
+      { name: "role_active_idx" }
+    );
+
+    const after = await User.find(filter)
+      .explain("executionStats");
+
+    console.log("Before Optimization:");
+    console.log(before.executionStats);
+
+    console.log("After Optimization:");
+    console.log(after.executionStats);
+
+    res.status(200).json({
+      message: "Query optimization comparison",
+      before: {
+        winningPlan: before.queryPlanner.winningPlan,
+        executionStats: before.executionStats
+      },
+      after: {
+        winningPlan: after.queryPlanner.winningPlan,
+        executionStats: after.executionStats
+      }
+    });
+  } catch (error) {
+    console.error("Query Optimization Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//
+app.post("/api/performance/seed-users", async (req, res) => {
+  try {
+    await User.deleteMany({
+      email: /^phase5_perf_/
+    });
+
+    const testUsers = Array.from({ length: 1000 }, (_, i) => ({
+      name: `Phase5 User ${i + 1}`,
+      email: `phase5_perf_${i + 1}@example.com`,
+      role: "student",
+      isActive: i % 2 === 0,
+      addedDate: new Date().toISOString().slice(0, 10)
+    }));
+
+    const writeStart = performance.now();
+
+    const result = await User.insertMany(testUsers);
+
+    const writeTime = performance.now() - writeStart;
+
+    console.log("Inserted Users:", result.length);
+    console.log("Write Time:", writeTime.toFixed(2), "ms");
+
+    res.status(201).json({
+      message: "1000 test users inserted successfully",
+      insertedCount: result.length,
+      writeTimeMs: Number(writeTime.toFixed(2))
+    });
+  } catch (error) {
+    console.error("Bulk Insert Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get("/api/performance/read-users", async (req, res) => {
+  try {
+    const readStart = performance.now();
+
+    const users = await User.find({
+      email: /^phase5_perf_/
+    }).lean();
+
+    const readTime = performance.now() - readStart;
+
+    console.log("Fetched Users:", users.length);
+    console.log("Read Time:", readTime.toFixed(2), "ms");
+
+    res.status(200).json({
+      totalUsers: users.length,
+      readTimeMs: Number(readTime.toFixed(2)),
+      data: users
+    });
+  } catch (error) {
+    console.error("Read Performance Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//
+app.get("/api/analytics/drop-index-performance", async (req, res) => {
+  try {
+    const filter = {
+      role: "student",
+      isActive: true
+    };
+
+    const before = await User.find(filter).explain("executionStats");
+
+    const droppedIndex = await User.collection.dropIndex("role_active_idx");
+
+    const after = await User.find(filter).explain("executionStats");
+
+    res.status(200).json({
+      message: "Index dropped and query performance compared",
+      droppedIndex,
+      before: {
+        winningPlan: before.queryPlanner.winningPlan,
+        executionStats: before.executionStats
+      },
+      after: {
+        winningPlan: after.queryPlanner.winningPlan,
+        executionStats: after.executionStats
+      }
+    });
+  } catch (error) {
+    console.error("Drop Index Performance Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//
+app.get("/api/analytics/index-report", async (req, res) => {
+  try {
+    const userIndexes = await User.collection.indexes();
+    const courseIndexes = await Course.collection.indexes();
+
+    const emailQuery = await User.find({
+      email: "niranj@gmail.com"
+    }).explain("executionStats");
+
+    const roleEmailQuery = await User.find({
+      role: "student",
+      email: "niranj@gmail.com"
+    }).explain("executionStats");
+
+    const roleActiveQuery = await User.find({
+      role: "student",
+      isActive: true
+    }).explain("executionStats");
+
+    const textSearchQuery = await Course.find({
+      $text: { $search: "JavaScript" }
+    }).explain("executionStats");
+
+    res.status(200).json({
+      message: "Index performance report",
+      indexes: {
+        users: userIndexes,
+        courses: courseIndexes
+      },
+      queryPerformance: {
+        emailSearch: emailQuery.executionStats,
+        roleEmailSearch: roleEmailQuery.executionStats,
+        roleActiveSearch: roleActiveQuery.executionStats,
+        courseTextSearch: textSearchQuery.executionStats
+      }
+    });
+  } catch (error) {
+    console.error("Index Report Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+//Phase6 Fetch a course will all enrolled students using populate
+app.get("/api/courses/:courseId/enrolled-students", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+
+    if (!mongoose.isValidObjectId(courseId)) {
+      return res.status(400).json({
+        message: "Invalid course ID"
+      });
+    }
+
+    const course = await Course.findById(courseId).lean();
+
+    if (!course) {
+      return res.status(404).json({
+        message: "Course not found"
+      });
+    }
+
+    const enrollments = await Enrollment.find({
+      course: courseId
+    })
+      .populate("student", "name email role")
+      .select("student progress enrolledAt");
+
+    res.status(200).json({
+      course: {
+        _id: course._id,
+        title: course.title
+      },
+      totalStudents: enrollments.length,
+      enrolledStudents: enrollments
+    });
+  } catch (error) {
+    console.error("Fetch Enrolled Students Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+//student progress for all the courses using populate
+app.get("/api/students/:studentId/course-progress", async (req, res) => {
+  try {
+    const { studentId } = req.params;
+
+    if (!mongoose.isValidObjectId(studentId)) {
+      return res.status(400).json({
+        message: "Invalid student ID"
+      });
+    }
+
+    const student = await User.findOne({
+      _id: studentId,
+      role: "student"
+    }).select("name email");
+
+    if (!student) {
+      return res.status(404).json({
+        message: "Student not found"
+      });
+    }
+
+    const enrollments = await Enrollment.find({
+      student: studentId
+    })
+      .populate({
+        path: "course",
+        select: "title description instructor",
+        populate: {
+          path: "instructor",
+          select: "name email role"
+        }
+      })
+      .select("course progress enrolledAt");
+
+    res.status(200).json({
+      student,
+      totalCourses: enrollments.length,
+      courseProgress: enrollments
+    });
+  } catch (error) {
+    console.error("Student Course Progress Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//compare populate and separate
+//populate
+app.get("/api/performance/populate/:studentId", async (req, res) => {
+  try {
+    const { studentId } = req.params;
+
+    if (!mongoose.isValidObjectId(studentId)) {
+      return res.status(400).json({
+        message: "Invalid student ID"
+      });
+    }
+
+    const start = performance.now();
+
+    const enrollments = await Enrollment.find({
+      student: studentId
+    })
+      .populate({
+        path: "course",
+        select: "title description instructor",
+        populate: {
+          path: "instructor",
+          select: "name email"
+        }
+      })
+      .lean();
+
+    const executionTime = performance.now() - start;
+
+    res.status(200).json({
+      method: "populate",
+      totalCourses: enrollments.length,
+      executionTimeMs: Number(executionTime.toFixed(2)),
+      data: enrollments
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//separate
+app.get("/api/performance/separate/:studentId", async (req, res) => {
+  try {
+    const { studentId } = req.params;
+
+    if (!mongoose.isValidObjectId(studentId)) {
+      return res.status(400).json({
+        message: "Invalid student ID"
+      });
+    }
+
+    const start = performance.now();
+
+    const enrollments = await Enrollment.find({
+      student: studentId
+    }).lean();
+
+    const courseIds = enrollments.map(e => e.course);
+
+    const courses = await Course.find({
+      _id: { $in: courseIds }
+    }).select("title description instructor").lean();
+
+    const instructorIds = [
+      ...new Set(
+        courses
+          .map(c => c.instructor?.toString())
+          .filter(Boolean)
+      )
+    ];
+
+    const instructors = await User.find({
+      _id: { $in: instructorIds }
+    }).select("name email").lean();
+
+    const courseMap = new Map(
+      courses.map(course => [
+        course._id.toString(),
+        course
+      ])
+    );
+
+    const instructorMap = new Map(
+      instructors.map(instructor => [
+        instructor._id.toString(),
+        instructor
+      ])
+    );
+
+    const result = enrollments.map(enrollment => {
+      const course = courseMap.get(enrollment.course.toString());
+
+      return {
+        ...enrollment,
+        course: course
+          ? {
+              ...course,
+              instructor: course.instructor
+                ? instructorMap.get(course.instructor.toString()) || null
+                : null
+            }
+          : null
+      };
+    });
+
+    const executionTime = performance.now() - start;
+
+    res.status(200).json({
+      method: "separate queries",
+      totalCourses: result.length,
+      executionTimeMs: Number(executionTime.toFixed(2)),
+      data: result
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//cascading update 
+app.put("/api/courses/:courseId/instructor", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const { instructorId } = req.body;
+
+    if (
+      !mongoose.isValidObjectId(courseId) ||
+      !mongoose.isValidObjectId(instructorId)
+    ) {
+      return res.status(400).json({
+        message: "Invalid course ID or instructor ID"
+      });
+    }
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({
+        message: "Course not found"
+      });
+    }
+
+    const instructor = await User.findOne({
+      _id: instructorId,
+      role: "instructor"
+    });
+
+    if (!instructor) {
+      return res.status(404).json({
+        message: "Instructor not found"
+      });
+    }
+
+    const oldInstructor = course.instructor;
+
+    course.instructor = instructorId;
+    await course.save();
+
+    const updatedCourse = await Course.findById(courseId)
+      .populate("instructor", "name email role");
+
+    res.status(200).json({
+      message: "Course instructor updated successfully",
+      oldInstructor,
+      updatedCourse
+    });
+
+  } catch (error) {
+    console.error("Cascade Update Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+//shallow population
+app.get("/api/enrollments/shallow", async (req, res) => {
+  try {
+    const enrollments = await Enrollment.find()
+      .populate("course", "title description")
+      .populate("student", "name email")
+      .lean();
+
+    res.status(200).json({
+      type: "Shallow Population",
+      total: enrollments.length,
+      enrollments
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+//deep population
+app.get("/api/enrollments/deep", async (req, res) => {
+  try {
+    const enrollments = await Enrollment.find()
+      .populate("student", "name email")
+      .populate({
+        path: "course",
+        select: "title description instructor",
+        populate: {
+          path: "instructor",
+          select: "name email role"
+        }
+      })
+      .lean();
+
+    res.status(200).json({
+      type: "Deep Population",
+      total: enrollments.length,
+      enrollments
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//retrieve both embedded and referrenced lessosns
+app.get("/api/courses/:courseId/full-details", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+
+    if (!mongoose.isValidObjectId(courseId)) {
+      return res.status(400).json({ message: "Invalid course ID" });
+    }
+
+    const course = await Course.findById(courseId)
+      .populate("instructor", "name email")
+      .populate({
+        path: "enrollments",
+        select: "student progress enrolledAt",
+        populate: {
+          path: "student",
+          select: "name email"
+        }
+      });
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    res.status(200).json({
+      course
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+//phase7:using seed to insert data
+app.post("/api/phase7/seed-large-dataset", async (req, res) => {
+  try {
+    const instructor = await User.findOne({ role: "instructor" });
+
+    if (!instructor) {
+      return res.status(400).json({
+        message: "Create an instructor before inserting courses"
+      });
+    }
+
+    const batchId = Date.now().toString();
+    const today = new Date().toISOString().slice(0, 10);
+
+    const students = Array.from({ length: 1000 }, (_, i) => ({
+      name: `Phase7_Student_${i + 1}`,
+      email: `phase7_${batchId}_student${i + 1}@example.com`,
+      role: "student",
+      isActive: true,
+      addedDate: today
+    }));
+
+    const studentResult = await User.insertMany(students);
+const categories = [
+  "JavaScript",
+  "MongoDB",
+  "Node.js",
+  "Express",
+  "React"
+];
+
+const courses = Array.from({ length: 50 }, (_, i) => ({
+  title: `Phase7_${batchId}_Course_${i + 1}`,
+  description: `Test course ${i + 1} for scaling performance`,
+  category: categories[i % categories.length],
+  instructor: instructor._id,
+  lessons: []
+}));
+
+    const courseResult = await Course.insertMany(courses);
+
+    res.status(201).json({
+      message: "Large dataset inserted successfully",
+      studentsInserted: studentResult.length,
+      coursesInserted: courseResult.length
+    });
+
+  } catch (error) {
+    console.error("Dataset Insertion Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
 
 // Start server
 app.listen(process.env.PORT || 5000, () => {
