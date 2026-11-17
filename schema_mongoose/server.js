@@ -277,7 +277,7 @@ app.get("/api/courses/text-search", async (req, res) => {
     });
   }
 });
-
+//Phase6 -percentage per course
 //complete status
 app.get("/api/courses/completion-stats", async (req, res) => {
   try {
@@ -899,6 +899,7 @@ app.post("/api/enrollments", async (req, res) => {
             });
         }
     });
+    //Phase4
 //count number of enrollments per instructor
 app.get("/api/analytics/instructors/enrollments", async (req, res) => {
   try {
@@ -1379,7 +1380,8 @@ app.get("/api/analytics/query-explain", async (req, res) => {
     });
   }
 });
-
+//comparing the performance of embedded and referenced lessons
+//embedded
 app.get("/api/analytics/lessons/embedded/:courseId", async (req, res) => {
   try {
     const start = performance.now();
@@ -1400,6 +1402,7 @@ app.get("/api/analytics/lessons/embedded/:courseId", async (req, res) => {
 
 
 //comparing the performance of embedded and referrenced lessons
+//referrnced
 app.get("/api/analytics/lessons/referenced/:courseId", async (req, res) => {
   try {
     const start = performance.now();
@@ -1436,15 +1439,13 @@ app.get("/api/analytics/lessons/referenced/:courseId", async (req, res) => {
 app.get("/api/analytics/optimize-users", async (req, res) => {
   try {
     const filter = {
-      role: "student",
+      role: "instructor",
       isActive: true
     };
 
-    
-    await User.collection.dropIndex("role_idx").catch(() => {});
     await User.collection.dropIndex("role_active_idx").catch(() => {});
 
-
+    // BEFORE: Collection scan
     const before = await User.find(filter)
       .hint({ $natural: 1 })
       .explain("executionStats");
@@ -1455,20 +1456,29 @@ app.get("/api/analytics/optimize-users", async (req, res) => {
       { name: "role_active_idx" }
     );
 
-    // AFTER:  compound index
+    // AFTER: Index scan
     const after = await User.find(filter)
       .hint("role_active_idx")
       .explain("executionStats");
 
     res.status(200).json({
       message: "Query optimization comparison",
+      filter,
+
       before: {
-        winningPlan: before.queryPlanner.winningPlan,
-        executionStats: before.executionStats
+        stage: before.queryPlanner.winningPlan.stage,
+        executionTimeMicros: before.executionStats.executionTimeMicros,
+        totalDocsExamined: before.executionStats.totalDocsExamined,
+        totalKeysExamined: before.executionStats.totalKeysExamined,
+        nReturned: before.executionStats.nReturned
       },
+
       after: {
-        winningPlan: after.queryPlanner.winningPlan,
-        executionStats: after.executionStats
+        stage: after.queryPlanner.winningPlan.stage,
+        executionTimeMicros: after.executionStats.executionTimeMicros,
+        totalDocsExamined: after.executionStats.totalDocsExamined,
+        totalKeysExamined: after.executionStats.totalKeysExamined,
+        nReturned: after.executionStats.nReturned
       }
     });
 
@@ -1539,37 +1549,74 @@ app.get("/api/performance/read-users", async (req, res) => {
 });
 
 //drop index and observe performance
-app.get("/api/analytics/drop-index-performance", async (req, res) => {
+// Drop role index and observe query slowdown
+app.get("/api/analytics/drop-role-index", async (req, res) => {
   try {
     const filter = {
-      role: "student",
-      isActive: true
+      role: "instructor"
     };
 
-    const before = await User.find(filter).explain("executionStats");
+    // Check whether test index already exists
+    const indexes = await User.collection.indexes();
 
-    const droppedIndex = await User.collection.dropIndex("role_active_idx");
+    const existingIndex = indexes.find(
+      index => index.name === "role_test_idx"
+    );
 
-    const after = await User.find(filter).explain("executionStats");
+    // Create role index if it does not exist
+    if (!existingIndex) {
+      await User.collection.createIndex(
+        { role: 1 },
+        { name: "role_test_idx" }
+      );
+    }
+
+    // BEFORE: Query using index
+    const before = await User.find(filter)
+      .hint("role_test_idx")
+      .explain("executionStats");
+
+    // Drop role index
+    const droppedIndex = await User.collection.dropIndex(
+      "role_test_idx"
+    );
+
+    // AFTER: Force collection scan
+    const after = await User.find(filter)
+      .hint({ $natural: 1 })
+      .explain("executionStats");
 
     res.status(200).json({
-      message: "Index dropped and query performance compared",
-      droppedIndex,
+      message: "Role index dropped and performance compared",
+
       before: {
-        winningPlan: before.queryPlanner.winningPlan,
-        executionStats: before.executionStats
+        stage: before.queryPlanner.winningPlan.stage,
+        indexName: before.queryPlanner.winningPlan.inputStage.indexName,
+        executionTimeMicros: before.executionStats.executionTimeMicros,
+        totalDocsExamined: before.executionStats.totalDocsExamined,
+        totalKeysExamined: before.executionStats.totalKeysExamined,
+        nReturned: before.executionStats.nReturned
       },
+
       after: {
-        winningPlan: after.queryPlanner.winningPlan,
-        executionStats: after.executionStats
-      }
+        stage: after.queryPlanner.winningPlan.stage,
+        executionTimeMicros: after.executionStats.executionTimeMicros,
+        totalDocsExamined: after.executionStats.totalDocsExamined,
+        totalKeysExamined: after.executionStats.totalKeysExamined,
+        nReturned: after.executionStats.nReturned
+      },
+
+      droppedIndex
     });
+
   } catch (error) {
-    console.error("Drop Index Performance Error:", error);
-    res.status(500).json({ message: error.message });
+    console.error("Drop Role Index Error:", error);
+
+    res.status(500).json({
+      message: error.message
+    });
   }
 });
-
 //Report
 app.get("/api/analytics/index-report", async (req, res) => {
   try {
@@ -1925,7 +1972,7 @@ app.get("/api/enrollments/deep", async (req, res) => {
   }
 });
 
-//retrieve both embedded and referrenced lessosns
+// Retrieve embedded lessons and referenced enrollments
 app.get("/api/courses/:courseId/full-details", async (req, res) => {
   try {
     const { courseId } = req.params;
@@ -1950,12 +1997,14 @@ app.get("/api/courses/:courseId/full-details", async (req, res) => {
     }
 
     res.status(200).json({
+      message: "Course details retrieved successfully",
       course
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 //phase7:using seed to insert data
 app.post("/api/phase7/seed-large-dataset", async (req, res) => {
   try {
@@ -2012,7 +2061,6 @@ const courses = Array.from({ length: 50 }, (_, i) => ({
   }
 });
 
-//query all courses with students and log performance
 app.post("/api/phase7/create-enrollments", async (req, res) => {
   try {
     const students = await User.find({
@@ -2079,7 +2127,7 @@ app.post("/api/phase7/create-enrollments", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
+//query all courses with students and log performance
 app.get("/api/phase7/courses-with-students", async (req, res) => {
   try {
     const startTime = performance.now();
@@ -2147,7 +2195,7 @@ app.get("/api/phase7/courses-with-students", async (req, res) => {
   }
 });
 
-//
+//enrollment transaction
 
 app.post("/api/phase7/enroll-transaction", async (req, res) => {
   const session = await mongoose.startSession();
@@ -2261,8 +2309,78 @@ app.post("/api/phase7/enroll-transaction", async (req, res) => {
   }
 });
 
-//
+// Simulate failed transaction and observe rollback
+app.post("/api/analytics/transaction-rollback", async (req, res) => {
+  const session = await mongoose.startSession();
 
+  try {
+    const { studentId, courseId } = req.body;
+
+    if (
+      !mongoose.isValidObjectId(studentId) ||
+      !mongoose.isValidObjectId(courseId)
+    ) {
+      return res.status(400).json({
+        message: "Invalid student ID or course ID"
+      });
+    }
+
+    let enrollmentId;
+
+    await session.withTransaction(async () => {
+
+      // Step 1: Create enrollment
+      const enrollment = await Enrollment.create(
+        [{
+          student: studentId,
+          course: courseId,
+          progress: 0
+        }],
+        { session }
+      );
+
+      enrollmentId = enrollment[0]._id;
+
+      console.log("Step 1: Enrollment created");
+
+      // Step 2: Update course
+      await Course.findByIdAndUpdate(
+        courseId,
+        {
+          $addToSet: {
+            enrollments: enrollmentId
+          }
+        },
+        { session, new: true }
+      );
+
+      console.log("Step 2: Course updated");
+
+      // Step 3: Intentionally simulate failure
+      throw new Error("Simulated transaction failure");
+
+    });
+
+    res.status(200).json({
+      message: "Transaction completed"
+    });
+
+  } catch (error) {
+    console.log("Transaction Failed:", error.message);
+    console.log("Rollback executed");
+
+    res.status(500).json({
+      message: error.message,
+      transaction: "Aborted",
+      rollback: "Changes were rolled back"
+    });
+
+  } finally {
+    await session.endSession();
+  }
+});
+
+//read and write test
 app.get("/api/phase7/performance-test", async (req, res) => {
   try {
     const datasetSizes = [100, 1000, 10000];
@@ -2329,11 +2447,9 @@ app.get("/api/phase7/performance-test", async (req, res) => {
   }
 });
 
-//
+//Sharding
 
 const crypto = require("crypto");
-
-// PHASE 7 - TASK 6: SHARD KEY ANALYSIS
 
 app.get("/api/phase7/shard-key-analysis", async (req, res) => {
   try {
@@ -2419,31 +2535,30 @@ app.get("/api/phase7/shard-key-analysis", async (req, res) => {
   }
 });
 
-//
-
+//analyze slow queries and schema rdesign
 app.get("/api/phase7/slow-query-analysis", async (req, res) => {
   try {
     const filter = { role: "student" };
 
-    // 1. Run query without using an index
+    //Run query without using an index
     const before = await User.find(filter)
       .sort({ name: 1 })
       .hint({ $natural: 1 })
       .explain("executionStats");
 
-    // 2. Create compound index
+    //Create compound index
     await User.collection.createIndex(
       { role: 1, name: 1 },
       { name: "role_name_analysis_idx" }
     );
 
-    // 3. Run same query using compound index
+    //  Run same query using compound index
     const after = await User.find(filter)
       .sort({ name: 1 })
       .hint("role_name_analysis_idx")
       .explain("executionStats");
 
-    // 4. Extract performance statistics
+    // Extract performance statistics
     const getStats = (result) => ({
       executionTimeMs:
         result.executionStats.executionTimeMillis,
@@ -2495,10 +2610,10 @@ app.get("/api/phase7/slow-query-analysis", async (req, res) => {
 });
 
 
-
+//split large collections into multiple collections
 app.get("/api/phase7/collection-splitting-test", async (req, res) => {
   try {
-    // 1. Fetch existing users
+    //Fetch existing users
     const users = await User.find().lean();
 
     if (users.length === 0) {
@@ -2507,7 +2622,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
       });
     }
 
-    // 2. Separate users by role
+    // Separate users by role
     const students = users
       .filter(user => user.role === "student")
       .map(({ _id, name, email, role, department, age }) => ({
@@ -2520,16 +2635,15 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
         name, email, role, department, age
       }));
 
-    // Dedicated test collection for unified data
     const unifiedCollection =
       mongoose.connection.collection("unified_user_records");
 
-    // 3. Clear previous test data
+    //Clear previous test data
     await unifiedCollection.deleteMany({});
     await StudentRecord.deleteMany({});
     await InstructorRecord.deleteMany({});
 
-    // 4. Insert all users into one collection
+    //Insert all users into one collection
     const unifiedData = users.map(
       ({ _id, name, email, role, department, age }) => ({
         name, email, role, department, age
@@ -2545,7 +2659,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
     const unifiedWriteTime =
       Number(unifiedWriteEnd - unifiedWriteStart) / 1e6;
 
-    // 5. Insert users into separate collections
+    //Insert users into separate collections
     const splitWriteStart = process.hrtime.bigint();
 
     if (students.length > 0) {
@@ -2561,7 +2675,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
     const splitWriteTime =
       Number(splitWriteEnd - splitWriteStart) / 1e6;
 
-    // 6. Read students from unified collection
+    //Read students from unified collection
     const unifiedReadStart = process.hrtime.bigint();
 
     const unifiedStudents = await unifiedCollection
@@ -2573,7 +2687,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
     const unifiedReadTime =
       Number(unifiedReadEnd - unifiedReadStart) / 1e6;
 
-    // 7. Read students from separate collection
+    //Read students from separate collection
     const splitReadStart = process.hrtime.bigint();
 
     const splitStudents = await StudentRecord.find().lean();
@@ -2583,7 +2697,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
     const splitReadTime =
       Number(splitReadEnd - splitReadStart) / 1e6;
 
-    // 8. Return comparison
+    //Return comparison
     res.status(200).json({
       message: "Collection splitting performance test completed",
 
@@ -2622,8 +2736,7 @@ app.get("/api/phase7/collection-splitting-test", async (req, res) => {
     });
   }
 });
-//
-
+//indexing impact under high load
 app.get("/api/phase7/indexing-workload-test", async (req, res) => {
   try {
     const db = mongoose.connection.db;
@@ -2646,23 +2759,16 @@ app.get("/api/phase7/indexing-workload-test", async (req, res) => {
       }));
 
     for (const scenario of scenarios) {
-
-      // 1. Reset dedicated test collection
       await db.dropCollection(collectionName).catch(() => {});
 
       const collection = db.collection(collectionName);
-
-      // 2. Insert common initial dataset
       await collection.insertMany(
         createRecords(10000, "base")
       );
-
-      // 3. Create the scenario's index
       if (scenario.index) {
         await collection.createIndex(scenario.index);
       }
-
-      // 4. Read-heavy workload: 100 reads
+      //100 reads
       const readStart = process.hrtime.bigint();
 
       for (let i = 0; i < 100; i++) {
@@ -2679,7 +2785,7 @@ app.get("/api/phase7/indexing-workload-test", async (req, res) => {
       const readTime =
         Number(readEnd - readStart) / 1e6;
 
-      // 5. Write-heavy workload: 100 inserts
+      //100 inserts
       const writeStart = process.hrtime.bigint();
 
       await collection.insertMany(
@@ -2691,7 +2797,7 @@ app.get("/api/phase7/indexing-workload-test", async (req, res) => {
       const writeTime =
         Number(writeEnd - writeStart) / 1e6;
 
-      // 6. Get query execution statistics
+      //query execution statistics
       const explainResult = await collection
         .find({ role: "student" })
         .sort({ name: 1 })
@@ -2736,6 +2842,7 @@ app.get("/api/test-error", (req, res, next) => {
 
     next(error);
 });
+//Phase8
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {
     console.error("ERROR:", err.message);
@@ -2748,8 +2855,8 @@ app.use((err, req, res, next) => {
     });
 });
 
-//
-app.post("/api/phase7/invalid-user", async (req, res, next) => {
+//invalid data insertion
+app.post("/api/phase8/invalid-user", async (req, res, next) => {
     try {
         const user = new User({
             name: "Vaishu",
