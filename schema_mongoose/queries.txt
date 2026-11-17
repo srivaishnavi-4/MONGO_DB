@@ -1,0 +1,812 @@
+1)Top 5 courses by student count
+schema_poc> db.enrollments.aggregate([ { $group: { _id: "$course", studentCount: { $sum: 1 } } }, { $lookup: { from: "courses", localField: "_id", foreignField: "_id", as: "courseDetails" } }, { $unwind: "$courseDetails" }, { $sort: { studentCount: -1 } }, { $limit: 5 }, { $project: { _id: 0, courseId: "$_id", title: "$courseDetails.title", category: "$courseDetails.category", studentCount: 1 }}]);
+[
+  {
+    studentCount: 3,
+    courseId: ObjectId('6af4958755a35767a9b4cb95'),
+    title: 'Advanced MongoDB Masterclass',
+    category: 'Database'
+  },
+  {
+    studentCount: 2,
+    courseId: ObjectId('6af5825955ac57825c1de1f0'),
+    title: 'HTML Masterclass',
+    category: 'Frontend'
+  },
+  {
+    studentCount: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f4'),
+    title: 'Course Management Backend',
+    category: 'Database'
+  },
+  {
+    studentCount: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84df'),
+    title: 'MongoDB Indexing and Performance',
+    category: 'Software Engineering'
+  },
+  {
+    studentCount: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f1'),
+    title: 'Mongoose Relationships',
+    category: 'Data Engineering'
+  }
+]
+2)Average student progress per course
+schema_poc> db.enrollments.aggregate([ {$group:{_id:"$course",averageProgress:{$avg:"$progress"},totalStudents:{$sum:1}}},{$lookup:{from:"courses",localField:"_id",foreignField:"_id",as:"courseDetails"}},{$unwind:"$courseDetails"},{$project:{_id:0,courseId:"$_id",title:"$courseDetails.title",averageProgress:{$round:["$averageProgress",2]},totalStudents:1}},{$sort:{averageProgress:-1}}]);
+[
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8578'),
+    title: 'MongoDB Query Results',
+    averageProgress: 100
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84fa'),
+    title: 'E-Learning Data Platform',
+    averageProgress: 85
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84fd'),
+    title: 'Online Academy Database',
+    averageProgress: 85
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84e2'),
+    title: 'MongoDB Administration Basics',
+    averageProgress: 80
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84df'),
+    title: 'MongoDB Indexing and Performance',
+    averageProgress: 80
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d9'),
+    title: 'MongoDB CRUD Workshop',
+    averageProgress: 75
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84dc'),
+    title: 'MongoDB Aggregation Essentials',
+    averageProgress: 75
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d6'),
+    title: 'MongoDB Query Mastery',
+    averageProgress: 65
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d3'),
+    title: 'MongoDB Data Modeling',
+    averageProgress: 65
+  },
+  {
+    totalStudents: 2,
+    courseId: ObjectId('6af5825955ac57825c1de1f0'),
+    title: 'HTML Masterclass',
+    averageProgress: 62.5
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f4'),
+    title: 'Course Management Backend',
+    averageProgress: 60
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f7'),
+    title: 'Student Management Database',
+    averageProgress: 60
+  },
+  {
+    totalStudents: 3,
+    courseId: ObjectId('6af4958755a35767a9b4cb95'),
+    title: 'Advanced MongoDB Masterclass',
+    averageProgress: 56.67
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d0'),
+    title: 'MongoDB Developer Basics',
+    averageProgress: 55
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84cd'),
+    title: 'Database Design Fundamentals',
+    averageProgress: 55
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84ee'),
+    title: 'Mongoose Schema Design',
+    averageProgress: 45
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f1'),
+    title: 'Mongoose Relationships',
+    averageProgress: 45
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84ca'),
+    title: 'NoSQL Essentials',
+    averageProgress: 40
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84c7'),
+    title: 'MongoDB Foundations',
+    averageProgress: 40
+  },
+  {
+    totalStudents: 1,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84e8'),
+    title: 'Node.js Database Integration',
+    averageProgress: 30
+  }
+]
+3)total duration per courseschema_poc> db.courses.aggregate([{$unwind:"$lessons"},{$group:{_id:"$_id",courseTitle:{$first:"$title"},totalDuration:{$sum:"$lessons.duration"},totalLessons:{$sum:1}}},{$project:{_id:0,courseId:"$_id",courseTitle:1,totalDuration:1,totalLessons:1}},{$sort:{totalDuration:-1}}]);
+[
+  {
+    courseTitle: 'HTML Masterclass',
+    totalDuration: 240,
+    totalLessons: 3,
+    courseId: ObjectId('6af5825955ac57825c1de1f0')
+  },
+  {
+    courseTitle: 'Advanced Document Queries',
+    totalDuration: 105,
+    totalLessons: 3,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8509')
+  },
+  {
+    courseTitle: 'MongoDB Foundations',
+    totalDuration: 95,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84c7')
+  },
+  {
+    courseTitle: 'MongoDB Indexing Workshop',
+    totalDuration: 90,
+    totalLessons: 3,
+    courseId: ObjectId('6af5b6285ea1eb405c6f85a2')
+  },
+  {
+    courseTitle: 'MongoDB Indexing and Performance',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84df')
+  },
+  {
+    courseTitle: 'Advanced MongoDB Masterclass',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af4958755a35767a9b4cb95')
+  },
+  {
+    courseTitle: 'Student Management Database',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f7')
+  },
+  {
+    courseTitle: 'MongoDB Nested Data Workshop',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8575')
+  },
+  {
+    courseTitle: 'MongoDB Analytics Toolkit',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f852a')
+  },
+  {
+    courseTitle: 'MongoDB Compound Indexing',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f85a5')
+  },
+  {
+    courseTitle: 'MongoDB Reporting System',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f850f')
+  },
+  {
+    courseTitle: 'MongoDB Query Engineering',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f855a')
+  },
+  {
+    courseTitle: 'MongoDB Embedded Documents',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f858d')
+  },
+  {
+    courseTitle: 'Backend Data Management',
+    totalDuration: 75,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8542')
+  },
+  {
+    courseTitle: 'MongoDB Computed Fields',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f859f')
+  },
+  {
+    courseTitle: 'MongoDB Grouping and Unwinding',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8593')
+  },
+  {
+    courseTitle: 'MongoDB Filtering Techniques',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8572')
+  },
+  {
+    courseTitle: 'MongoDB Data Modeling',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d3')
+  },
+  {
+    courseTitle: 'Database Engineering Essentials',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8554')
+  },
+  {
+    courseTitle: 'Building Data-Driven Apps',
+    totalDuration: 70,
+    totalLessons: 2,
+    courseId: ObjectId('6af5b6285ea1eb405c6f8527')
+  }
+]
+4)students who completed all the courses in a course
+schema_poc> db.enrollments.aggregate([{$match:{progress:100}},{$lookup:{from:"users",localField:"student",foreignField:"_id",as:"studentDetails"}},{$unwind:"$studentDetails"},{$lookup:{from:"courses",localField:"course",foreignField:"_id",as:"courseDetails"}},{$unwind:"$courseDetails"},{$project:{_id:0,studentId:"$studentDetails._id",studentName:"$studentDetails.name",email:"$studentDetails.email",courseId:"$courseDetails._id",courseTitle:"$courseDetails.title",progress:1}}]);
+[
+  {
+    progress: 100,
+    studentId: ObjectId('6af49aba55a35767a9b4cb99'),
+    studentName: 'Srinivas',
+    email: 'srinivas@gmail.com',
+    courseId: ObjectId('6af5825955ac57825c1de1f0'),
+    courseTitle: 'HTML Masterclass'
+  },
+  {
+    progress: 100,
+    studentId: ObjectId('6af49a8155a35767a9b4cb98'),
+    studentName: 'Niranj',
+    email: 'niranj@gmail.com',
+    courseId: ObjectId('6af5b6285ea1eb405c6f8578'),
+    courseTitle: 'MongoDB Query Results'
+  }
+]
+5)count number of enrollments per instructor
+schema_poc> db.enrollments.aggregate([{$lookup: {from: "courses", localField: "course", foreignField: "_id", as: "courseDetails"}}, {$unwind: "$courseDetails"}, {$group: {_id: "$courseDetails.instructor", totalEnrollments: { $sum: 1 }, courses: { $addToSet: "$courseDetails._id" }}}, {$lookup: {from: "users", localField: "_id", foreignField: "_id", as: "instructorDetails"}}, {$unwind: "$instructorDetails"}, {$project: {_id: 0, instructorId: "$_id", instructorName: "$instructorDetails.name", totalEnrollments: 1, totalCourses: { $size: "$courses" }}}, {$sort: {totatotalEnrollments: -1}}]);
+[
+  {
+    totalEnrollments: 6,
+    instructorId: ObjectId('6af7437aa7e59300dc38e260'),
+    instructorName: 'Arun',
+    totalCourses: 5
+  },
+  {
+    totalEnrollments: 4,
+    instructorId: ObjectId('6af7437aa7e59300dc38e261'),
+    instructorName: 'Priya',
+    totalCourses: 4
+  },
+  {
+    totalEnrollments: 4,
+    instructorId: ObjectId('6af7437aa7e59300dc38e265'),
+    instructorName: 'Meena',
+    totalCourses: 2
+  },
+  {
+    totalEnrollments: 3,
+    instructorId: ObjectId('6af7437aa7e59300dc38e266'),
+    instructorName: 'Sanjay',
+    totalCourses: 3
+  },
+  {
+    totalEnrollments: 3,
+    instructorId: ObjectId('6af7437aa7e59300dc38e263'),
+    instructorName: 'Divya',
+    totalCourses: 3
+  },
+  {
+    totalEnrollments: 2,
+    instructorId: ObjectId('6af7437aa7e59300dc38e262'),
+    instructorName: 'Karthik',
+    totalCourses: 2
+  },
+  {
+    totalEnrollments: 2,
+    instructorId: ObjectId('6af7437aa7e59300dc38e264'),
+    instructorName: 'Ramesh',
+    totalCourses: 2
+  }
+]
+6)inactive enrollments in 30 days
+schema_poc> db.enrollments.aggregate([{ $match: { updatedAt: { $lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) }, progress: { $lt: 100 } } }, { $lookup: { from: "users", localField: "student", foreignField: "_id", as: "studentDetails" } }, { $unwind: "$studentDetails" }, { $grou$group: { _id: "$student", studentName: { $first: "$studentDetails.name" }, email: { $first: "$studentDetails.email" }, inactiveEnrollments: { $sum: 1 }, lastUpdatedAt: { $max: "$updatedAt" } } }, { $project: { _i_id: 0, studentId: "$_id", studentName: 1, email: 1, inactiveEnrollmentinactiveEnrollments: 1, lastUpdatedAt: 1 } }]);
+[
+  {
+    studentName: 'Monisha',
+    email: 'monisha@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b8fe')
+  },
+  {
+    studentName: 'Ajay Kumar',
+    email: 'ajay.kumar@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b8fd')
+  },
+  {
+    studentName: 'Srinivas',
+    email: 'srinivas@gmail.com',
+    inactiveEnrollments: 3,
+    lastUpdatedAt: ISODate('2026-10-12T13:16:36.432Z'),
+    studentId: ObjectId('6af49aba55a35767a9b4cb99')
+  },
+  {
+    studentName: 'Niranj',
+    email: 'niranj@gmail.com',
+    inactiveEnrollments: 1,
+    lastUpdatedAt: ISODate('2026-10-13T13:15:31.716Z'),
+    studentId: ObjectId('6af49a8155a35767a9b4cb98')
+  },
+  {
+    studentName: 'Anitha',
+    email: 'anitha@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b900')
+  },
+  {
+    studentName: 'Deepak',
+    email: 'deepak@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b8ff')
+  },
+  {
+    studentName: 'Gokul',
+    email: 'gokul@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b901')
+  },
+  {
+    studentName: 'Swetha',
+    email: 'swetha@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b903')
+  },
+  {
+    studentName: 'Manoj',
+    email: 'manoj@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b904')
+  },
+  {
+    studentName: 'Keerthi',
+    email: 'keerthi@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b905')
+  },
+  {
+    studentName: 'Bharath',
+    email: 'bharath@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b906')
+  },
+  {
+    studentName: 'Harish',
+    email: 'harish@gmail.com',
+    inactiveEnrollments: 2,
+    lastUpdatedAt: ISODate('2026-10-14T00:00:00.000Z'),
+    studentId: ObjectId('6af870321dc919bcc893b902')
+  }
+]
+7)dashboard analytics using $facet
+schema_poc> db.enrollments.aggregate([{ $facet: { courseStatistics: [{ $group: { _id: null, totalEnrollments: { $sum: 1 }, averageProgress: { $avg: "$progress" }, highestProgress: { $max: "$progress" }, lowestProgress: { $min: "$progress" } } }, { $project: { _id: 0, totalEnrollments: 1, averageProgress: { $round: ["$averageProgress", 2] }, highestProgress: 1, lowestProgress: 1 } }], topStudents: [{ $sort: { progress: -1 } }, { $limit: 5 }, { $lookup: { from: "users", localField: "student", foreignField: "_id", as: "studentDetails" } }, { $unwind: "$studentDetails" }, { $lookup: { from: "courses", localField: "course", foreignField: "_id", as: "courseDetails" } }, { $unwind: "$courseDetails" }, { $project: { _id: 0, studentName: "$studentDetails.name", email: "$studentDetails.email", courseTitle: "$courseDetails.title", progress: 1 } }] } }]);
+[
+  {
+    courseStatistics: [
+      {
+        totalEnrollments: 27,
+        highestProgress: 100,
+        lowestProgress: 25,
+        averageProgress: 58.89
+      }
+    ],
+    topStudents: [
+      {
+        progress: 100,
+        studentName: 'Srinivas',
+        email: 'srinivas@gmail.com',
+        courseTitle: 'HTML Masterclass'
+      },
+      {
+        progress: 100,
+        studentName: 'Niranj',
+        email: 'niranj@gmail.com',
+        courseTitle: 'MongoDB Query Results'
+      },
+      {
+        progress: 85,
+        studentName: 'Bharath',
+        email: 'bharath@gmail.com',
+        courseTitle: 'Online Academy Database'
+      },
+      {
+        progress: 85,
+        studentName: 'Bharath',
+        email: 'bharath@gmail.com',
+        courseTitle: 'E-Learning Data Platform'
+      },
+      {
+        progress: 80,
+        studentName: 'Harish',
+        email: 'harish@gmail.com',
+        courseTitle: 'MongoDB Administration Basics'
+      }
+    ]
+  }
+]
+8)bucket to group courses
+schema_poc> db.enrollments.aggregate([{ $facet: { courseStatistics: [{ $group: { _id: null, totalEnrollments: { $sum: 1 }, averageProgress: { $avg: "$progress" }, highestProgress: { $max: "$progress" }, lowestProgress: { $min: "$progress" } } }, { $project: { _id: 0, totalEnrollments: 1, averageProgress: { $round: ["$averageProgress", 2] }, highestProgress: 1, lowestProgress: 1 } }], topStudents: [{ $sort: { progress: -1 } }, { $limit: 5 }, { $lookup: { from: "users", localField: "student", foreignField: "_id", as: "studentDetails" } }, { $unwind: "$studentDetails" }, { $lookup: { from: "courses", localField: "course", foreignField: "_id", as: "courseDetails" } }, { $unwind: "$courseDetails" }, { $project: { _id: 0, studentName: "$studentDetails.name", email: "$studentDetails.email", courseTitle: "$courseDetails.title", progress: 1 } }] } }]);
+[
+  {
+    courseStatistics: [
+      {
+        totalEnrollments: 27,
+        highestProgress: 100,
+        lowestProgress: 25,
+        averageProgress: 58.89
+      }
+    ],
+    topStudents: [
+      {
+        progress: 100,
+        studentName: 'Srinivas',
+        email: 'srinivas@gmail.com',
+        courseTitle: 'HTML Masterclass'
+      },
+      {
+        progress: 100,
+        studentName: 'Niranj',
+        email: 'niranj@gmail.com',
+        courseTitle: 'MongoDB Query Results'
+      },
+      {
+        progress: 85,
+        studentName: 'Bharath',
+        email: 'bharath@gmail.com',
+        courseTitle: 'Online Academy Database'
+      },
+      {
+        progress: 85,
+        studentName: 'Bharath',
+        email: 'bharath@gmail.com',
+        courseTitle: 'E-Learning Data Platform'
+      },
+      {
+        progress: 80,
+        studentName: 'Harish',
+        email: 'harish@gmail.com',
+        courseTitle: 'MongoDB Administration Basics'
+      }
+    ]
+  }
+]
+schema_poc> db.courses.aggregate([{ $unwind: "$lessons" }, { $group: { _id: "$_id", courseTitle: { $first: "$title" }, totalDuration: { $sum: "$lessons.duration" } } }, { $bucket: { groupBy: "$totalDuration", boundaries: [0, 30, 60, 90, 120, 150, 180, 210, 240], default: "240+", output: { totalCourses: { $sum: 1 }, courses: { $push: { title: "$courseTitle", totalDuration: "$totalDuration" } }, averageDuration: { $avg: "$totalDuration" } } } }]);
+[
+  {
+    _id: 30,
+    totalCourses: 36,
+    courses: [
+      { title: 'MongoDB Query Optimization', totalDuration: 55 },
+      { title: 'Modern Database Development', totalDuration: 40 },
+      { title: 'MongoDB CRUD Workshop', totalDuration: 40 },
+      { title: 'MongoDB Retrieval Techniques', totalDuration: 40 },
+      { title: 'Mongoose Fundamentals', totalDuration: 45 },
+      { title: 'Mongoose Schema Design', totalDuration: 50 },
+      { title: 'MongoDB Query Mastery', totalDuration: 45 },
+      { title: 'MongoDB Developer Basics', totalDuration: 45 },
+      { title: 'MongoDB Administration Basics', totalDuration: 50 },
+      { title: 'MongoDB Integration Practice', totalDuration: 50 },
+      { title: 'MongoDB Real-World Exercises', totalDuration: 50 },
+      { title: 'MongoDB Conditional Queries', totalDuration: 35 },
+      { title: 'Course Management Backend', totalDuration: 50 },
+      { title: 'MongoDB Bulk Operations', totalDuration: 50 },
+      { title: 'MongoDB Array Filtering', totalDuration: 50 },
+      { title: 'MongoDB Developer Toolkit', totalDuration: 45 },
+      { title: 'MongoDB Collection Management', totalDuration: 45 },
+      { title: 'Full Stack Database Basics', totalDuration: 50 },
+      { title: 'Mongoose Relationships', totalDuration: 45 },
+      { title: 'MongoDB API Development', totalDuration: 50 },
+      { title: 'MongoDB Data Analytics', totalDuration: 50 },
+      { title: 'MongoDB Pagination Workshop', totalDuration: 40 },
+      { title: 'Node.js Database Integration', totalDuration: 55 },
+      { title: 'MongoDB Aggregation Practice', totalDuration: 50 },
+      { title: 'MongoDB for Web Developers', totalDuration: 50 },
+      { title: 'MongoDB Schema Patterns', totalDuration: 45 },
+      { title: 'MongoDB Update Operations', totalDuration: 55 },
+      { title: 'Document Database Workshop', totalDuration: 50 },
+      { title: 'MongoDB Document Operations', totalDuration: 45 },
+      { title: 'E-Learning Data Platform', totalDuration: 50 },
+      { title: 'MongoDB Array Operations', totalDuration: 45 },
+      { title: 'MongoDB Transactions', totalDuration: 45 },
+      { title: 'MongoDB Application Patterns', totalDuration: 40 },
+      { title: 'MongoDB Query Results', totalDuration: 50 },
+      { title: 'MongoDB Data Import Workshop', totalDuration: 45 },
+      { title: 'Scalable Database Architecture', totalDuration: 45 }
+    ],
+    averageDuration: 46.94444444444444
+  },
+  {
+    _id: 60,
+    totalCourses: 35,
+    courses: [
+      { title: 'Training Portal Backend', totalDuration: 65 },
+      { title: 'MongoDB Filtering Techniques', totalDuration: 70 },
+      { title: 'MongoDB Query Engineering', totalDuration: 75 },
+      { title: 'NoSQL Application Development', totalDuration: 65 },
+      { title: 'MongoDB Backup and Recovery', totalDuration: 70 },
+      { title: 'Database Optimization Lab', totalDuration: 65 },
+      { title: 'Database Design Fundamentals', totalDuration: 65 },
+      { title: 'MongoDB Data Modeling', totalDuration: 70 },
+      { title: 'MongoDB Data Validation', totalDuration: 65 },
+      { title: 'MongoDB Computed Fields', totalDuration: 70 },
+      { title: 'Practical MongoDB Projects', totalDuration: 70 },
+      { title: 'MongoDB Professional Track', totalDuration: 70 },
+      { title: 'MongoDB Learning Path', totalDuration: 65 },
+      { title: 'Online Academy Database', totalDuration: 70 },
+      { title: 'NoSQL Essentials', totalDuration: 65 },
+      { title: 'MongoDB Collection Joins', totalDuration: 65 },
+      { title: 'Advanced MongoDB Masterclass', totalDuration: 75 },
+      { title: 'MongoDB Data Operations', totalDuration: 70 },
+      { title: 'Advanced MongoDB Applications', totalDuration: 60 },
+      { title: 'MongoDB Aggregation Essentials', totalDuration: 70 },
+      { title: 'MongoDB Nested Data Workshop', totalDuration: 75 },
+      { title: 'MongoDB Grouping and Unwinding', totalDuration: 70 },
+      { title: 'MongoDB Compound Indexing', totalDuration: 75 },
+      { title: 'MongoDB Search Techniques', totalDuration: 65 },
+      { title: 'Backend Data Management', totalDuration: 75 },
+      { title: 'Database Engineering Essentials', totalDuration: 70 },
+      { title: 'BSON and Document Modeling', totalDuration: 70 },
+      { title: 'MongoDB Indexing and Performance', totalDuration: 75 },
+      { title: 'Student Management Database', totalDuration: 75 },
+      { title: 'MongoDB Database Design', totalDuration: 65 },
+      { title: 'Building Data-Driven Apps', totalDuration: 70 },
+      { title: 'MongoDB Embedded Documents', totalDuration: 75 },
+      { title: 'MongoDB Reporting System', totalDuration: 75 },
+      { title: 'MongoDB Performance Lab', totalDuration: 65 },
+      { title: 'MongoDB Analytics Toolkit', totalDuration: 75 }
+    ],
+    averageDuration: 69.57142857142857
+  },
+  {
+    _id: 90,
+    totalCourses: 3,
+    courses: [
+      { title: 'Advanced Document Queries', totalDuration: 105 },
+      { title: 'MongoDB Indexing Workshop', totalDuration: 90 },
+      { title: 'MongoDB Foundations', totalDuration: 95 }
+    ],
+    averageDuration: 96.66666666666667
+  },
+  {
+    _id: '240+',
+    totalCourses: 1,
+    courses: [ { title: 'HTML Masterclass', totalDuration: 240 } ],
+    averageDuration: 240
+  }
+]
+9)combine $lookup and $group
+schema_poc> db.enrollments.aggregate([{ $lookup: { from: "courses", localField: "course", foreignField: "_id", as: "courseDetails" } }, { $unw$unwind: "$courseDetails" }, { $group: { _id: "$course", courseTitle: { $first: "$courseDetails.title" }, totalStudents: { $sum: 1 }, averageProgress: { $avg: "$progress" }, highestProgress: { $max: "$progress" }, lowestProgress: { $min: "$progress" }, students: { $push: { studentId: "$student", progress: "$progress" } } } }, { $project: { _id: 0, courscourseId: "$_id", courseTitle: 1, totalStudents: 1, averageProgress: { $round: ["$averageProgress", 2] }, highestProgress: 1, lowestProgress: 1, students: 1 } }, { $sort: { totalStudents: -1 } }]);
+[
+  {
+    courseTitle: 'Advanced MongoDB Masterclass',
+    totalStudents: 3,
+    highestProgress: 80,
+    lowestProgress: 25,
+    students: [
+      { studentId: ObjectId('6af49aba55a35767a9b4cb99'), progress: 80 },
+      { studentId: ObjectId('6af49a8155a35767a9b4cb98'), progress: 65 },
+      { studentId: ObjectId('6af870321dc919bcc893b8fd'), progress: 25 }
+    ],
+    courseId: ObjectId('6af4958755a35767a9b4cb95'),
+    averageProgress: 56.67
+  },
+  {
+    courseTitle: 'HTML Masterclass',
+    totalStudents: 2,
+    highestProgress: 100,
+    lowestProgress: 25,
+    students: [
+      { studentId: ObjectId('6af49aba55a35767a9b4cb99'), progress: 100 },
+      { studentId: ObjectId('6af870321dc919bcc893b8fd'), progress: 25 }
+    ],
+    courseId: ObjectId('6af5825955ac57825c1de1f0'),
+    averageProgress: 62.5
+  },
+  {
+    courseTitle: 'MongoDB CRUD Workshop',
+    totalStudents: 1,
+    highestProgress: 75,
+    lowestProgress: 75,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b901'), progress: 75 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d9'),
+    averageProgress: 75
+  },
+  {
+    courseTitle: 'Database Design Fundamentals',
+    totalStudents: 1,
+    highestProgress: 55,
+    lowestProgress: 55,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b8ff'), progress: 55 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84cd'),
+    averageProgress: 55
+  },
+  {
+    courseTitle: 'MongoDB Query Results',
+    totalStudents: 1,
+    highestProgress: 100,
+    lowestProgress: 100,
+    students: [ { studentId: ObjectId('6af49a8155a35767a9b4cb98'), progress: 100 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f8578'),
+    averageProgress: 100
+  },
+  {
+    courseTitle: 'Online Academy Database',
+    totalStudents: 1,
+    highestProgress: 85,
+    lowestProgress: 85,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b906'), progress: 85 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84fd'),
+    averageProgress: 85
+  },
+  {
+    courseTitle: 'MongoDB Developer Basics',
+    totalStudents: 1,
+    highestProgress: 55,
+    lowestProgress: 55,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b8ff'), progress: 55 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d0'),
+    averageProgress: 55
+  },
+  {
+    courseTitle: 'MongoDB Query Mastery',
+    totalStudents: 1,
+    highestProgress: 65,
+    lowestProgress: 65,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b900'), progress: 65 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84d6'),
+    averageProgress: 65
+  },
+  {
+    courseTitle: 'MongoDB Aggregation Essentials',
+    totalStudents: 1,
+    highestProgress: 75,
+    lowestProgress: 75,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b901'), progress: 75 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84dc'),
+    averageProgress: 75
+  },
+  {
+    courseTitle: 'MongoDB Indexing and Performance',
+    totalStudents: 1,
+    highestProgress: 80,
+    lowestProgress: 80,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b902'), progress: 80 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84df'),
+    averageProgress: 80
+  },
+  {
+    courseTitle: 'MongoDB Administration Basics',
+    totalStudents: 1,
+    highestProgress: 80,
+    lowestProgress: 80,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b902'), progress: 80 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84e2'),
+    averageProgress: 80
+  },
+  {
+    courseTitle: 'Node.js Database Integration',
+    totalStudents: 1,
+    highestProgress: 30,
+    lowestProgress: 30,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b903'), progress: 30 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84e8'),
+    averageProgress: 30
+  },
+  {
+    courseTitle: 'Student Management Database',
+    totalStudents: 1,
+    highestProgress: 60,
+    lowestProgress: 60,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b905'), progress: 60 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f7'),
+    averageProgress: 60
+  },
+  {
+    courseTitle: 'NoSQL Essentials',
+    totalStudents: 1,
+    highestProgress: 40,
+    lowestProgress: 40,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b8fe'), progress: 40 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84ca'),
+    averageProgress: 40
+  },
+  {
+    courseTitle: 'MongoDB Foundations',
+    totalStudents: 1,
+    highestProgress: 40,
+    lowestProgress: 40,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b8fe'), progress: 40 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84c7'),
+    averageProgress: 40
+  },
+  {
+    courseTitle: 'Mongoose Schema Design',
+    totalStudents: 1,
+    highestProgress: 45,
+    lowestProgress: 45,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b904'), progress: 45 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84ee'),
+    averageProgress: 45
+  },
+  {
+    courseTitle: 'Mongoose Relationships',
+    totalStudents: 1,
+    highestProgress: 45,
+    lowestProgress: 45,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b904'), progress: 45 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f1'),
+    averageProgress: 45
+  },
+  {
+    courseTitle: 'Mongoose Fundamentals',
+    totalStudents: 1,
+    highestProgress: 30,
+    lowestProgress: 30,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b903'), progress: 30 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84eb'),
+    averageProgress: 30
+  },
+  {
+    courseTitle: 'Course Management Backend',
+    totalStudents: 1,
+    highestProgress: 60,
+    lowestProgress: 60,
+    students: [ { studentId: ObjectId('6af870321dc919bcc893b905'), progress: 60 } ],
+    courseId: ObjectId('6af5b6285ea1eb405c6f84f4'),
+    averageProgress: 60
+  }
