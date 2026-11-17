@@ -33,33 +33,33 @@ describe("Aggregation Pipeline Tests", () => {
 
     test("should use zero for missing numeric values", () => {
         const documents = [
-            { amount: 1000 },
+            { duration : 34 },
             {},
             { amount: null },
-            { amount: 2000 }
+            { duration : 20 }
         ];
 
         const total = documents.reduce(
-            (sum, doc) => sum + (doc.amount || 0),
+            (sum, doc) => sum + (doc.duration || 0),
             0
         );
 
-        expect(total).toBe(3000);
+        expect(total).toBe(54);
     });
 
     test("should ignore invalid numeric values safely", () => {
         const documents = [
-            { amount: 1000 },
-            { amount: "invalid" },
-            { amount: 2000 }
+            { duration: 10 },
+            { duration: "invalid" },
+            { duration: 20 }
         ];
 
         const total = documents.reduce((sum, doc) => {
-            const amount = Number(doc.amount);
-            return sum + (Number.isFinite(amount) ? amount : 0);
+            const duration = Number(doc.duration);
+            return sum + (Number.isFinite(duration) ? duration : 0);
         }, 0);
 
-        expect(total).toBe(3000);
+        expect(total).toBe(30);
     });
 
     test("should return zero for empty aggregation input", () => {

@@ -54,7 +54,6 @@ const courseSchema=new mongoose.Schema({
     }},
     {
         timestamps:true});
-
         //Instance method :total course duration
         courseSchema.methods.calculateDuration=async function(){
             let embeddedTotal=this.lessons.reduce((total,lesson)=>total+lesson.duration,0);
@@ -62,22 +61,18 @@ const courseSchema=new mongoose.Schema({
             const referencedTotal=referenced.reduce((total,lesson)=>total+lesson.duration,0);
             return embeddedTotal+referencedTotal;
         };
-
         //static method:fetch courses by category
         courseSchema.statics.findByCategory=function(category){
             return this.find({category});
         };
-
         //static method:fetch top-rated courses
         courseSchema.statics.getTopRated=function(){
             return this.find({rating:{$gte:4}}).sort({rating:-1});
         };
-
         //Post-save hook
         courseSchema.post("save",function(doc){
             console.log("New course created:",doc.title);
         });
-
         //virtual field
         courseSchema.virtual("enrollments", {
   ref: "Enrollment",
